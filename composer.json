@@ -27,6 +27,7 @@
         "fzaninotto/faker": "^1.4",
         "laracasts/generators": "dev-master",
         "mockery/mockery": "^1.0",
+        "mpratt/relativetime": "^1.5",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
     },
@@ -59,6 +60,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "bootstrap/view-helpers.php"
         ]
     },
     "autoload-dev": {

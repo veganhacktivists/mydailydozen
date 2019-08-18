@@ -2,6 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in('app')
+    ->in('bootstrap')
     ->in('config')
 ;
 
