@@ -4,6 +4,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in('app')
     ->in('bootstrap')
     ->in('config')
+    ->in('database')
 ;
 
 return PhpCsFixer\Config::create()
