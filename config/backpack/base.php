@@ -11,15 +11,15 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => env('APP_NAME'),
+    'project_name' => config('app.name'),
 
     // Menu logos
-    'logo_lg' => env('APP_NAME'),
+    'logo_lg' => config('app.name'),
     'logo_mini' => implode('', array_map(
         function ($word) {
             return $word[0];
         },
-        explode(' ', env('APP_NAME'))
+        explode(' ', config('app.name'))
     )),
 
     // Developer or company name. Shown in footer.
