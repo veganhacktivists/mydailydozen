@@ -84,6 +84,20 @@
                 </div>
               </div>
 
+              <div class="form-group row">
+                <div class="col-md-6 offset-md-4">
+                  <div class="form-check">
+                    {{ Form::checkbox('subscribe', 'true', false, [
+                      'id' => 'subscribe',
+                      'class' => 'form-check-input',
+                    ]) }}
+                    {{ Form::label('subscribe', 'Keep up to date with Vegan Hacktivist news', [
+                      'class' => 'form-check-label',
+                    ]) }}
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                   {{ Form::submit(__('Register'), ['class' => 'btn btn-primary']) }}
