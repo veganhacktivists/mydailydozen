@@ -2,6 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in('app')
+    ->in('config')
 ;
 
 return PhpCsFixer\Config::create()
