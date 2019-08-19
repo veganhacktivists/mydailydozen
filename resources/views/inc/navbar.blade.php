@@ -34,6 +34,9 @@
                   'class' => 'dropdown-item',
                 ]) }}
               @endrole
+              {{ link_to_route('settings.edit', __('Settings'), null, [
+                'class' => 'dropdown-item',
+              ]) }}
               {{ link_to_route('logout', __('Logout'), null, [
                 'class' => 'dropdown-item',
                 'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();",
