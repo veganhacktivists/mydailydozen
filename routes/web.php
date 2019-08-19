@@ -20,3 +20,6 @@ Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
 Route::put('/settings', 'SettingsController@update')->name('settings.update');
 
 Route::delete('/account', 'DeleteAccountController')->name('account.destroy');
+
+Route::view('/contact', 'contact.form')->name('contact.form');
+Route::post('/contact', 'SendContactEmailController')->name('contact.send');

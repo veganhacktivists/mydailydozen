@@ -13,6 +13,9 @@
 
       {{-- Right Side Of Navbar --}}
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          {{ link_to_route('contact.form', __('Contact'), null, ['class' => 'nav-link']) }}
+        </li>
         @guest
           <li class="nav-item">
             {{ link_to_route('login', __('Login'), null, ['class' => 'nav-link']) }}

@@ -20,7 +20,7 @@
         ]) }}
           <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">
-              Name
+              {{ __('Name') }}
             </label>
 
             <div class="col-md-6">
@@ -39,7 +39,7 @@
           </div>
           <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">
-              Email
+              {{ __('Email') }}
             </label>
 
             <div class="col-md-6">
@@ -55,14 +55,14 @@
                 </span>
               @elseif (!Auth::user()->hasVerifiedEmail())
                 <div class="mt-1">
-                  {{ link_to_route('verification.resend', 'Resend verification email') }}
+                  {{ link_to_route('verification.resend', __('Resend verification email')) }}
                 </div>
               @endif
             </div>
           </div>
           <div class="form-group row">
             <label for="old-password" class="col-md-4 col-form-label text-md-right">
-              Old Password
+              {{ __('Old Password') }}
             </label>
 
             <div class="col-md-6">
@@ -80,7 +80,7 @@
           </div>
           <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">
-              New Password
+              {{ __('New Password') }}
             </label>
 
             <div class="col-md-6">
@@ -98,7 +98,7 @@
           </div>
           <div class="form-group row">
             <label for="password-confirmation" class="col-md-4 col-form-label text-md-right">
-              Confirm New Password
+              {{ __('Confirm New Password') }}
             </label>
 
             <div class="col-md-6">
@@ -121,7 +121,7 @@
                   'id' => 'subscribe',
                   'class' => 'form-check-input',
                 ]) }}
-                {{ Form::label('subscribe', 'Keep up to date with Vegan Hacktivist news', [
+                {{ Form::label('subscribe', __('Keep up to date with Vegan Hacktivist news'), [
                   'class' => 'form-check-label',
                 ]) }}
               </div>
@@ -130,7 +130,7 @@
           <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
               <div class="d-flex justify-between">
-                {{ Form::submit('Save', [
+                {{ Form::submit(__('Save'), [
                   'class' => 'btn btn-primary',
                 ]) }}
               </div>
@@ -142,9 +142,13 @@
             'class' => 'offset-md-4 mt-2',
             'method' => 'DELETE',
             'route' => 'account.destroy',
-            'onsubmit' => "return confirm('Are you sure you want to delete your account? This cannot be undone.')",
+            'onsubmit' => implode('', [
+              "return confirm('",
+              __('Are you sure you want to delete your account? This cannot be undone.'),
+              "')",
+            ]),
           ]) }}
-          {{ Form::submit('Delete your account', [
+          {{ Form::submit(__('Delete your account'), [
             'class' => 'btn border-0 text-danger',
           ]) }}
           {{ Form::close() }}
