@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
 Auth::routes(['verify' => true]);
+
+Route::view('/', 'welcome')->name('home');
+Route::view('/privacy', 'privacy_policy')->name('privacy_policy');

@@ -98,6 +98,13 @@
                 </div>
               </div>
 
+              <div class="form-group row">
+                <div class="col-md-6 offset-md-4">
+                  By signing up, you agree to the
+                  {{ link_to_route('privacy_policy', 'Privacy Policy', [], ['target' => '_blank']) }}.
+                </div>
+              </div>
+
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                   {{ Form::submit(__('Register'), ['class' => 'btn btn-primary']) }}
