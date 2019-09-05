@@ -9,8 +9,12 @@
         <h1>Settings</h1>
 
         @if (session('success'))
-          <div class="alert alert-success">
+          <div class="alert alert-success" role="alert">
             Your settings have been saved!
+          </div>
+        @elseif (session('resent'))
+          <div class="alert alert-success" role="alert">
+            {{ __('A fresh verification link has been sent to your email address.') }}
           </div>
         @endif
 
@@ -55,7 +59,9 @@
                 </span>
               @elseif (!Auth::user()->hasVerifiedEmail())
                 <div class="mt-1">
-                  {{ link_to_route('verification.resend', __('Resend verification email')) }}
+                  {{ link_to_route('verification.resend', __('Resend verification email'), [], [
+                    'onclick' => "event.preventDefault(); document.getElementById('email-verification-form').submit()",
+                  ]) }}
                 </div>
               @endif
             </div>
@@ -155,4 +161,13 @@
       </div>
     </div>
   </div>
+  @if (!Auth::user()->hasVerifiedEmail())
+    {{ Form::open([
+      'route' => 'verification.resend',
+      'method' => 'POST',
+      'class' => 'd-none',
+      'id' => 'email-verification-form',
+    ]) }}
+    {{ Form::close() }}
+  @endif
 @endsection
