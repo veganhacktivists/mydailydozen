@@ -35,6 +35,7 @@
               @role('admin', 'backpack')
                 {{ link_to_route('backpack.dashboard', __('Admin'), null, [
                   'class' => 'dropdown-item',
+                  'data-turbolinks' => 'false',
                 ]) }}
               @endrole
               {{ link_to_route('settings.edit', __('Settings'), null, [
