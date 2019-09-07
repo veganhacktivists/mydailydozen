@@ -135,6 +135,12 @@ return [
 
     'providers' => [
         /*
+         * This needs to be first in order for fatal exceptions to be caught
+         * by LogEnvelope.
+         */
+        Yaro\LogEnvelope\ServiceProvider::class,
+
+        /*
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,

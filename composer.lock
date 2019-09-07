@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97aeb69bd0139bc925d7554ff2f9a188",
+    "content-hash": "8131a7d3e31f8a51088fd652b1ff6fd3",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -4630,6 +4630,51 @@
                 "environment"
             ],
             "time": "2019-08-27T17:00:38+00:00"
+        },
+        {
+            "name": "yaro/log-envelope",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Cherry-Pie/LogEnvelope.git",
+                "reference": "61f71d5bc7f2a8b425d522fd72bb4f4a2fa2de02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Cherry-Pie/LogEnvelope/zipball/61f71d5bc7f2a8b425d522fd72bb4f4a2fa2de02",
+                "reference": "61f71d5bc7f2a8b425d522fd72bb4f4a2fa2de02",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*|^6.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yaro\\LogEnvelope\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yaro",
+                    "email": "12fcv4@gmail.com",
+                    "homepage": "http://cherry-pie.co",
+                    "role": "Owner"
+                }
+            ],
+            "description": "Laravel 5 email on error",
+            "keywords": [
+                "error",
+                "laravel",
+                "log",
+                "mail on error"
+            ],
+            "time": "2019-09-07T19:43:18+00:00"
         }
     ],
     "packages-dev": [
