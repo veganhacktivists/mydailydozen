@@ -14,6 +14,7 @@
         "barryvdh/laravel-elfinder": "^0.4.2",
         "calebporzio/livewire": "^0.3.3",
         "fideloper/proxy": "^4.0",
+        "genealabs/laravel-caffeine": "^1.0",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",

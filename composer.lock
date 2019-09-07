@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf02a935fe5686dfd81b1d7d1ee59361",
+    "content-hash": "97aeb69bd0139bc925d7554ff2f9a188",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1212,6 +1212,62 @@
             "time": "2019-09-03T16:45:42+00:00"
         },
         {
+            "name": "genealabs/laravel-caffeine",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GeneaLabs/laravel-caffeine.git",
+                "reference": "a367512f5b3208fb6914ae43860e13350b0c20b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GeneaLabs/laravel-caffeine/zipball/a367512f5b3208fb6914ae43860e13350b0c20b7",
+                "reference": "a367512f5b3208fb6914ae43860e13350b0c20b7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "6.0",
+                "illuminate/support": "6.0",
+                "jenssegers/model": "^1.2.1"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "*",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.9",
+                "orchestra/testbench-browser-kit": "^3.9",
+                "orchestra/testbench-dusk": "^3.9",
+                "php-coveralls/php-coveralls": "*",
+                "phpmd/phpmd": "*",
+                "phpunit/phpunit": "^8.0",
+                "sebastian/phpcpd": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GeneaLabs\\LaravelCaffeine\\Providers\\Service"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeneaLabs\\LaravelCaffeine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Bronner",
+                    "email": "hello@genealabs.com"
+                }
+            ],
+            "description": "Keeping Your Laravel Forms Awake",
+            "time": "2019-09-05T22:39:48+00:00"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.3",
             "source": {
@@ -1555,6 +1611,53 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jenssegers/model",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/model.git",
+                "reference": "b69c870e4f0728bd1b2a69fc9198648cd76b70f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/model/zipball/b69c870e4f0728bd1b2a69fc9198648cd76b70f0",
+                "reference": "b69c870e4f0728bd1b2a69fc9198648cd76b70f0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.0 - 6.0",
+                "illuminate/support": "4.0 - 6.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "*",
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Model\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "An Laravel eloquent-like model class, for Laravel and other frameworks",
+            "homepage": "https://github.com/jenssegers/model",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "model"
+            ],
+            "time": "2019-09-05T04:39:23+00:00"
         },
         {
             "name": "laravel/framework",
