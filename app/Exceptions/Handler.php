@@ -32,7 +32,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        \LogEnvelope::send($exception);
+        if (config('base.email_exceptions')) {
+            \LogEnvelope::send($exception);
+        }
 
         parent::report($exception);
     }

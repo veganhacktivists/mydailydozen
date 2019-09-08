@@ -59,5 +59,18 @@ if (token) {
  * Turbolinks
  */
 try {
-  require('turbolinks').start()
+  if (window.__config.turbolinks) {
+    require('turbolinks').start()
+
+    if (window.__config.livewire) {
+      document.addEventListener('turbolinks:load', () => {
+        if (!window.livewire) {
+          window.livewire = new Livewire()
+          window.livewire.start()
+        } else {
+          window.livewire.restart()
+        }
+      })
+    }
+  }
 } catch (e) {}
