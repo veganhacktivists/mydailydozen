@@ -21,8 +21,6 @@ class UsersTableSeeder extends Seeder
 
         $admin->assignRole('admin');
 
-        factory(BackpackUser::class, 50)->create()->each(function ($user) {
-            $user->assignRole('user');
-        });
+        factory(BackpackUser::class, 50)->create();
     }
 }
