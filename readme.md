@@ -1,72 +1,160 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Hello, world
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+If you find any errors in the documentation, or if something doesn't work on your computer (e.g. the git hooks), let Gerard or another project leader know.
 
-## About Laravel
+1. [High priority information (READ THIS)](#high-priority-information-read-this)
+1. [Useful development tips](#useful-development-tips)
+1. [Admin panel](#admin-panel)
+1. [Mail](#mail)
+1. [Database seeding](#database-seeding)
+1. [Low priority info](#low-priority-info)
+1. [Recommendations](#recommendations)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## High priority information (READ THIS)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+If you don't read this section _at a minimum_, Gerard is going to be very angry with you.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Project/environment setup
 
-## Learning Laravel
+#### Homestead
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Please use [Laravel Homestead](https://laravel.com/docs/6.0/homestead). It's a pre-configured virtual machine that includes _everything_ you would ever need to run a Laravel app. It's got MySQL, PostgreSQL, Node, PHP, Nginx, Redis, and other things installed on it already. No server configuration necessary. It's cross-platform, so you have no excuse not to use it.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+We don't want to see you using something like WAMP/MAMP or any of that. If you want to be a hero and set up everything up individually on your personal machine, we can't stop you, but you will receive zero help from us if something isn't working. Please make your life easier and use Homestead.
 
-## Laravel Sponsors
+#### Local machine
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+You will need to set a couple things up on your local machine (outside of Homestead):
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+* [`yarn`](https://yarnpkg.com/lang/en/) - Please install this. **We do not use `npm` for Vegan Hacktivist projects. If you use `npm`, we will find out and be angry.**
+* [Editorconfig](https://editorconfig.org/) - Please set up your preferred editor to respect EditorConfig files. This should be as simple as installing a plugin if your editor doesn't support it out of the box. **This is crucial in order to make sure that our code is formatted consistently.**
 
-## Contributing
+**Important:** In order to run the project, make sure Homestead is running and set up correctly. On your local machine, run `yarn watch` in the root directory of the project. **This must be done on your local machine, otherwise the file watcher will not work.** Everything else should be done in the virtual machine (e.g. using `composer`, `php artisan`, etc.).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Bootstrap
 
-## Security Vulnerabilities
+Lastly*, we use [Bootstrap](https://getbootstrap.com/) for our projects. Do your absolute best to avoid writing custom CSS. This makes it easier to keep everything consistent and allows us to easily theme Bootstrap later on.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Important:** It seems that most people are unaware of Bootstrap's [utility classes](https://getbootstrap.com/docs/4.3/utilities/borders/). These allow you to do things like add margins and padding, change colors, etc. without writing custom CSS. 99% of what you want to do can be accomplished with these, so please take time to look at them.
 
-## License
+\* You better read the rest of the docs.
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Useful development tips
+
+### HTML / Form Blade helpers
+
+If you are to code either of the following:
+
+* A hyperlink
+* A form
+
+Please use the [LaravelCollective helpers](https://github.com/LaravelCollective/docs/blob/master/html.md) if possible. They make things much nicer and easier. If you don't use these, your code reviews are going to take longer because we'll make you rewrite your code.
+
+### Custom blade helpers
+
+Please check out the [`view-helpers.php`](bootstrap/view-helpers.php) file for some functions that'll help you out in Blade templates.
+
+If you want to add more, feel free to add them to this file.
+
+### Adding JavaScript functionality
+
+With the introduction of [Laravel Livewire](https://livewire-framework.com/), there is a bunch of functionality we can add to our apps without writing custom JS. **If you want to add any AJAX functionality, please attempt to use Livewire instead of writing jQuery spaghetti code.**
+
+Livewire is turned off by default as most projects won't need it, but it can be enabled in [`config/base.php`](config/base.php).
+
+We will almost certainly never built a single-page app with something like React or Vue; there is far too much overhead required, and for the apps we're building, they're not worth the trouble.
+
+### Debugging with Clockwork
+
+[Clockwork](https://github.com/itsgoingd/clockwork) is a really cool package that allows you to see useful information (e.g. SQL queries) inside your browser's developer tools. You can also use it for logging things, rather than using Laravel's built-in `Log` facade which inconveniently writes to a file.
+
+All you need to do is download the [Chrome](https://chrome.google.com/webstore/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/clockwork-dev-tools/) extension and it should work!
+
+### View generator
+
+The [`artisan`](https://laravel.com/docs/6.0/artisan) tool comes with a lot of useful commands to generate files quickly (e.g. models, controllers, services, etc.). However, it contains nothing for generating views.
+
+You can use the [third-party tool](https://github.com/svenluijten/artisan-view) we've installed to provide this functionality if you want!
+
+### Git Hooks
+
+Ideally, you won't need to do anything here. However, just know that when you run `composer install`, git hooks will be set up automatically for you.
+
+There is a pre-commit hook to format your PHP code according to the configuration specified in [`.php_cs`](.php_cs) and your JS code according to the [`.prettierrc`](.prettierrc). **This doesn't mean you don't need the Editorconfig setup. Please still use that.**
+
+There is also a post-merge hook (this gets run after a `git pull`) which will automatically run `composer install` and `yarn` in order to install any packages that may have been installed in recent commits. **Note: If a new JS package gets installed, you will need to rerun `yarn watch`.**
+
+## Admin panel
+
+We are using [Laravel Backpack](https://backpackforlaravel.com). Please refer to their documentation on how to add functionality to what already exists.
+
+In order to access the admin panel, a user must have the `admin` role attached. For information on how to do this for the first user(s) on the website, please refer to the section on [database seeding](#database-seeding).
+
+## Mail
+
+There are a few different parts of the application where mail is used. In order to test any mail functionality locally, it is strongly recommended that you sign up for a free account on [Mailtrap](https://mailtrap.io).
+
+Afterwards, modify your `.env` file to include the credentials they give you. The environment variables are `MAIL_USERNAME` and `MAIL_PASSWORD`. Emails will be sent to Mailtrap for your viewing rather than actually being emailed out.
+
+In production, we have a SendGrid account to handle sending emails. The project leaders have access to this and should be responsible for setting this up on the production server.
+
+### Email verification
+
+No additional setup is required beyond what's stated above.
+
+### Contact form
+
+This is the simplest of the mail-related functionality. In the `.env` file, set `MAIL_RECIPIENT` to whatever email address should receive mail through the contact form. This can be comma-separated to include multiple emails.
+
+### Error logging
+
+In production, set `ERROR_LOG_MAIL_SENDER` and `ERROR_LOG_MAIL_RECIPIENT` in the `.env` file. We use [LogEnvelope](https://github.com/Cherry-Pie/LogEnvelope) to email us whenever an error occurs on the server.
+
+If you want to turn this off in production for some reason (not recommended), this can be done in [`config/base.php`](config/base.php).
+
+You shouldn't need this in development, but if you really want to, then set the above `.env` variables and then change the `APP_DEBUG` environment variable to `false`. Alternatively, you can force it to be enabled in [`config/yaro.log-envelope.php`](config/yaro.log-envelope.php), but just make sure not to commit the change.
+
+### Mailchimp newsletter
+
+As part of our signup (and in user settings), a user can choose to be added to or removed from our mailing list.
+
+In production, setup is as easy as setting the `MAILCHIMP_API_KEY` and `MAILCHIMP_AUDIENCE_ID` environment variables to the ones we use for all of our projects. This is for the project leader to do.
+
+In development, you'll need to sign up for a Mailchimp account and set those same variables. This probably isn't required unless you really want to test or change the functionality.
+
+## Database seeding
+
+### Development
+
+Simply run `php artisan db:seed` after running migrations.
+
+### Production
+
+This is only to be done by a project leader, and should ideally only be done _once_. Be careful.
+
+On the production server, run `php artisan db:seed:prod`.
+
+This will run the [`SeedProduction`](app/Console/Commands/SeedProduction.php) command. By default, it creates an admin role and then creates an admin user. The script prompts you for the admin user's name, email, and password.
+
+If you wish to create additional roles for the application, then add them to the `$roleNames` variable in the `seedRoles()` method.
+
+The file also contains a method called `seedCustomData()`. Use this if you wish to seed production with any additional data.
+
+**Please test this script out locally on a completely wiped database before running it in production. Once it's run, it's annoying to un-seed things in order to re-run the script!**
+
+## Low priority info
+
+This will hopefully never affect you, but there are some installed packages which are worth noting:
+
+* [Turbolinks](https://github.com/turbolinks/turbolinks) - This turns the app into a faux single-page app by handling navigation with AJAX in order to prevent reloads across pages. It can be turned off in [`config/base.php`](config/base.php).
+* [Caffeine for Laravel](https://genealabs.com/docs/laravel-caffeine/) - This prevents forms from "timing out" if a user has been on a page for a long time.
+* [Secure Headers](https://github.com/BePsvPT/secure-headers) - This implements a bunch of security-related headers in our responses. Apparently, it's a good thing to do.
+
+## Recommendations
+
+There is some tried-and-true software out there which we've had success with. By using the same software across projects, our lives are made easier when it comes time to help, debug, code review, and perform updates.
+
+Below are some veterans:
+
+* [SimpleMDE Markdown Editor](https://simplemde.com/) - If you want to add a Markdown editor to the app, please use this library.
+* [Laraberg editor for a super complete page/document editor](https://github.com/VanOns/laraberg) - Laraberg is a wrapper around the Gutenberg editor (this is WordPress's editor) built specifically for Laravel. It is incredible and you should use it if you need rich text functionality, custom formatting, image/video embedding, etc.

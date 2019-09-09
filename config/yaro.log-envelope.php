@@ -6,7 +6,7 @@ return [
      */
     'drivers' => [
         'mail' => [
-            'enabled' => true,
+            'enabled' => !config('debug'),
             'to' => [
                 env('ERROR_LOG_MAIL_RECIPIENT'),
             ],
