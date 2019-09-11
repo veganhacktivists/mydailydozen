@@ -7,6 +7,7 @@ If you find any errors in the documentation, or if something doesn't work on you
 1. [Admin panel](#admin-panel)
 1. [Mail](#mail)
 1. [Database seeding](#database-seeding)
+1. [(Optional) IDE Helper](#optional-ide-helper)
 1. [Low priority info](#low-priority-info)
 1. [Recommendations](#recommendations)
 
@@ -141,6 +142,15 @@ If you wish to create additional roles for the application, then add them to the
 The file also contains a method called `seedCustomData()`. Use this if you wish to seed production with any additional data.
 
 **Please test this script out locally on a completely wiped database before running it in production. Once it's run, it's annoying to un-seed things in order to re-run the script!**
+
+## (Optional) IDE Helper
+
+The [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper) is installed as a dev dependency for those who use PHPStorm. For now, please limit its usage to the Facade auto-complete/intellisense feature.
+
+To enable this feature in your local environment, run `php artisan ide-helper:generate`
+
+Note that this command will only register Facades that are already in the project. If new Facades are added later and you
+notice that PHPStorm doesn't recognize them, run the command again.
 
 ## Low priority info
 
