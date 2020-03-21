@@ -13,13 +13,13 @@
         "backpack/permissionmanager": "^4.0",
         "barryvdh/laravel-elfinder": "^0.4.2",
         "bepsvpt/secure-headers": "^5.5",
-        "calebporzio/livewire": "^0.3.3",
         "fideloper/proxy": "^4.0",
         "genealabs/laravel-caffeine": "^1.0",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6.0"
+        "laravelcollective/html": "^6.0",
+        "livewire/livewire": "^1.0"
     },
     "require-dev": {
         "backpack/generators": "^1.2",

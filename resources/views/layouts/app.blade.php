@@ -24,7 +24,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @if (config('base.livewire'))
-      @livewireAssets
+      @livewireStyles
+      @livewireScripts
     @endif
   </head>
   <body>

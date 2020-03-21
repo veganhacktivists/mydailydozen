@@ -5,7 +5,7 @@ return [
      * LiveWire enabled
      * https://github.com/calebporzio/livewire
      */
-    'livewire' => false,
+    'livewire' => true,
 
     /*
      * Turbolinks enabled
