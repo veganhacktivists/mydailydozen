@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Role;
 use App\Models\BackpackUser;
+use App\Role;
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;

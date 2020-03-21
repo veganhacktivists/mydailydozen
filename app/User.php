@@ -70,9 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
             if ($this->isPasswordCorrect($oldPassword)) {
                 $updateFields['password'] = Hash::make($fields->get('password'));
             } else {
-                throw ValidationException::withMessages([
-                    'old_password' => __('Incorrect password'),
-                ]);
+                throw ValidationException::withMessages(['old_password' => __('Incorrect password')]);
             }
         }
 
