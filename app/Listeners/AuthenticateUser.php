@@ -21,11 +21,11 @@ class AuthenticateUser
     public function handle($event)
     {
         if (!backpack_user()) {
-            backpack_auth()->login($event->user, $event->user->remmeber);
+            backpack_auth()->login($event->user, $event->user->remember);
         }
 
         if (!Auth::check()) {
-            Auth::login($event->user, $event->user->remmeber);
+            Auth::login($event->user, $event->user->remember);
         }
     }
 }
