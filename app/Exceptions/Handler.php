@@ -13,6 +13,14 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Illuminate\Routing\Exceptions\InvalidSignatureException::class,
+        \Illuminate\Session\TokenMismatchException::class,
+        \Illuminate\Validation\ValidationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException::class,
     ];
 
     /**
@@ -32,8 +40,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        if (config('base.email_exceptions')) {
-            \LogEnvelope::send($exception);
+        if (config('base.email_exceptions') && !in_array(get_class($exception), $this->dontReport)) {
+            // TODO: Add back once it supports Laravel 7
+            /* \LogEnvelope::send($exception); */
         }
 
         parent::report($exception);

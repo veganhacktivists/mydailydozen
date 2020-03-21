@@ -19,8 +19,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6.0",
-        "yaro/log-envelope": "^1.6"
+        "laravelcollective/html": "^6.0"
     },
     "require-dev": {
         "backpack/generators": "^1.2",

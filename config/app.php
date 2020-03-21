@@ -135,10 +135,12 @@ return [
 
     'providers' => [
         /*
+         * TODO: Add back once it supports Laravel 7
+         *
          * This needs to be first in order for fatal exceptions to be caught
          * by LogEnvelope.
          */
-        Yaro\LogEnvelope\ServiceProvider::class,
+        /* Yaro\LogEnvelope\ServiceProvider::class, */
 
         /*
          * Laravel Framework Service Providers...
