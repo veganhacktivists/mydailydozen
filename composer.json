@@ -13,6 +13,7 @@
         "backpack/permissionmanager": "^5.0",
         "barryvdh/laravel-elfinder": "^0.4.5",
         "bepsvpt/secure-headers": "^6.0",
+        "facade/ignition": "^2.0",
         "fideloper/proxy": "^4.0",
         "genealabs/laravel-caffeine": "^7.0",
         "guzzlehttp/guzzle": "~6.0",
