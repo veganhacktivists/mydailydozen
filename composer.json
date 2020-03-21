@@ -32,7 +32,6 @@
         "itsgoingd/clockwork": "^4.0",
         "laracasts/generators": "dev-master",
         "mockery/mockery": "^1.0",
-        "mpratt/relativetime": "^1.5",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
     },

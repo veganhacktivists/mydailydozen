@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\HtmlString;
-use RelativeTime\RelativeTime;
 
 /*
  * This outputs an icon to the page. For a list of
@@ -47,19 +46,4 @@ function title(string $pageTitle)
     $siteName = config('app.name');
 
     return $pageTitle ? "$pageTitle - $siteName" : $siteName;
-}
-
-/*
- * This is for calculating a date difference in a human-readable
- * format (e.g. "3 days").
- */
-function friendlyDateDiff($date, $now = null, RelativeTime $relativeTime = null)
-{
-    $now = $now ?: time();
-    $relativeTime = $relativeTime ?: new RelativeTime([
-        'suffix' => false,
-        'truncate' => 1,
-    ]);
-
-    return $relativeTime->convert($now, $date);
 }
