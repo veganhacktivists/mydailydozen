@@ -71,12 +71,6 @@ We will almost certainly never built a single-page app with something like React
 
 All you need to do is download the [Chrome](https://chrome.google.com/webstore/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/clockwork-dev-tools/) extension and it should work!
 
-### View generator
-
-The [`artisan`](https://laravel.com/docs/6.0/artisan) tool comes with a lot of useful commands to generate files quickly (e.g. models, controllers, services, etc.). However, it contains nothing for generating views.
-
-You can use the [third-party tool](https://github.com/svenluijten/artisan-view) we've installed to provide this functionality if you want!
-
 ### Git Hooks
 
 Ideally, you won't need to do anything here. However, just know that when you run `composer install`, git hooks will be set up automatically for you.

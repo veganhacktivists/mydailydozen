@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de24865cb9d4fca5eb197b1841328524",
+    "content-hash": "f33917126d3369a78a40e1dbf8b0d2f2",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -7457,63 +7457,6 @@
                 "phra"
             ],
             "time": "2015-10-13T18:44:15+00:00"
-        },
-        {
-            "name": "sven/artisan-view",
-            "version": "v3.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/svenluijten/artisan-view.git",
-                "reference": "749379444b46cc8865f3c3fe3d9d704b75f202d7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/svenluijten/artisan-view/zipball/749379444b46cc8865f3c3fe3d9d704b75f202d7",
-                "reference": "749379444b46cc8865f3c3fe3d9d704b75f202d7",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^5.4 || ^6.0",
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "graham-campbell/testbench": "^4.0 || ^5.0",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Sven\\ArtisanView\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sven\\ArtisanView\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sven Luijten",
-                    "email": "svenluijten1995@gmail.com",
-                    "homepage": "https://svenluijten.com"
-                }
-            ],
-            "description": "Manage your views in Laravel projects through artisan",
-            "keywords": [
-                "artisan",
-                "blade",
-                "laravel",
-                "templates",
-                "views"
-            ],
-            "time": "2019-09-03T16:04:52+00:00"
         },
         {
             "name": "symfony/filesystem",
