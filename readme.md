@@ -49,7 +49,7 @@ If you are to code either of the following:
 * A hyperlink
 * A form
 
-Please use the [LaravelCollective helpers](https://github.com/LaravelCollective/docs/blob/master/html.md) if possible. They make things much nicer and easier. If you don't use these, your code reviews are going to take longer because we'll make you rewrite your code.
+Please use the [LaravelCollective helpers](https://laravelcollective.com/docs/6.0/html) if possible. They make things much nicer and easier. If you don't use these, your code reviews are going to take longer because we'll make you rewrite your code.
 
 ### Custom blade helpers
 
@@ -57,11 +57,17 @@ Please check out the [`view-helpers.php`](bootstrap/view-helpers.php) file for s
 
 If you want to add more, feel free to add them to this file.
 
+### Laravel Components
+
+In `resources/views/components`, you will find components for rendering icons and dates. Please use those if you need to display either of those things.
+
+For more information on Laravel Components, [check out the docs](https://laravel.com/docs/7.x/blade#components). They are useful, and it's recommended that you make a lot of them.
+
 ### Adding JavaScript functionality
 
-With the introduction of [Laravel Livewire](https://livewire-framework.com/), there is a bunch of functionality we can add to our apps without writing custom JS. **If you want to add any AJAX functionality, please attempt to use Livewire instead of writing jQuery spaghetti code.**
+With the introduction of [Laravel Livewire](https://livewire-framework.com/) and [AlpineJS](https://github.com/alpinejs/alpine/), there is a bunch of functionality we can add to our apps without writing custom JS. **If you want to add any AJAX functionality, please attempt to use Livewire and/or AlpineJS instead of writing jQuery spaghetti code.**
 
-Livewire is turned off by default as most projects won't need it, but it can be enabled in [`config/base.php`](config/base.php).
+Livewire is turned off by default as most projects won't need it, but it can be enabled in [`config/base.php`](config/base.php). AlpineJS is turned on by default, but can be disabled in the same place. **Note:** The included `x-date` Laravel component requires AlpineJS in order to work.
 
 We will almost certainly never built a single-page app with something like React or Vue; there is far too much overhead required, and for the apps we're building, they're not worth the trouble.
 

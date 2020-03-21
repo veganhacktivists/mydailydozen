@@ -63,3 +63,15 @@ try {
     require('turbolinks').start()
   }
 } catch (e) {}
+
+if (window.__config.alpinejs) {
+  require('alpinejs')
+
+  if (window.__config.livewire) {
+    window.livewire.hook('afterDomUpdate', () => {
+      window.Alpine.discoverUninitializedComponents((el) => {
+        window.Alpine.initializeComponent(el)
+      })
+    })
+  }
+}

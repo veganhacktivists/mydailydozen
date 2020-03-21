@@ -2,10 +2,16 @@
 
 return [
     /*
-     * LiveWire enabled
-     * https://github.com/calebporzio/livewire
+     * Livewire enabled
+     * https://github.com/livewire/livewire
      */
-    'livewire' => true,
+    'livewire' => false,
+
+    /*
+     * AlpineJS enabled
+     * https://github.com/alpinejs/alpine/
+     */
+    'alpinejs' => true,
 
     /*
      * Turbolinks enabled
