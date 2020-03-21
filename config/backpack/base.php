@@ -1,5 +1,7 @@
 <?php
 
+use Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +100,7 @@ return [
     'middleware_class' => [
         App\Http\Middleware\CheckIfAdmin::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Backpack\Base\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
+        UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
     ],
 
     // Alias for that middleware

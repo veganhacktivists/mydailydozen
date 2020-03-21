@@ -2,8 +2,8 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         if (config('base.email_exceptions') && !in_array(get_class($exception), $this->dontReport)) {
             // TODO: Add back once it supports Laravel 7
@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
      *
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
     }
