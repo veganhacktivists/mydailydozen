@@ -12,7 +12,7 @@
         "backpack/crud": "^3.6",
         "backpack/permissionmanager": "^4.0",
         "barryvdh/laravel-elfinder": "^0.4.2",
-        "bepsvpt/secure-headers": "^5.5",
+        "bepsvpt/secure-headers": "^6.0",
         "fideloper/proxy": "^4.0",
         "genealabs/laravel-caffeine": "^1.0",
         "guzzlehttp/guzzle": "~6.0",
