@@ -16,7 +16,36 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::view('/', 'welcome')->name('home');
+$groupDummyData = [
+    'groups' => [
+        "main" => [
+            "Beans",
+            "Berries",
+            "Other Fruits",
+            "Cruciferous Veg",
+            "Greens",
+            "Other Veg",
+            "Flaxseeds",
+            "Nuts and Seeds",
+            "Herbs and Spices",
+            "Whole Grains",
+            "Beverages",
+            "Exercise",
+        ],
+        "recc" => [
+            "Vitamin B12",
+            "Sleep",
+            "Meditation",
+        ],
+        "custom" => [
+            "Act of compassion",
+            "Socialize a little",
+
+        ],
+    ],
+];
+
+Route::view('/', 'welcome', $groupDummyData)->name('home');
 Route::view('/privacy', 'privacy_policy')->name('privacy_policy');
 
 Route::view('/contact', 'contact.form')->name('contact.form');

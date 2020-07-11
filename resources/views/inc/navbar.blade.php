@@ -23,7 +23,7 @@
           {{ link_to_route('contact.form', __('Contact'), null, ['class' => 'nav-link']) }}
         </li>
         @guest
-          <li class="nav-item">
+          <li class="nav-item border border-white rounded-pill">
             {{ link_to_route('login', __('Login'), null, ['class' => 'nav-link']) }}
           </li>
           @if (Route::has('register'))
@@ -39,10 +39,10 @@
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               @role('admin', 'backpack')
-                {{ link_to_route('backpack.dashboard', __('Admin'), null, [
-                  'class' => 'dropdown-item',
-                  'data-turbolinks' => 'false',
-                ]) }}
+              {{ link_to_route('backpack.dashboard', __('Admin'), null, [
+                'class' => 'dropdown-item',
+                'data-turbolinks' => 'false',
+              ]) }}
               @endrole
               {{ link_to_route('settings.edit', __('Settings'), null, [
                 'class' => 'dropdown-item',
