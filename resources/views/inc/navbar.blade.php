@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light navbar-green shadow-sm">
   <div class="container">
     {{ link_to_route('home', config('app.name'), null, ['class' => 'navbar-brand']) }}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -14,10 +14,16 @@
       {{-- Right Side Of Navbar --}}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          {{ link_to_route('home', __('Home'), null, ['class' => 'nav-link'])}}
+        </li>
+        <li class="nav-item">
+          {{ link_to_route('home', __('Donate'), null, ['class' => 'nav-link']) }}
+        </li>
+        <li class="nav-item">
           {{ link_to_route('contact.form', __('Contact'), null, ['class' => 'nav-link']) }}
         </li>
         @guest
-          <li class="nav-item">
+          <li class="nav-item border border-white rounded-pill">
             {{ link_to_route('login', __('Login'), null, ['class' => 'nav-link']) }}
           </li>
           @if (Route::has('register'))
@@ -33,10 +39,10 @@
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               @role('admin', 'backpack')
-                {{ link_to_route('backpack.dashboard', __('Admin'), null, [
-                  'class' => 'dropdown-item',
-                  'data-turbolinks' => 'false',
-                ]) }}
+              {{ link_to_route('backpack.dashboard', __('Admin'), null, [
+                'class' => 'dropdown-item',
+                'data-turbolinks' => 'false',
+              ]) }}
               @endrole
               {{ link_to_route('settings.edit', __('Settings'), null, [
                 'class' => 'dropdown-item',

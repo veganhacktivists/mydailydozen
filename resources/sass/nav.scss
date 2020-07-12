@@ -1,0 +1,17 @@
+.navbar {
+
+    &.navbar-green {
+        background-color: $brand-green;
+
+        .nav-item {
+
+            a {
+                color: rgba(255,255,255, 0.75);
+                &:hover {
+                    color: rgba(255,255,255, 1);
+                }
+            }
+        }
+    }
+
+}
