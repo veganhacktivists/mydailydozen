@@ -6,7 +6,7 @@
     <div class="d-flex flex-column w-100">
       {{  $item }}
       <span class="text-muted">subheading</span>
-      <div class="w-100 text-right">
+      <div class="w-100 text-right text-muted ">
         checkboxes
       </div>
     </div>
