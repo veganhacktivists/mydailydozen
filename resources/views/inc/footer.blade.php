@@ -26,7 +26,7 @@
       </div>
 
       <div>
-        This app is <strong>not</strong> officially supported by {{ link_to('https://nutritionfacts.org', 'Dr Michael Gregor', ['target' => '_blank']) }}
+        This app is <strong>not</strong> officially supported by {{ link_to('https://nutritionfacts.org', 'Dr Michael Greger', ['target' => '_blank']) }}
       </div>
 
     </div>
