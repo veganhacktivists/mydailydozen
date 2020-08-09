@@ -14,6 +14,7 @@
       window.__config = {!! json_encode(config('base')) !!}
     </script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/checkboxes.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

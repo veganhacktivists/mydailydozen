@@ -1,3 +1,4 @@
+# Ignore
 /.idea
 /node_modules
 /public/hot
@@ -12,6 +13,9 @@ npm-debug.log
 yarn-error.log
 
 /public/css
-/public/js
+/public/js/*
 cghooks.lock
 _ide_helper.php
+
+# Allow
+!/public/js/checkboxes.js
