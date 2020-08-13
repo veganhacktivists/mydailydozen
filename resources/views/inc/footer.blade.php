@@ -3,16 +3,15 @@
     <div class="flex-column">
 
       <div class="">
-        Built with love by the  {{ link_to('https://veganhacktivists.org', 'Vegan Hacktivists.', ['target' => '_blank']) }}
+        Built with love by the <a href="https://veganhacktivists.org" target="_blank">Vegan Hacktivists</a>. <img src="/img/hearts.svg" alt="two red hearts" width="15px">
       </div>
       <div class="">
-        {{ link_to_route('contact.form', __('Contact'), null, ['class' => '']) }}
+        <a href="{{ route('contact.form') }}">{{ __('Contact') }}</a>
         &middot;
-        {{ link_to('https://www.instagram.com/veganhacktivists', 'instagram', ['target' => '_blank']) }}
-
+        <a href="https://www.instagram.com/veganhacktivists" target="_blank">Instagram</a>
         &middot;
         Please support us
-        {{ link_to('https://www.patreon.com/veganhacktivists', 'on Patreon.', ['target' => '_blank']) }}
+        <a href="https://www.patreon.com/veganhacktivists" target="_blank">on Patreon</a>.
       </div>
 
     </div>
@@ -20,15 +19,13 @@
 
       <div class="text-md-right">
        Download the app! &middot;
-        {{ link_to('https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen&hl=en', 'Android', ['target' => '_blank']) }}
+        <a href="https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen&hl=en" target="_blank">Android</a>
         |
-        {{ link_to('https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802', 'iOS', ['target' => '_blank']) }}
+        <a href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802" target="_blank">iOS</a>
       </div>
-
       <div>
-        This app is <strong>not</strong> officially supported by {{ link_to('https://nutritionfacts.org', 'Dr Michael Greger', ['target' => '_blank']) }}
+        This app is <strong>not</strong> officially supported by <a href="https://nutritionfacts.org" target="_blank">Dr. Michael Greger</a>
       </div>
-
     </div>
   </div>
 </footer>
