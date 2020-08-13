@@ -45,6 +45,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Specify guard name, fixes seeder issue.
+     * @var string
+     */
+    protected $guard_name = 'web';
+
     public function isSubscribedToNewsletter()
     {
         return Mailchimp::isSubscribedToNewsletter($this->email);
