@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-green shadow-sm">
   <div class="container">
-    {{ link_to_route('home', config('app.name'), null, ['class' => 'navbar-brand']) }}
+    <a class="navbar-brand" href="{{ route('home') }}">
+      <img src="/img/logo.png" width="240px" alt="logo">
+  </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,22 +15,42 @@
 
       {{-- Right Side Of Navbar --}}
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          {{ link_to_route('home', __('Home'), null, ['class' => 'nav-link'])}}
+        <li class="nav-item px-2
+          @if (Route::currentRouteName()==='home')
+            border border-white rounded-pill
+          @endif
+        ">
+          <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
         </li>
-        <li class="nav-item">
-          {{ link_to_route('home', __('Donate'), null, ['class' => 'nav-link']) }}
+        <li class="nav-item px-2
+          @if (Route::currentRouteName()==='donate')
+            border border-white rounded-pill
+          @endif
+        ">
+          <a class="nav-link" href="{{ route('donate') }}">{{ __('Donate') }}</a>
         </li>
-        <li class="nav-item">
-          {{ link_to_route('contact.form', __('Contact'), null, ['class' => 'nav-link']) }}
+        <li class="nav-item px-2
+          @if (Route::currentRouteName()==='contact.form')
+            border border-white rounded-pill
+          @endif
+        ">
+          <a class="nav-link" href="{{ route('contact.form') }}">{{ __('Contact') }}</a>
         </li>
         @guest
-          <li class="nav-item border border-white rounded-pill">
-            {{ link_to_route('login', __('Login'), null, ['class' => 'nav-link']) }}
+          <li class="nav-item px-2
+          @if (Route::currentRouteName()==='login')
+            border border-white rounded-pill
+          @endif
+          ">
+          <a class="nav-link" href="{{ route('login') }}">{{ __('Log In') }}</a>
           </li>
           @if (Route::has('register'))
-            <li class="nav-item">
-              {{ link_to_route('register', __('Register'), null, ['class' => 'nav-link']) }}
+            <li class="nav-item px-2
+            @if (Route::currentRouteName()==='register')
+              border border-white rounded-pill
+            @endif
+            ">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
           @endif
         @else
@@ -39,19 +61,14 @@
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               @role('admin', 'backpack')
-              {{ link_to_route('backpack.dashboard', __('Admin'), null, [
-                'class' => 'dropdown-item',
-                'data-turbolinks' => 'false',
-              ]) }}
+                <a href="{{ route('backpack.dashboard') }}" class="dropdown-item" data-turbolinks="false">{{ __('Admin') }}</a>
               @endrole
-              {{ link_to_route('settings.edit', __('Settings'), null, [
-                'class' => 'dropdown-item',
-              ]) }}
-              {{ link_to_route('logout', __('Logout'), null, [
-                'class' => 'dropdown-item',
-                'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();",
-              ]) }}
-
+              <a href="{{ route('settings.edit') }}" class="dropdown-item">{{ __('Settings') }}</a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
               {{ Form::open(['route' => 'logout', 'id' => 'logout-form', 'class' => 'd-none']) }}
               {{ Form::close() }}
             </div>
