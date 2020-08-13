@@ -45,6 +45,7 @@ $groupDummyData = [
 ];
 
 Route::view('/', 'welcome', $groupDummyData)->name('home');
+Route::view('/donate', 'welcome', $groupDummyData)->name('donate'); // Update this once we have the actual donation link
 Route::view('/privacy', 'privacy_policy')->name('privacy_policy');
 
 Route::view('/contact', 'contact.form')->name('contact.form');
