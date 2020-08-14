@@ -27,7 +27,7 @@
             border border-white rounded-pill
           @endif
         ">
-          <a class="nav-link" href="{{ route('donate') }}">{{ __('Donate') }}</a>
+          <a class="nav-link" href="https://www.patreon.com/veganhacktivists">{{ __('Donate') }}</a>
         </li>
         <li class="nav-item px-2
           @if (Route::currentRouteName()==='contact.form')
