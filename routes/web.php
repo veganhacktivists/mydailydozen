@@ -16,36 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-$groupDummyData = [
-    'groups' => [
-        "main" => [
-            ["name" => "Beans", "checkboxes" => 3],
-            ["name" => "Berries", "checkboxes" => 3],
-            ["name" => "Other Fruits", "checkboxes" => 3],
-            ["name" => "Cruciferous Veg", "checkboxes" => 1],
-            ["name" => "Greens", "checkboxes" => 2],
-            ["name" => "Other Veg", "checkboxes" => 2],
-            ["name" => "Flaxseeds", "checkboxes" => 1],
-            ["name" => "Nuts and Seeds", "checkboxes" => 1],
-            ["name" => "Herbs and Spices", "checkboxes" => 1],
-            ["name" => "Whole Grains", "checkboxes" => 3],
-            ["name" => "Beverages", "checkboxes" => 5],
-            ["name" => "Exercise", "checkboxes" => 1],
-        ],
-        "recc" => [
-            ["name" => "Vitamin B12", "checkboxes" => 1],
-            ["name" => "Sleep", "checkboxes" => 1],
-            ["name" => "Meditation", "checkboxes" => 1],
-        ],
-        "custom" => [
-            ["name" => "Act of compassion", "checkboxes" => 1],
-            ["name" => "Socialize a little", "checkboxes" => 1],
-        ],
-    ],
-];
-
-Route::view('/', 'welcome', $groupDummyData)->name('home');
-Route::view('/donate', 'welcome', $groupDummyData)->name('donate'); // Update this once we have the actual donation link
+Route::get('/', 'GroupController@index')->name('home');
 Route::view('/privacy', 'privacy_policy')->name('privacy_policy');
 
 Route::view('/contact', 'contact.form')->name('contact.form');
