@@ -27,6 +27,7 @@ class Group extends Model
      * Return the Daily Dozen core food groups.
      *
      * @param $query
+     * @return Builder
      */
     public function scopeDailyDozen($query): Builder
     {
@@ -37,6 +38,7 @@ class Group extends Model
      * Return the Supplements.
      *
      * @param $query
+     * @return Builder
      */
     public function scopeSupplements($query): Builder
     {
@@ -47,6 +49,7 @@ class Group extends Model
      * Return the Tweaks.
      *
      * @param $query
+     * @return Builder
      */
     public function scopeTweaks($query): Builder
     {

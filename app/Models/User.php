@@ -3,8 +3,11 @@
 namespace App;
 
 use App\Facades\Mailchimp;
+use App\Models\Group;
+use App\Models\GroupData;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -44,6 +47,30 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    /**
+     * The data about dietary habits per day.
+     * @return HasMany
+     */
+    public function groupData()
+    {
+        return $this->hasMany(GroupData::class);
+    }
+
+    /**
+     * The data about dietary habits per day.
+     * @param $group
+     * @return HasMany
+     */
+    public function groupDataFor($group)
+    {
+        return $this->groupData()->where('group_id', $group->id);
+    }
 
     /**
      * Specify guard name, fixes seeder issue.

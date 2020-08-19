@@ -10,7 +10,7 @@ use Illuminate\View\View;
 class GroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the daily dozen groups, etc.
      *
      * @return Application|Factory|View
      */
@@ -19,5 +19,15 @@ class GroupController extends Controller
         $groups = Group::all()->groupBy('category');
 
         return view('welcome')->with('groups', $groups);
+    }
+
+    /**
+     * Display a specific group.
+     *
+     * @return Application|Factory|View
+     */
+    public function show(Group $group)
+    {
+        return view('group')->with('group', $group);
     }
 }
