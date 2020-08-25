@@ -22,6 +22,8 @@ Route::view('/privacy', 'privacy_policy')->name('privacy_policy');
 Route::view('/contact', 'contact.form')->name('contact.form');
 Route::post('/contact', 'SendContactEmailController')->name('contact.send');
 
+Route::get('/groups/{group}', 'GroupController@show')->where('group', '[0-9]+');
+
 Route::middleware('auth')->group(function () {
     Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
     Route::put('/settings', 'SettingsController@update')->name('settings.update');
