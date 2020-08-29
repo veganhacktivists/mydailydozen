@@ -28,6 +28,13 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        return view('group')->with('group', $group);
+        $servingSizes = $group->servingSizes()->get();
+        $detailTypes = $group->detailTypes()->get();
+
+        return view('group')->with([
+            'group' => $group,
+            'serving_sizes' => $servingSizes,
+            'detail_types' => $detailTypes,
+        ]);
     }
 }
