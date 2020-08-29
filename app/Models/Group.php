@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Group extends Model
 {
@@ -13,46 +14,32 @@ class Group extends Model
      * @var string[]
      */
     protected $fillable = [
-        'category',
-        'group_nid',
+        'category_id',
         'name',
         'icon_location',
         'banner_location',
-        'serving_sizes',
-        'detail_types',
         'per_day',
+        'checked',
+        'recorded_at',
     ];
 
-    /**
-     * Return the Daily Dozen core food groups.
-     *
-     * @param $query
-     * @return Builder
-     */
-    public function scopeDailyDozen($query): Builder
+    public function users(): BelongsToMany
     {
-        return $query->where('category', 'daily_dozen');
+        return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at');
     }
 
-    /**
-     * Return the Supplements.
-     *
-     * @param $query
-     * @return Builder
-     */
-    public function scopeSupplements($query): Builder
+    public function categories(): HasMany
     {
-        return $query->where('category', 'supplements');
+        return $this->hasMany(Category::class);
     }
 
-    /**
-     * Return the Tweaks.
-     *
-     * @param $query
-     * @return Builder
-     */
-    public function scopeTweaks($query): Builder
+    public function servingSizes(): HasMany
     {
-        return $query->where('category', 'tweaks');
+        return $this->hasMany(ServingSize::class);
+    }
+
+    public function detailTypes(): HasMany
+    {
+        return $this->hasMany(DetailType::class);
     }
 }
