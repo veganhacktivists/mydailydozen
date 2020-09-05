@@ -3,7 +3,7 @@
     <div class="w-100">
     </div>
     <div class="row">
-      @each('inc.card', $groups['daily_dozen'], 'item')
+      @each('inc.card', $groups[1], 'item')
     </div>
   </div>
 
@@ -12,7 +12,7 @@
       <h2 class="display-4">{{ __('Recommended') }}</h2>
     </div>
     <div class="row">
-      @each('inc.card', $groups['supplements'], 'item')
+      @each('inc.card', $groups[2], 'item')
     </div>
 
   </div>
@@ -21,7 +21,7 @@
       <h2 class="display-4">{{__('Custom')}}</h2>
     </div>
     <div class="row">
-      @each('inc.card', $groups['tweaks'], 'item')
+      @each('inc.card', $groups[3], 'item')
     </div>
   </div>
 </div>

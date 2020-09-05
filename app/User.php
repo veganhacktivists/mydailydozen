@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use App\Facades\Mailchimp;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;

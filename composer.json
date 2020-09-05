@@ -60,7 +60,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "App\\Models\\": "app/Models/",
             "Lib\\": "lib/"
         },
         "classmap": [
