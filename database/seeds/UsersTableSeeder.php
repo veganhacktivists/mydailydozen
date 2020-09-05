@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\BackpackUser;
+use App\BackpackUser;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
