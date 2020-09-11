@@ -30,8 +30,8 @@ class GroupController extends Controller
     {
         $servingSizes = $group->servingSizes()->get();
         $detailTypes = $group->detailTypes()->get();
-
-        return view('group')->with([
+      
+        return view('groups.show')->with([
             'group' => $group,
             'serving_sizes' => $servingSizes,
             'detail_types' => $detailTypes,
