@@ -20,7 +20,7 @@
       </div>
     </div>
 
-   @include('inc.cardcontainer', $groups)
+   @include('inc.groupview', $groups)
 
   </div>
 
