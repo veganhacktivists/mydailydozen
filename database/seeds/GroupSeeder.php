@@ -1,9 +1,9 @@
 <?php
 
-use App\Category;
-use App\DetailType;
-use App\Group;
-use App\ServingSize;
+use App\Models\Category;
+use App\Models\DetailType;
+use App\Models\Group;
+use App\Models\ServingSize;
 use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder

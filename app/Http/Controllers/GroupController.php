@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
+use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -30,7 +30,7 @@ class GroupController extends Controller
     {
         $servingSizes = $group->servingSizes()->get();
         $detailTypes = $group->detailTypes()->get();
-      
+
         return view('groups.show')->with([
             'group' => $group,
             'serving_sizes' => $servingSizes,
