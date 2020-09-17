@@ -1,6 +1,6 @@
 <?php
 
-use App\BackpackUser;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $admin = BackpackUser::create([
+        $admin = User::create([
             'name' => 'Admin User',
             'email' => 'admin@'.preg_replace('/https?:\/\//', '', config('app.url')),
             'email_verified_at' => now(),
@@ -21,6 +21,6 @@ class UsersTableSeeder extends Seeder
 
         $admin->assignRole('admin');
 
-        factory(BackpackUser::class, 50)->create();
+        User::factory()->count(50)->create();
     }
 }

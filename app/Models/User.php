@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Facades\Mailchimp;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -12,12 +12,14 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use CrudTrait;
     use HasRoles;
     use Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
