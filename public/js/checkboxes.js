@@ -1,22 +1,40 @@
+
 const cookieCheckboxesName = "checkboxesCount";
 
 // updates number of checkboxes checked and updates cookie
 function countCheck(){
   return{
     count: 0,
-    clickCount(e){
+    clickCount(e, group){
       if (e.target.checked == true) {
         this.count++;
         AddToCookie(cookieCheckboxesName, e.target.id);
+        postCheckedCount(this.count, group);
       }
       else{
         if (this.count > 0) {
           this.count--;
           RemoveFromCookie(cookieCheckboxesName, e.target.id);
+          postCheckedCount(this.count, group);
         }
       }
     }
   }
+}
+
+
+// posts checked count for a group data
+function postCheckedCount(count, group){
+  const data = {
+    checked: count,
+    group: group
+  }
+  // $.post('groups/checked', data, function(data, status){
+  //   alert(status);
+  // });
+  axios.post('groups/checked', data).then(res => {
+    console.log(res.data);
+  });
 }
 
 // returns number of checkboxes currently checked from cookie

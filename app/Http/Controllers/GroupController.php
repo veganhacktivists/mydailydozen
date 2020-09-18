@@ -37,4 +37,11 @@ class GroupController extends Controller
             'detail_types' => $detailTypes,
         ]);
     }
+
+    public function storeChecked()
+    {
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
 }

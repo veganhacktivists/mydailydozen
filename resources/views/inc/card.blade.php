@@ -12,7 +12,7 @@
           <span x-text="count"></span> / {{ $item['per_day'] }}
 
           @for ($i = 0; $i < $item['per_day']; $i++)
-            <input type="checkbox" id="{{ $item['name'].$i }}" @click="clickCount($event)">
+            <input type="checkbox" id="{{ $item['name'].$i }}" @click="clickCount($event, '{{$item['name']}}')">
           @endfor
         </div>
       </div>
