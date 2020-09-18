@@ -13,7 +13,7 @@
     </div>
     <div class="d-flex justify-content-between my-4">
         <div>
-            <h4 class="group-heading">Serving Sizes</h4>
+            <h4 class="group-heading">{{ __('Serving Sizes') }}</h4>
         </div>
         <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
             <label class="btn btn-light active">
@@ -31,7 +31,7 @@
         <div class="card-body">1/4 cup dried</div>
     </div>
     <div class="my-4">
-        <h4 class="group-heading">Types</h4>
+        <h4 class="group-heading">{{ __('Types') }}</h4>
     </div>
     <div class="card mb-2">
         <div class="card-body d-flex justify-content-between py-3">
