@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.4",
         "backpack/crud": "^4.1.25",
-        "backpack/permissionmanager": "^6.0.2",
+        "backpack/permissionmanager": "^6.0.0",
         "barryvdh/laravel-elfinder": "^0.4.5",
         "bepsvpt/secure-headers": "^6.0",
         "facade/ignition": "^2.3.6",
@@ -24,7 +24,7 @@
         "livewire/livewire": "^2.2.3"
     },
     "require-dev": {
-        "backpack/generators": "^2.0",
+        "backpack/generators": "^3.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "brainmaestro/composer-git-hooks": "^2.7",
         "friendsofphp/php-cs-fixer": "^2.15",
