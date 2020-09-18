@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'GroupController@index')->name('home');
+Route::get('/groups/{group}', 'GroupController@show');
 Route::view('/privacy', 'privacy_policy')->name('privacy_policy');
 
 Route::view('/contact', 'contact.form')->name('contact.form');

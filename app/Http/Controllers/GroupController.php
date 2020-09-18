@@ -16,7 +16,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::all()->groupBy('category');
+        $groups = Group::all()->groupBy('category_id');
 
         return view('welcome')->with('groups', $groups);
     }
@@ -28,6 +28,13 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        return view('groups.show')->with('group', $group);
+        $servingSizes = $group->servingSizes()->get();
+        $detailTypes = $group->detailTypes()->get();
+
+        return view('groups.show')->with([
+            'group' => $group,
+            'serving_sizes' => $servingSizes,
+            'detail_types' => $detailTypes,
+        ]);
     }
 }
