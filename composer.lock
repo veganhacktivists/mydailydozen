@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9002137beba11f820d216e4f4d79f373",
+    "content-hash": "c1a37be855d081b88bb722833c7c3ff2",
     "packages": [
         {
             "name": "backpack/crud",
-            "version": "dev-master",
+            "version": "4.1.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "de89eb3b3564c098229a0323183127f83b4a4415"
+                "reference": "23fb1ed5153d5465d49d2fe1ca265a5985c78877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/de89eb3b3564c098229a0323183127f83b4a4415",
-                "reference": "de89eb3b3564c098229a0323183127f83b4a4415",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/23fb1ed5153d5465d49d2fe1ca265a5985c78877",
+                "reference": "23fb1ed5153d5465d49d2fe1ca265a5985c78877",
                 "shasum": ""
             },
             "require": {
@@ -88,24 +88,24 @@
                 "read",
                 "update"
             ],
-            "time": "2020-09-16T13:06:48+00:00"
+            "time": "2020-09-16T12:39:56+00:00"
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "5.0.7",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "032051df0ed1b638c5afcc9bccc93c8162261f17"
+                "reference": "7757eeadae93d857f96136d987b6f2d0817b5626"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/032051df0ed1b638c5afcc9bccc93c8162261f17",
-                "reference": "032051df0ed1b638c5afcc9bccc93c8162261f17",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/7757eeadae93d857f96136d987b6f2d0817b5626",
+                "reference": "7757eeadae93d857f96136d987b6f2d0817b5626",
                 "shasum": ""
             },
             "require": {
-                "backpack/crud": "^4.0.0",
+                "backpack/crud": "^4.1.0",
                 "spatie/laravel-permission": "^3.0"
             },
             "require-dev": {
@@ -153,8 +153,6 @@
                 "backpack permission",
                 "backpack roles",
                 "backpack user management",
-                "dick",
-                "dick permission",
                 "laravel backpack",
                 "manage permission",
                 "manage roles",
@@ -163,7 +161,7 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2020-03-05T07:55:03+00:00"
+            "time": "2020-09-07T14:52:54+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -1069,16 +1067,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8"
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/25907a113bfc212a38d458ae365bfb902b4e7fb8",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
                 "shasum": ""
             },
             "require": {
@@ -1091,7 +1089,6 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14",
-                "larapack/dd": "^1.1",
                 "phpunit/phpunit": "^7.5.16",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
@@ -1127,7 +1124,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-26T18:06:23+00:00"
+            "time": "2020-09-18T06:35:11+00:00"
         },
         {
             "name": "facade/ignition",
@@ -2441,16 +2438,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.2.3",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "0480aa04aa08314dd2ed1b62615d8184e7d3071a"
+                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/0480aa04aa08314dd2ed1b62615d8184e7d3071a",
-                "reference": "0480aa04aa08314dd2ed1b62615d8184e7d3071a",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
+                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
                 "shasum": ""
             },
             "require": {
@@ -2502,7 +2499,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-15T02:25:20+00:00"
+            "time": "2020-09-17T17:38:03+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6244,20 +6241,20 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "v2.0.7",
+            "version": "v3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "7011e79406919468f1c0408840741db8b4dd0876"
+                "reference": "17a37c917abbee9f86d419914c1a805377018993"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/7011e79406919468f1c0408840741db8b4dd0876",
-                "reference": "7011e79406919468f1c0408840741db8b4dd0876",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/17a37c917abbee9f86d419914c1a805377018993",
+                "reference": "17a37c917abbee9f86d419914c1a805377018993",
                 "shasum": ""
             },
             "require": {
-                "backpack/crud": "4.0.*"
+                "backpack/crud": "4.1.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0||^7.0",
@@ -6300,7 +6297,7 @@
                 "request",
                 "view"
             ],
-            "time": "2020-03-05T10:18:48+00:00"
+            "time": "2020-06-22T20:08:37+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -7208,16 +7205,16 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v4.1.7",
+            "version": "v4.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "49c28d7c43f6021eca4c290f620f13ee7d15f668"
+                "reference": "0dc2e5be39de88b18719bb4f3cdacfa605ad2146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/49c28d7c43f6021eca4c290f620f13ee7d15f668",
-                "reference": "49c28d7c43f6021eca4c290f620f13ee7d15f668",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/0dc2e5be39de88b18719bb4f3cdacfa605ad2146",
+                "reference": "0dc2e5be39de88b18719bb4f3cdacfa605ad2146",
                 "shasum": ""
             },
             "require": {
@@ -7269,7 +7266,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-25T20:05:21+00:00"
+            "time": "2020-09-17T19:21:25+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -7802,16 +7799,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.1",
+            "version": "5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44"
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d870572532cd70bc3fab58f2e23ad423c8404c44",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
                 "shasum": ""
             },
             "require": {
@@ -7850,20 +7847,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-08-15T11:14:08+00:00"
+            "time": "2020-09-03T19:13:55+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/e878a14a65245fbe78f8080eba03b47c3b705651",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
                 "shasum": ""
             },
             "require": {
@@ -7895,7 +7892,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2020-06-27T10:12:23+00:00"
+            "time": "2020-09-17T18:55:26+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -7962,16 +7959,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.9",
+            "version": "9.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f"
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
-                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5134e2a65ec48e2f7126d12f1503a9889c660bdf",
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf",
                 "shasum": ""
             },
             "require": {
@@ -8031,7 +8028,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-15T06:14:11+00:00"
+            "time": "2020-09-18T05:25:29+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
