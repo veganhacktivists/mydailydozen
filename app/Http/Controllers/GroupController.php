@@ -6,6 +6,7 @@ use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class GroupController extends Controller
@@ -42,6 +43,16 @@ class GroupController extends Controller
     public function storeChecked(Request $request)
     {
         // dd($request->all());
+
+        $this->validate($request, [
+            'checked' => 'required',
+            'group' => 'required',
+        ]);
+
+        $group = Group::where('name', '=', $request->group)->get();
+        $user = Auth::user();
+
+        $user->groups()->save($group[0], ['checked' => $request->checked, 'recorded_at' => now()]);
 
         return response()->json([
             'status' => 'success',
