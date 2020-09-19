@@ -29,8 +29,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/groups/checked/', 'GroupController@storeChecked');
 
-    // Route::post('groups/checked', [GroupController::class, 'storeChecked']);
-
     Route::get('/settings', 'SettingsController@edit')->name('settings.edit');
     Route::put('/settings', 'SettingsController@update')->name('settings.update');
 

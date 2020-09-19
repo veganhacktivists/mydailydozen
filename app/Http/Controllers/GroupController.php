@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class GroupController extends Controller
@@ -38,10 +39,14 @@ class GroupController extends Controller
         ]);
     }
 
-    public function storeChecked()
+    public function storeChecked(Request $request)
     {
+        // dd($request->all());
+
         return response()->json([
             'status' => 'success',
+            'checked' => $request->checked,
+            'group' => $request->group,
         ]);
     }
 }
