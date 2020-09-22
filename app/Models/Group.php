@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Group extends Model
 {
+
     /**
      * Mass-assignable variables.
      *
@@ -25,7 +26,7 @@ class Group extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at');
+        return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at', 'in_use');
     }
 
     public function categories(): HasMany

@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -38,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -134,13 +135,6 @@ return [
     */
 
     'providers' => [
-        /*
-         * TODO: Add back once it supports Laravel 7
-         *
-         * This needs to be first in order for fatal exceptions to be caught
-         * by LogEnvelope.
-         */
-        /* Yaro\LogEnvelope\ServiceProvider::class, */
 
         /*
          * Laravel Framework Service Providers...
@@ -171,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,8 +173,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\MailchimpServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
+
     ],
 
     /*
@@ -196,6 +191,7 @@ return [
     */
 
     'aliases' => [
+
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -210,15 +206,13 @@ return [
         'DB' => Illuminate\Support\Facades\DB::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
-        'Form' => Collective\Html\FormFacade::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
-        'Mailchimp' => App\Facades\Mailchimp::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
@@ -234,5 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
     ],
+
 ];

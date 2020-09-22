@@ -1,54 +1,42 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-  <head>
-  
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150398169-13"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	  gtag('config', 'UA-150398169-13');
-	</script>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <title>@yield('title')</title>
+        @livewireStyles
 
-    <!-- Scripts -->
-    <script>
-      window.__config = {!! json_encode(config('base')) !!}
-    </script>
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/checkboxes.js') }}"></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @livewire('navigation-dropdown')
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">  
+            <!-- Page Heading -->
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
 
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
 
-    @if (config('base.livewire'))
-      @livewireStyles
-      @livewireScripts
-    @endif
-  </head>
-  <body>
-    <div id="app">
-      @include('inc.navbar')
+        @stack('modals')
 
-      <main class="py-4">
-        @yield('content')
-      </main>
-    </div>
-    @include('inc.footer')
-  </body>
+        @livewireScripts
+    </body>
 </html>
