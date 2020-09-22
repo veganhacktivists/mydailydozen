@@ -1,121 +1,43 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <x-jet-authentication-card-logo />
+        </x-slot>
 
-@section('title', title(__('Register')))
+        <x-jet-validation-errors class="mb-4" />
 
-@section('content')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Register') }}</div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-          <div class="card-body">
-            {{ Form::open(['route' => 'register']) }}
-              <div class="form-group row">
-                {{ Form::label('name', __('Name'), [
-                  'class' => 'col-md-4 col-form-label text-md-right',
-                ]) }}
+            <div>
+                <x-jet-label value="{{ __('Name') }}" />
+                <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            </div>
 
-                <div class="col-md-6">
-                  {{ Form::text('name', null, [
-                    'id' => 'name',
-                    'class' => 'form-control'.($errors->has('name') ? ' is-invalid' : ''),
-                    'required' => true,
-                    'autofocus' => true,
-                  ]) }}
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Email') }}" />
+                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
 
-                  @error('name')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Password') }}" />
+                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            </div>
 
-              <div class="form-group row">
-                {{ Form::label('email', __('E-Mail Address'), [
-                  'class' => 'col-md-4 col-form-label text-md-right',
-                ]) }}
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Confirm Password') }}" />
+                <x-jet-input class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
 
-                <div class="col-md-6">
-                  {{ Form::email('email', null, [
-                    'id' => 'email',
-                    'class' => 'form-control'.($errors->has('email') ? ' is-invalid' : ''),
-                    'required' => true,
-                  ]) }}
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
 
-                  @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
-
-              <div class="form-group row">
-                {{ Form::label('password', __('Password'), [
-                  'class' => 'col-md-4 col-form-label text-md-right',
-                ]) }}
-
-                <div class="col-md-6">
-                  {{ Form::password('password', [
-                    'id' => 'password',
-                    'class' => 'form-control'.($errors->has('password') ? ' is-invalid' : ''),
-                    'required' => true,
-                  ]) }}
-
-                  @error('password')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
-
-              <div class="form-group row">
-                {{ Form::label('password-confirm', __('Confirm Password'), [
-                  'class' => 'col-md-4 col-form-label text-md-right',
-                ]) }}
-
-                <div class="col-md-6">
-                  {{ Form::password('password_confirmation', [
-                    'id' => 'password-confirm',
-                    'class' => 'form-control',
-                    'required' => true,
-                  ]) }}
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6 offset-md-4">
-                  <div class="form-check">
-                    {{ Form::checkbox('subscribe', 'true', false, [
-                      'id' => 'subscribe',
-                      'class' => 'form-check-input',
-                    ]) }}
-                    {{ Form::label('subscribe', 'Keep up to date with Vegan Hacktivist news', [
-                      'class' => 'form-check-label',
-                    ]) }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6 offset-md-4">
-                  By signing up, you agree to the
-                  {{ link_to_route('privacy_policy', 'Privacy Policy', [], ['target' => '_blank']) }}.
-                </div>
-              </div>
-
-              <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  {{ Form::submit(__('Register'), ['class' => 'btn btn-primary']) }}
-                </div>
-              </div>
-            {{ Form::close() }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
+                <x-jet-button class="ml-4">
+                    {{ __('Register') }}
+                </x-jet-button>
+            </div>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout>

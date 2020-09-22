@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -13,14 +12,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Routing\Exceptions\InvalidSignatureException::class,
-        \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException::class,
+        //
     ];
 
     /**
@@ -34,27 +26,12 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     */
-    public function report(Throwable $exception)
-    {
-        if (config('base.email_exceptions') && !in_array(get_class($exception), $this->dontReport)) {
-            // TODO: Add back once it supports Laravel 7
-            /* \LogEnvelope::send($exception); */
-        }
-
-        parent::report($exception);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
+     * Register the exception handling callbacks for the application.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function render($request, Throwable $exception)
+    public function register()
     {
-        return parent::render($request, $exception);
+        //
     }
 }

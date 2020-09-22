@@ -1,87 +1,48 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <x-jet-authentication-card-logo />
+        </x-slot>
 
-@section('title', title(__('Login')))
+        <x-jet-validation-errors class="mb-4" />
 
-@section('content')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Login') }}</div>
+        @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
 
-          <div class="card-body">
-            {{ Form::open(['route' => 'login']) }}
-              <div class="form-group row">
-                {{ Form::label('email', __('E-Mail Address'), [
-                  'class' => 'col-md-4 col-form-label text-md-right'
-                ]) }}
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-                <div class="col-md-6">
-                  {{ Form::email('email', null, [
-                    'id' => 'email',
-                    'class' => 'form-control'.($errors->has('email') ? ' is-invalid' : ''),
-                    'required' => true,
-                    'autofocus' => true,
-                  ]) }}
+            <div>
+                <x-jet-label value="{{ __('Email') }}" />
+                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            </div>
 
-                  @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Password') }}" />
+                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            </div>
 
-              <div class="form-group row">
-                {{ Form::label('password', __('Password'), [
-                  'class' => 'col-md-4 col-form-label text-md-right'
-                ]) }}
+            <div class="block mt-4">
+                <label class="flex items-center">
+                    <input type="checkbox" class="form-checkbox" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
 
-                <div class="col-md-6">
-                  {{ Form::password('password', [
-                    'id' => 'password',
-                    'class' => 'form-control'.($errors->has('password') ? ' is-invalid' : ''),
-                    'required' => true,
-                  ]) }}
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
 
-                  @error('password')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6 offset-md-4">
-                  <div class="form-check">
-                    {{ Form::checkbox('remember', true, false, [
-                      'id' => 'remember',
-                      'class' => 'form-check-input',
-                    ]) }}
-
-                    {{ Form::label('remember', __('Remember Me'), [
-                      'class' => 'form-check-label',
-                    ]) }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  {{ Form::submit(__('Login'), ['class' => 'btn btn-primary']) }}
-
-                  @if (Route::has('password.request'))
-                    {{ link_to_route('password.request', __('Forgot Your Password?'), null, [
-                      'class' => 'btn btn-link',
-                    ]) }}
-                  @endif
-                </div>
-              </div>
-            {{ Form::close() }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
+                <x-jet-button class="ml-4">
+                    {{ __('Login') }}
+                </x-jet-button>
+            </div>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout>

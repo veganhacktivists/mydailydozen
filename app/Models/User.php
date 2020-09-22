@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use App\Facades\Mailchimp;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use CrudTrait;
-    use HasRoles;
-    use Notifiable;
+    use HasApiTokens;
     use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +24,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'checked', 'recorded_at',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -36,7 +35,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -48,74 +50,30 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function groups(): BelongsToMany
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    public function data()
     {
-        return $this->belongsToMany(Group::class)->withPivot('checked', 'recorded_at');
+        return $this->hasMany(Data::class);
     }
 
     /**
-     * Specify guard name, fixes seeder issue.
-     *
-     * @var string
+     * Not done but would be really cool.
      */
-    protected $guard_name = 'web';
-
-    public function isSubscribedToNewsletter()
+    public function getStreak(): int
     {
-        return Mailchimp::isSubscribedToNewsletter($this->email);
-    }
-
-    public function subscribeToNewsletter()
-    {
-        Mailchimp::addToNewsletter($this->email);
-    }
-
-    public function updateSettings(Collection $fields)
-    {
-        $updateFields = $fields->only(['name', 'email']);
-        $oldEmail = $this->email;
-        $newEmail = $fields->get('email');
-        $wantsToSubscribeToNewsletter = $fields->get('subscribe', false);
-
-        $hasEmailChanged = $oldEmail !== $newEmail;
-        $isAlreadySubscribedToNewsletter = $this->isSubscribedToNewsletter();
-
-        $oldPassword = $fields->get('old_password', false);
-        if ($oldPassword) {
-            if ($this->isPasswordCorrect($oldPassword)) {
-                $updateFields['password'] = Hash::make($fields->get('password'));
-            } else {
-                throw ValidationException::withMessages(['old_password' => __('Incorrect password')]);
-            }
-        }
-
-        if ($hasEmailChanged) {
-            $this->email_verified_at = null;
-        }
-
-        $this->update($updateFields->toArray());
-
-        if ($hasEmailChanged) {
-            $this->sendEmailVerificationNotification();
-        }
-
-        if ($wantsToSubscribeToNewsletter) {
-            if ($isAlreadySubscribedToNewsletter) {
-                if ($hasEmailChanged) {
-                    Mailchimp::updateSubscriberEmail($oldEmail, $newEmail);
-                }
-            } else {
-                $this->subscribeToNewsletter();
-            }
-        } else {
-            if ($isAlreadySubscribedToNewsletter) {
-                Mailchimp::removeFromNewsletter($oldEmail);
-            }
-        }
-    }
-
-    private function isPasswordCorrect(string $password)
-    {
-        return Hash::check($password, $this->password);
+        return 3;
+         //$dates = $this->data()
+         //   ->orderBy('created_at', 'desc')
+         //   ->get(['created_at'])
+         //   ->pluck('created_at')
+         //   ->values();
     }
 }
