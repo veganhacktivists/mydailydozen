@@ -19,6 +19,11 @@ class PageController extends Controller
         ]);
     }
 
+    public function history()
+    {
+        return view('history');
+    }
+
     private function checkStreak($user)
     {
         $streak = $user->streak;
