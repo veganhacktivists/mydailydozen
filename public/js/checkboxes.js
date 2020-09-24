@@ -6,7 +6,7 @@ function countCheck(){
   return{
     count: 0,
     clickCount(e, group){
-      // alert('hello world');
+      alert('hello world');
       if (e.target.checked == true) {
         this.count++;
         AddToCookie(cookieCheckboxesName, e.target.id);
