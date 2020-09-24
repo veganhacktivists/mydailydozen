@@ -54,7 +54,7 @@ class GroupController extends Controller
 
         $didUpdate = $user->groups()->updateExistingPivot($group[0], ['checked' => $request->checked, 'recorded_at' => now()]) > 0;
 
-        if (!didUpdate) {
+        if (!$didUpdate) {
             $updateResult = $user->groups()->attach($group[0], ['checked' => $request->checked, 'recorded_at' => now()]);
         }
 
