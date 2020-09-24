@@ -21,7 +21,10 @@ class PageController extends Controller
 
     public function history()
     {
-        return view('history');
+        $message = 'Welcome to your history';
+        return view('history')->with([
+          'message' => $message
+        ]);
     }
 
     private function checkStreak($user)
