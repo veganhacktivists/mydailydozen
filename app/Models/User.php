@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -59,21 +62,59 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function data()
+    public function groups(): BelongsToMany
     {
-        return $this->hasMany(Data::class);
+        return $this->belongsToMany(Group::class)->withPivot(
+            'checked',
+            'recorded_at',
+        );
+    }
+
+    public function currentGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'use_tracker')
+            ->withPivot('in_use');
     }
 
     /**
-     * Not done but would be really cool.
+     * Handle a check event on the dashboard.
+     * @param Group $group
+     * @param $checkStatus
+     * @return bool
      */
-    public function getStreak(): int
+    public function checkEvent(Group $group, $checkStatus): bool
     {
-        return 3;
-         //$dates = $this->data()
-         //   ->orderBy('created_at', 'desc')
-         //   ->get(['created_at'])
-         //   ->pluck('created_at')
-         //   ->values();
+        $change = 0;
+        if ($checkStatus && $group->times <= $group->per_day) {
+            $change = $group->checked + 1;
+        }
+        else if ($group->times > 0) {
+            $change = $group->checked - 1;
+        }
+        $didUpdate = $this->groups()->updateExistingPivot($group, [
+            'checked' => $change,
+            'recorded_at' => Carbon::today()
+        ]);
+
+        if (!$didUpdate) {
+            $this->groups()->attach($group, [
+                'checked' => $change,
+                'recorded_at' => Carbon::today()
+            ]);
+        }
+        return true;
+    }
+
+    public function updateGroupSettings(Group $group)
+    {
+        $didUpdate = $this->currentGroups()->updateExistingPivot($group, [
+            'in_use' => true
+        ]);
+
+        if (!$didUpdate) {
+            $this->currentGroups()->attach($group, [
+                'in_use' => true
+            ]);
+        }
     }
 }

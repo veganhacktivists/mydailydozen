@@ -3,14 +3,14 @@
   <div class="flex flex-col w-64">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-col flex-grow bg-pine-600 pt-5 pb-4 overflow-y-auto">
-      <div class="bg-white flex items-center flex-shrink-0 px-4 py-4">
+      <div class="flex items-center flex-shrink-0 px-4 py-4">
         <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="Easywire logo">
       </div>
       <div class="mt-5 flex-1 flex flex-col overflow-y-auto">
         <div class="overflow-y-auto">
           <nav class="px-2 space-y-1">
 
-            <x-desktop-nav-link link="dashboard" text="Home">
+            <x-desktop-nav-link link="groups" text="Home">
               <x-slot name="icon">
                 <x-icons.home />
               </x-slot>
