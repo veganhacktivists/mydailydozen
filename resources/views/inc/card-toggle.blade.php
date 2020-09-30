@@ -9,17 +9,13 @@
                     <dt class="text-sm leading-5 font-medium text-cool-gray-500 truncate">
                         {{ $item['name'] }}
                     </dt>
-                    <dd>
-                        <div class="text-lg leading-7 font-medium text-cool-gray-900">
-                            @for ($i = 0; $i < $item['per_day']; $i++)
-                                <input type="checkbox"
-                                       class="customCheckbox"
-                                       id="{{ $item['name'].$i }}"
-                                       @click="axios.put('/groups/{{ $item['id'] }}', {checked: $event.target.checked, id: {{ $item['id'] }}})"
-                                       {{ $i < $item->checked ? ' checked' : ''}}>
-                            @endfor
-                        </div>
-                    </dd>
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <button type="button"
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150"
+                                @click="axios.put('/settings/{{ $item['id'] }}')">
+                            Toggle Use
+                        </button>
+                    </span>
                 </dl>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update'
     ]);
+    Route::get('settings', [UserController::class, 'show']);
+    Route::put('settings/{group}', [UserController::class, 'update']);
 });

@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -20,12 +21,16 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $groups = $user->groups;
+        $user = Auth::user();
+        // Get the IDs the user has enabled.
+        $ids = $user->currentGroups->pluck('id')->toArray();
+        // Retreive the pivot relations for those 
+        $groups = Group::whereIn('id', $ids)
+            ->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
+            ->get();
         return view('dashboard')->with([
             'user' => $user,
             'greeting' => $this->generateGreeting($user->name),
-            'streak' => '3 day streak! Awesome!',
             'groups' => $groups,
         ]);
     }
@@ -71,7 +76,7 @@ class GroupController extends Controller
             'checked' => 'required',
         ]);
 
-        $result = auth()->user()->checkEvent($group, $request->checked);
+        $result = Auth::user()->checkEvent($group, $request->checked);
 
         return response()->json($result, 201);
     }

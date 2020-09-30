@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -66,8 +67,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class)->withPivot(
             'checked',
             'recorded_at',
-            'in_use'
         );
+    }
+
+    public function currentGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'use_tracker')
+            ->withPivot('in_use');
     }
 
     /**
@@ -87,15 +93,28 @@ class User extends Authenticatable
         }
         $didUpdate = $this->groups()->updateExistingPivot($group, [
             'checked' => $change,
-            'recorded_at' => now()
+            'recorded_at' => Carbon::today()
         ]);
 
         if (!$didUpdate) {
             $this->groups()->attach($group, [
                 'checked' => $change,
-                'recorded_at' => now()
+                'recorded_at' => Carbon::today()
             ]);
         }
         return true;
+    }
+
+    public function updateGroupSettings(Group $group)
+    {
+        $didUpdate = $this->currentGroups()->updateExistingPivot($group, [
+            'in_use' => true
+        ]);
+
+        if (!$didUpdate) {
+            $this->currentGroups()->attach($group, [
+                'in_use' => true
+            ]);
+        }
     }
 }
