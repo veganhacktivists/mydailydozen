@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/dashboard', [PageController::class, 'index'])->name('dashboard');
-    Route::get('/history', [PageController::class, 'history'])->name('history');
+    Route::resource('groups', GroupController::class)->only([
+        'index', 'show', 'update'
+    ]);
 });

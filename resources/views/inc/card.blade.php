@@ -12,7 +12,11 @@
                     <dd>
                         <div class="text-lg leading-7 font-medium text-cool-gray-900">
                             @for ($i = 0; $i < $item['per_day']; $i++)
-                                <input type="checkbox" class="customCheckbox" id="{{ $item['name'].$i }}" @click="clickCount($event)">
+                                <input type="checkbox"
+                                       class="customCheckbox"
+                                       id="{{ $item['name'].$i }}"
+                                       @click="axios.put('/groups/{{ $item['id'] }}', {checked: $event.target.checked, id: {{ $item['id'] }}})"
+                                       {{ (($i + 1) > $item->pivot->checked) ? ' checked' : ''}}>
                             @endfor
                         </div>
                     </dd>
