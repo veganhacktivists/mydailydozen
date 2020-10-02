@@ -72,8 +72,12 @@ class User extends Authenticatable
 
     public function currentGroups(): BelongsToMany
     {
-        return $this->belongsToMany(Group::class, 'use_tracker')
-            ->withPivot('in_use');
+        return $this->belongsToMany(Group::class, 'use_tracker');
+    }
+
+    public function notSelectedGroups()
+    {
+      return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
 
     /**
@@ -105,16 +109,30 @@ class User extends Authenticatable
         return true;
     }
 
-    public function updateGroupSettings(Group $group)
-    {
-        $didUpdate = $this->currentGroups()->updateExistingPivot($group, [
-            'in_use' => true
-        ]);
 
-        if (!$didUpdate) {
-            $this->currentGroups()->attach($group, [
-                'in_use' => true
-            ]);
-        }
+    public function hasGroup(Group $group)
+    {
+      return $this->currentGroups()->pluck('id')->contains(function($g) use ($group) {
+        return $g == $group['id'];
+      });
+
+    }
+    public function toggleGroup(Group $group)
+    {
+      if($this->hasGroup($group)){
+        $this->currentGroups()->detach($group);
+      }else{
+        $this->currentGroups()->attach($group);
+      }
+    }
+
+    public function unselectAllGroups()
+    {
+      $this->currentGroups()->detach($this->currentGroups()->pluck('id'));
+    }
+
+    public function selectAllGroups()
+    {
+      $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
     }
 }

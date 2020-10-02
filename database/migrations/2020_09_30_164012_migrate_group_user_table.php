@@ -23,9 +23,8 @@ class MigrateGroupUserTable extends Migration
         Schema::create('use_tracker', function (Blueprint $table) {
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('in_use');
 
-            $table->unique(['group_id', 'user_id', 'in_use']);
+            $table->unique(['group_id', 'user_id']);
         });
     }
 
