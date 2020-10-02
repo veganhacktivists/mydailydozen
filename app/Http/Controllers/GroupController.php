@@ -26,7 +26,7 @@ class GroupController extends Controller
         $ids = $user->currentGroups->pluck('id')->toArray();
         // Retreive the pivot relations for those 
         $groups = Group::whereIn('id', $ids)
-            ->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
+            //->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
             ->get();
         return view('dashboard')->with([
             'user' => $user,
