@@ -37,10 +37,21 @@
 
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Daily Dozen</h2>
+      <h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-6">Head over to your <a
+          href="{{route('settings')}}" class="text-blue-500 hover:underline">settings page</a> to toggle your groups !
+      </h2>
+      @if($groups->count() > 0)
       <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        @each('inc.card', $groups, 'item')
+        @foreach($groups as $group)
+        <x-card :item="$group"></x-card>
+        @endforeach
       </div>
+      @else
+      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Looks like you have no groups toggled on yet... <a
+          href="{{route('settings')}}" class="text-blue-500 hover:underline">Let's fix that right now</a> !
+      </h2>
+
+      @endif
     </div>
   </div>
 </x-master>

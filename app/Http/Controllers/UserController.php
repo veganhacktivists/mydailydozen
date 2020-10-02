@@ -15,9 +15,10 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $groups = Group::all();
+        
         return view('settings')->with([
             'user' => $user,
-            'groups' => $groups,
+            'groups' => $groups
         ]);
     }
 
@@ -27,8 +28,19 @@ class UserController extends Controller
      */
     public function update(Group $group): JsonResponse
     {
-        $result = Auth::user()->updateGroupSettings($group);
+        $result = Auth::user()->toggleGroup($group);
 
         return response()->json(null, 201);
+    }
+
+    public function selectAll()
+    {
+      
+      auth()->user()->selectAllGroups();
+    }
+
+    public function unselectAll()
+    {
+      auth()->user()->unselectAllGroups();
     }
 }

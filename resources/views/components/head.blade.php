@@ -5,4 +5,5 @@
   {{ $slot }}
   <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
   <script src="{{ mix('js/app.js') }}"></script>
+  @livewireStyles
 </head>
