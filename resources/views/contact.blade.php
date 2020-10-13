@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+    <title>My Daily Dozen</title>
 </head>
 <body class="antialiased">
 <div class="relative bg-white overflow-hidden">
