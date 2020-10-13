@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('welcome'));
+Route::get('/', fn() => redirect('/groups'));
 Route::get('/contact', fn() => view('contact'));
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         'index', 'show', 'update'
     ]);
     Route::get('history', [GroupController::class, 'history'])->name('history');
+    Route::get('metrics', [GroupController::class, 'metrics'])->name('metrics');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);
