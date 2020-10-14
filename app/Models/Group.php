@@ -42,4 +42,13 @@ class Group extends Model
     {
         return $this->hasMany(DetailType::class);
     }
+
+    public function checkedToInput($index)
+    {
+        if ($index < $this->checked)
+        {
+            return ' checked';
+        }
+        return '';
+    }
 }

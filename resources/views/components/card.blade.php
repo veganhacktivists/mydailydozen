@@ -16,7 +16,8 @@
                                        class="customCheckbox"
                                        id="{{ $item['name'].$i }}"
                                        @click="axios.put('/groups/{{ $item['id'] }}', {checked: $event.target.checked, id: {{ $item['id'] }}})"
-                                       {{ $i < $item->checked ? ' checked' : ''}}>
+                                       {{ $item->checkedToInput($i) }}
+                                >
                             @endfor
                         </div>
                     </dd>
