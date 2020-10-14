@@ -22,11 +22,8 @@ class GroupController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // Get the IDs the user has enabled.
         $ids = $user->currentGroups->pluck('id')->toArray();
-        // Retreive the pivot relations for those
         $groups = Group::whereIn('id', $ids)
-            //->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
             ->get();
         return view('dashboard')->with([
             'user' => $user,

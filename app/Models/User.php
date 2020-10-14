@@ -109,7 +109,6 @@ class User extends Authenticatable
         return true;
     }
 
-
     public function hasGroup(Group $group)
     {
       return $this->currentGroups()->pluck('id')->contains(function($g) use ($group) {
@@ -117,6 +116,7 @@ class User extends Authenticatable
       });
 
     }
+
     public function toggleGroup(Group $group)
     {
       if($this->hasGroup($group)){
