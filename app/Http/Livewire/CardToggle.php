@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class CardToggle extends Component
 {
-    public Group $group;
-    public bool $checked;
+    public $group;
+    public $checked;
 
     public function render()
     {
