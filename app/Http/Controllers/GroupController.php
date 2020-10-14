@@ -24,7 +24,7 @@ class GroupController extends Controller
         $user = Auth::user();
         // Get the IDs the user has enabled.
         $ids = $user->currentGroups->pluck('id')->toArray();
-        // Retreive the pivot relations for those 
+        // Retreive the pivot relations for those
         $groups = Group::whereIn('id', $ids)
             //->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
             ->get();
@@ -70,7 +70,7 @@ class GroupController extends Controller
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function update(Group $group, Request $request): JsonResponse
+    public function update(Group $group, Request $request)
     {
         $this->validate($request, [
             'checked' => 'required',
@@ -86,7 +86,7 @@ class GroupController extends Controller
      * @param $name
      * @return string
      */
-    private function generateGreeting($name): string
+    private function generateGreeting($name)
     {
         $hour = date('H');
         $greeting = '';
