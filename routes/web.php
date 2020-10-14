@@ -15,13 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => redirect('/groups'));
-Route::get('/contact', fn() => view('contact'));
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update'
     ]);
+    Route::get('/', [GroupController::class, 'index']);
     Route::get('history', [GroupController::class, 'history'])->name('history');
     Route::get('metrics', [GroupController::class, 'metrics'])->name('metrics');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
