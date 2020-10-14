@@ -62,7 +62,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function groups(): BelongsToMany
+    public function groups()
     {
         return $this->belongsToMany(Group::class)->withPivot(
             'checked',
@@ -70,7 +70,7 @@ class User extends Authenticatable
         );
     }
 
-    public function currentGroups(): BelongsToMany
+    public function currentGroups()
     {
         return $this->belongsToMany(Group::class, 'use_tracker');
     }
@@ -86,7 +86,7 @@ class User extends Authenticatable
      * @param $checkStatus
      * @return bool
      */
-    public function checkEvent(Group $group, $checkStatus): bool
+    public function checkEvent(Group $group, $checkStatus)
     {
         $change = 0;
         if ($checkStatus && $group->times <= $group->per_day) {

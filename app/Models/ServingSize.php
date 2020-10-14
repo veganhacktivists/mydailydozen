@@ -12,7 +12,7 @@ class ServingSize extends Model
         'size_metric',
     ];
 
-    public function group(): BelongsTo
+    public function group()
     {
         return $this->belongsTo(Group::class);
     }
