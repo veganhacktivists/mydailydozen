@@ -50,14 +50,14 @@ class GroupController extends Controller
     }
 
     /**
-     * Return the history view.
+     * Edit a group
+     * @param Group $group
      * @return Application|Factory|View
      */
-    public function history()
+    public function edit(Group $group)
     {
-        $message = 'Welcome to your history';
-        return view('history')->with([
-            'message' => $message
+        return view('edit')->with([
+            'group' => $group
         ]);
     }
 
@@ -73,9 +73,24 @@ class GroupController extends Controller
             'checked' => 'required',
         ]);
 
-        $result = Auth::user()->checkEvent($group, $request->checked);
+        if ($request->exists('checked'))
+        {
+            $result = Auth::user()->checkEvent($group, $request->checked);
+            return response()->json($result, 201);
+        }
+        $group->update($request->all());
+    }
 
-        return response()->json($result, 201);
+    /**
+     * Return the history view.
+     * @return Application|Factory|View
+     */
+    public function history()
+    {
+        $message = 'Welcome to your history';
+        return view('history')->with([
+            'message' => $message
+        ]);
     }
 
     /**
