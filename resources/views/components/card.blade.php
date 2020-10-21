@@ -31,7 +31,7 @@
                 Details
             </a>
             @if (Auth::user()->isAdmin())
-            <a href="/groups/{{ $item['id'] }}/edit" class="font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
+            <a href="/groups/{{ $item['id'] }}/edit" class="pl-5 font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
                 Edit
             </a>
             @endif

@@ -10,16 +10,6 @@
                 <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
                   Edit Group
                 </h1>
-                <form action="/groups/{{$group->id}}" method="POST">
-                  @method('PUT')
-                  @csrf
-                  <div>
-                      <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
-                      <div class="mt-1 relative rounded-md shadow-sm">
-                          <input id="email" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="you@example.com">
-                      </div>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
@@ -36,8 +26,34 @@
 
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Daily Dozen</h2>
-
+      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Edit Card</h2>
+        <form action="/groups/{{$group->id}}" method="POST">
+            @method('PUT')
+            @csrf
+            <div>
+                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name</label>
+                <div class="my-5 relative rounded-md shadow-sm">
+                    <input id="name" name="name" class="form-input block w-full sm:text-sm sm:leading-5" value="{{ $group->name }}">
+                </div>
+                <label for="icon_location" class="block text-sm font-medium leading-5 text-gray-700">Icon Location</label>
+                <div class="my-5 relative rounded-md shadow-sm">
+                    <input id="icon_location" name="icon_location" class="form-input block w-full sm:text-sm sm:leading-5" value="{{ $group->icon_location }}">
+                </div>
+                <label for="banner_location" class="block text-sm font-medium leading-5 text-gray-700">Banner Location</label>
+                <div class="my-5 relative rounded-md shadow-sm">
+                    <input id="banner_location" name="banner_location" class="form-input block w-full sm:text-sm sm:leading-5" value="{{ $group->banner_location }}">
+                </div>
+                <label for="per_day" class="block text-sm font-medium leading-5 text-gray-700">Per Day</label>
+                <div class="my-5 relative rounded-md shadow-sm">
+                    <input id="per_day" name="per_day" class="form-input block w-full sm:text-sm sm:leading-5" value="{{ $group->per_day }}">
+                </div>
+                <span class="inline-flex rounded-md shadow-sm">
+                  <button type="submit" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150">
+                    Submit
+                  </button>
+                </span>
+            </div>
+        </form>
     </div>
   </div>
 </x-master>
