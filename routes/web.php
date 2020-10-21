@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::resource('groups', GroupController::class)->only([
-        'index', 'show', 'update'
+        'index', 'show', 'update', 'edit'
     ]);
     Route::get('/', [GroupController::class, 'index']);
     Route::get('history', [GroupController::class, 'history'])->name('history');

@@ -6,7 +6,9 @@ use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -50,14 +52,14 @@ class GroupController extends Controller
     }
 
     /**
-     * Return the history view.
+     * Edit a group
+     * @param Group $group
      * @return Application|Factory|View
      */
-    public function history()
+    public function edit(Group $group)
     {
-        $message = 'Welcome to your history';
-        return view('history')->with([
-            'message' => $message
+        return view('edit')->with([
+            'group' => $group
         ]);
     }
 
@@ -69,13 +71,65 @@ class GroupController extends Controller
      */
     public function update(Group $group, Request $request)
     {
+        if ($request->exists('checked'))
+        {
+            return $this->checkGroupUpdate($group, $request);
+        }
+        if (Auth::user()->isAdmin())
+        {
+            return $this->settingsUpdate($group, $request);
+        }
+    }
+
+    /**
+     * Are we on the group list display and it's a regular user?
+     * Most common, do this first.
+     * @param Group $group
+     * @param Request $request
+     * @return JsonResponse
+     */
+    private function checkGroupUpdate($group, $request)
+    {
         $this->validate($request, [
             'checked' => 'required',
         ]);
 
         $result = Auth::user()->checkEvent($group, $request->checked);
-
         return response()->json($result, 201);
+    }
+
+    /**
+     * @param $group
+     * @param $request
+     * @return Application|JsonResponse|RedirectResponse|Redirector
+     */
+    private function settingsUpdate($group, $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'icon_location' => 'required',
+            'banner_location' => 'required',
+            'per_day' => 'required',
+        ]);
+
+        $group->name = $request->name;
+        $group->icon_location = $request->icon_location;
+        $group->banner_location = $request->banner_location;
+        $group->per_day = $request->per_day;
+        $group->save();
+        return redirect('/');
+    }
+
+    /**
+     * Return the history view.
+     * @return Application|Factory|View
+     */
+    public function history()
+    {
+        $message = 'Welcome to your history';
+        return view('history')->with([
+            'message' => $message
+        ]);
     }
 
     /**
