@@ -135,4 +135,14 @@ class User extends Authenticatable
     {
       $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
     }
+
+    /**
+     * Used to determine whether the current user is allowed to edit groups
+     * and access the admin interface.
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->email === env('ADMIN_EMAIL');
+    }
 }

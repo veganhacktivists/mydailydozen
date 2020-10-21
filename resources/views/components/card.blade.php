@@ -27,9 +27,14 @@
     </div>
     <div class="bg-cool-gray-50 px-5 py-3">
         <div class="text-sm leading-5">
-            <a href="#" class="font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
+            <a href="/groups/{{ $item['id'] }}/" class="font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
                 Details
             </a>
+            @if (Auth::user()->isAdmin())
+            <a href="/groups/{{ $item['id'] }}/edit" class="font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
+                Edit
+            </a>
+            @endif
         </div>
     </div>
 </div>
