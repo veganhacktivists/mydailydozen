@@ -43,4 +43,9 @@ class UserController extends Controller
     {
       auth()->user()->unselectAllGroups();
     }
+
+    public function help()
+    {
+        return view('help');
+    }
 }

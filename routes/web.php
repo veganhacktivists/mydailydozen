@@ -26,4 +26,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);
     Route::put('settings/{group}', [UserController::class, 'update']);
+    Route::get('/help', [UserController::class, 'help']);
 });
