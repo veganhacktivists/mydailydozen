@@ -14,8 +14,8 @@
           </svg>
         </button>
       </div>
-      <div class="bg-white flex-shrink-0 flex items-center px-4 py-4">
-        <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="Easywire logo">
+      <div class="bg-white rounded mx-5 flex-shrink-0 flex items-center px-4 py-4">
+        <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="My Daily Dozen Logo">
       </div>
       <div class="mt-5 overflow-y-auto">
         <nav class="px-2 space-y-1">

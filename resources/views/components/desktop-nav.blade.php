@@ -1,10 +1,9 @@
 <!-- Static sidebar for desktop -->
 <div class="hidden lg:flex lg:flex-shrink-0">
   <div class="flex flex-col w-64">
-    <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-col flex-grow bg-pine-600 pt-5 pb-4 overflow-y-auto">
-      <div class="flex items-center flex-shrink-0 px-4 py-4">
-        <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="Easywire logo">
+      <div class="bg-white rounded mx-5 flex items-center flex-shrink-0 px-4 py-4">
+        <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="My Daily Dozen">
       </div>
       <div class="mt-5 flex-1 flex flex-col overflow-y-auto">
         <div class="overflow-y-auto">
