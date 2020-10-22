@@ -41,13 +41,13 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        $servingSizes = $group->servingSizes()->get();
-        $detailTypes = $group->detailTypes()->get();
+        $servingSizes = $group->servingSizes;
+        $detailTypes = $group->detailTypes;
 
-        return view('groups.show')->with([
+        return view('show')->with([
             'group' => $group,
-            'serving_sizes' => $servingSizes,
-            'detail_types' => $detailTypes,
+            'servingSizes' => $servingSizes,
+            'detailTypes' => $detailTypes,
         ]);
     }
 
