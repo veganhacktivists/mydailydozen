@@ -31,7 +31,7 @@
             History
           </a>
 
-          <a href="#"
+          <a href="/metrics"
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <x-icons.document-report />
             Metrics
@@ -40,23 +40,17 @@
       </div>
       <div class="mt-6 flex-1 h-0 overflow-y-auto">
         <nav class="px-2 space-y-1">
-          <a href="#"
+          <a href="/settings"
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <!-- Heroicon name: cog -->
             <x-icons.cog />
-            Customize
+            Settings
           </a>
 
-          <a href="#"
+          <a href="/help"
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <x-icons.question-mark-circle />
             Help
-          </a>
-
-          <a href="#"
-            class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
-            <x-icons.shield-check />
-            Privacy
           </a>
         </nav>
       </div>

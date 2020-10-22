@@ -42,12 +42,6 @@
                 <x-icons.question-mark-circle />
               </x-slot>
             </x-desktop-nav-link>
-
-            <x-desktop-nav-link link="privacy" text="Privacy">
-              <x-slot name="icon">
-                <x-icons.shield-check />
-              </x-slot>
-            </x-desktop-nav-link>
           </nav>
         </div>
       </div>
