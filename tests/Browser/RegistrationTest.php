@@ -17,7 +17,6 @@ class RegistrationTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            eval(\Psy\sh());
             $browser->visit('/register');
             $browser->type('name', 'test');
             $browser->type('email', 'email@example.com');
