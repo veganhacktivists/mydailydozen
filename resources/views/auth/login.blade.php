@@ -12,14 +12,6 @@
     </div>
     @endif
 
-      <div class="mx-auto max-w-screen-xl px-4 sm:px-6">
-          <div class="text-center">
-              <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                  Helping you stick to a healthy, ethical, plant based diet.
-              </p>
-          </div>
-      </div>
-
     <form method="POST" action="{{ route('login') }}"
       @csrf
 

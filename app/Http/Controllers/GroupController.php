@@ -67,18 +67,14 @@ class GroupController extends Controller
      * @param Group $group
      * @param Request $request
      * @return JsonResponse
-     * @throws ValidationException
      */
     public function update(Group $group, Request $request)
     {
-        if ($request->exists('checked'))
-        {
-            return $this->checkGroupUpdate($group, $request);
-        }
         if (Auth::user()->isAdmin())
         {
             return $this->settingsUpdate($group, $request);
         }
+        return $this->checkGroupUpdate($group, $request);
     }
 
     /**
@@ -87,8 +83,9 @@ class GroupController extends Controller
      * @param Group $group
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
-    private function checkGroupUpdate($group, $request)
+    private function userUpdate($group, $request)
     {
         $this->validate($request, [
             'checked' => 'required',
@@ -102,8 +99,9 @@ class GroupController extends Controller
      * @param $group
      * @param $request
      * @return Application|JsonResponse|RedirectResponse|Redirector
+     * @throws ValidationException
      */
-    private function settingsUpdate($group, $request)
+    private function adminUpdate($group, $request)
     {
         $this->validate($request, [
             'name' => 'required',
