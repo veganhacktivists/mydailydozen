@@ -7,6 +7,7 @@ use App\Models\DetailType;
 use App\Models\Group;
 use App\Models\ServingSize;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'daily_dozen',
         ]);
 
-        Group::create([
+        $beans = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Beans',
             'icon_location' => '/img/dummy_icon.png',
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $berries = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Berries',
             'icon_location' => '/img/dummy_icon.png',
@@ -48,7 +49,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $fruits = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Other Fruits',
             'icon_location' => '/img/dummy_icon.png',
@@ -56,7 +57,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $cruciferous = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Cruciferous Vegetables',
             'icon_location' => '/img/dummy_icon.png',
@@ -72,7 +73,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $otherVegetables = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Other Vegetables',
             'icon_location' => '/img/dummy_icon.png',
@@ -104,7 +105,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $grains = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Whole Grains',
             'icon_location' => '/img/dummy_icon.png',
@@ -112,7 +113,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $beverages = Group::create([
             'category_id' => $daily_dozen->id,
             'name' => 'Beverages',
             'icon_location' => '/img/dummy_icon.png',
@@ -157,7 +158,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $negativeCaloriePreload = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Negative Calorie Preload',
             'icon_location' => '/img/dummy_icon.png',
@@ -165,7 +166,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $vinegar = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Incorporate Vinegar',
             'icon_location' => '/img/dummy_icon.png',
@@ -173,7 +174,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $undistractedMeals = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Undistracted Meals',
             'icon_location' => '/img/dummy_icon.png',
@@ -181,7 +182,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 3,
         ]);
 
-        Group::create([
+        $twentyMinute = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Twenty-minute Rule',
             'icon_location' => '/img/dummy_icon.png',
@@ -213,7 +214,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $nutYeast = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Nutritional Yeast',
             'icon_location' => '/img/dummy_icon.png',
@@ -229,12 +230,12 @@ class DatabaseSeeder extends Seeder
             'per_day' => 2,
         ]);
 
-        Group::create([
+        $tea = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Green Tea',
             'icon_location' => '/img/dummy_icon.png',
             'banner_location' => '/img/dummy_banner.png',
-            'per_day' => 3.,
+            'per_day' => 3,
         ]);
 
         Group::create([
@@ -277,7 +278,7 @@ class DatabaseSeeder extends Seeder
             'per_day' => 1,
         ]);
 
-        Group::create([
+        $weigh = Group::create([
             'category_id' => $tweaks->id,
             'name' => 'Weigh Twice Daily',
             'icon_location' => '/img/dummy_icon.png',
@@ -330,5 +331,80 @@ class DatabaseSeeder extends Seeder
                 'group_id' => $group->id,
             ]);
         });
+
+        $devUser->selectAllGroups();
+        $today = Carbon::today();
+        $devUser->incrementCheckCountForGroupAndDate($beans, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beans, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beans, $today);
+        $devUser->incrementCheckCountForGroupAndDate($berries, $today);
+        $devUser->incrementCheckCountForGroupAndDate($fruits, $today);
+        $devUser->incrementCheckCountForGroupAndDate($fruits, $today);
+        $devUser->incrementCheckCountForGroupAndDate($fruits, $today);
+        $devUser->incrementCheckCountForGroupAndDate($cruciferous, $today);
+        $devUser->incrementCheckCountForGroupAndDate($cruciferous, $today);
+        $devUser->incrementCheckCountForGroupAndDate($cruciferous, $today);
+        $devUser->incrementCheckCountForGroupAndDate($otherVegetables, $today);
+        $devUser->incrementCheckCountForGroupAndDate($otherVegetables, $today);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $today);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $today);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $today);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $today);
+        $devUser->incrementCheckCountForGroupAndDate($negativeCaloriePreload, $today);
+        $devUser->incrementCheckCountForGroupAndDate($negativeCaloriePreload, $today);
+        $devUser->incrementCheckCountForGroupAndDate($negativeCaloriePreload, $today);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $today);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $today);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $today);
+        $devUser->incrementCheckCountForGroupAndDate($undistractedMeals, $today);
+        $devUser->incrementCheckCountForGroupAndDate($undistractedMeals, $today);
+        $devUser->incrementCheckCountForGroupAndDate($undistractedMeals, $today);
+        $devUser->incrementCheckCountForGroupAndDate($nutYeast, $today);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $today);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $today);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $today);
+        $devUser->incrementCheckCountForGroupAndDate($twentyMinute, $today);
+        $devUser->incrementCheckCountForGroupAndDate($twentyMinute, $today);
+        $devUser->incrementCheckCountForGroupAndDate($twentyMinute, $today);
+        $devUser->incrementCheckCountForGroupAndDate($weigh, $today);
+        $devUser->incrementCheckCountForGroupAndDate($weigh, $today);
+        
+        $yesterday = $today->addDays(-1);
+        $devUser->incrementCheckCountForGroupAndDate($beans, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($beans, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($berries, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($fruits, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($cruciferous, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($cruciferous, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($otherVegetables, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($grains, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($beverages, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($negativeCaloriePreload, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($negativeCaloriePreload, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($vinegar, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($undistractedMeals, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($nutYeast, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $yesterday);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $yesterday);
+
+        $twoDaysBefore = $yesterday->addDays(-1);
+        $devUser->incrementCheckCountForGroupAndDate($beans, $twoDaysBefore);
+        $devUser->incrementCheckCountForGroupAndDate($berries, $twoDaysBefore);
+        $devUser->incrementCheckCountForGroupAndDate($undistractedMeals, $twoDaysBefore);
+        $devUser->incrementCheckCountForGroupAndDate($nutYeast, $twoDaysBefore);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $twoDaysBefore);
+        $devUser->incrementCheckCountForGroupAndDate($tea, $twoDaysBefore);
+
+
     }
 }

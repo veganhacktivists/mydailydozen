@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         'index', 'show', 'update', 'edit'
     ]);
     Route::get('/', [GroupController::class, 'index']);
-    Route::get('history', [GroupController::class, 'history'])->name('history');
+    Route::get('history', [HistoryController::class, 'index'])->name('history');
     Route::get('metrics', [GroupController::class, 'metrics'])->name('metrics');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
     Route::put('settings/all', [UserController::class, 'selectAll']);

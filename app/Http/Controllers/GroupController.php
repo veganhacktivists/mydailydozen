@@ -86,18 +86,6 @@ class GroupController extends Controller
     }
 
     /**
-     * Return the history view.
-     * @return Application|Factory|View
-     */
-    public function history()
-    {
-        $message = 'Welcome to your history';
-        return view('history')->with([
-            'message' => $message
-        ]);
-    }
-
-    /**
      * Greeting for the user.
      * @param $name
      * @return string

@@ -134,7 +134,15 @@ class User extends Authenticatable
         
       }
     }
-
+    public function totalCheckForToday()
+    {
+      return $this->totalCheckForDate(Carbon::today());
+    }
+    public function totalCheckForDate($date)
+    {
+      $checks = $this->groups()->wherePivot('recorded_at', $date)->pluck('checked');
+      return $checks->sum();
+    }
     public function hasGroup(Group $group)
     {
       return $this->currentGroups()->pluck('id')->contains(function($g) use ($group) {
