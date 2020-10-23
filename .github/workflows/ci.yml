@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches:
+    branches-ignore:
       - master
 
 jobs:
@@ -31,5 +31,3 @@ jobs:
         env:
           APP_URL: "http://127.0.0.1:8000"
         run: php artisan dusk
-      - name: If all is well, deploy
-        run: curl ${{ secrets.DEPLOYMENT_WEBHOOK }}
