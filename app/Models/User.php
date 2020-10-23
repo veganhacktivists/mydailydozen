@@ -80,33 +80,59 @@ class User extends Authenticatable
       return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
 
-    /**
-     * Handle a check event on the dashboard.
-     * @param Group $group
-     * @param $checkStatus
-     * @return bool
-     */
-    public function checkEvent(Group $group, $checkStatus)
-    {
-        $change = 0;
-        if ($checkStatus && $group->times <= $group->per_day) {
-            $change = $group->checked + 1;
-        }
-        else if ($group->times > 0) {
-            $change = $group->checked - 1;
-        }
-        $didUpdate = $this->groups()->updateExistingPivot($group, [
-            'checked' => $change,
-            'recorded_at' => Carbon::today()
-        ]);
 
-        if (!$didUpdate) {
-            $this->groups()->attach($group, [
-                'checked' => $change,
-                'recorded_at' => Carbon::today()
-            ]);
+    public function getCheckCountForGroupAndDate($group, $date)
+    {
+      $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
+      if($pivot != null){
+        return $pivot->pivot->checked;
+      }
+      return null;
+    }
+
+    public function incrementCheckCountForGroupAndDate($group, $date)
+    {
+
+      $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
+      if($currentCount === null)
+      {
+        $this->groups()->attach($group, [
+          'checked' => 1,
+          'recorded_at' => $date
+        ]);
+        return 1;
+        
+      }else
+      {
+        $newCount = min($currentCount + 1, $group->per_day);
+        if($newCount != $currentCount){
+          $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
+            'checked' => $newCount
+          ]);
+          return $newCount;
         }
-        return true;
+        return $newCount;
+        
+      }
+    }
+
+    public function decrementCheckCountForGroupAndDate($group, $date)
+    {
+      $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
+
+      if($currentCount !== null)
+      {
+        $newCount = max($currentCount - 1, 0);
+        if($newCount != $currentCount){
+          $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
+            'checked' => $newCount
+          ]);
+          return $newCount;
+          
+        }
+        return $newCount;
+        
+      }
     }
 
     public function hasGroup(Group $group)

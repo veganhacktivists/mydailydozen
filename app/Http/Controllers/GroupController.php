@@ -71,7 +71,8 @@ class GroupController extends Controller
      */
     public function update(Group $group, Request $request)
     {
-        if ($request->exists('checked'))
+          dd("yes");
+          if ($request->exists('checked'))
         {
             return $this->checkGroupUpdate($group, $request);
         }
@@ -93,9 +94,15 @@ class GroupController extends Controller
         $this->validate($request, [
             'checked' => 'required',
         ]);
+        
+        if($request->checked){
+          $group->checked++;
+        }else{
+          $group->checked--;
+        }
 
-        $result = Auth::user()->checkEvent($group, $request->checked);
-        return response()->json($result, 201);
+        //$result = Auth::user()->checkEvent($group, $request->checked);
+       // return response()->json($result, 201);
     }
 
     /**
