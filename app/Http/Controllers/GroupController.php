@@ -64,48 +64,6 @@ class GroupController extends Controller
     }
 
     /**
-     * @param Group $group
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
-    public function update(Group $group, Request $request)
-    {
-          dd("yes");
-          if ($request->exists('checked'))
-        {
-            return $this->checkGroupUpdate($group, $request);
-        }
-        if (Auth::user()->isAdmin())
-        {
-            return $this->settingsUpdate($group, $request);
-        }
-    }
-
-    /**
-     * Are we on the group list display and it's a regular user?
-     * Most common, do this first.
-     * @param Group $group
-     * @param Request $request
-     * @return JsonResponse
-     */
-    private function checkGroupUpdate($group, $request)
-    {
-        $this->validate($request, [
-            'checked' => 'required',
-        ]);
-        
-        if($request->checked){
-          $group->checked++;
-        }else{
-          $group->checked--;
-        }
-
-        //$result = Auth::user()->checkEvent($group, $request->checked);
-       // return response()->json($result, 201);
-    }
-
-    /**
      * @param $group
      * @param $request
      * @return Application|JsonResponse|RedirectResponse|Redirector

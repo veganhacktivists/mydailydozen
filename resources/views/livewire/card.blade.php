@@ -13,7 +13,7 @@
         <dl>
           <dt class="text-sm leading-5 font-medium text-cool-gray-500 truncate">
             {{ $group['name'] }}
-            <span class="text-muted text-xs">{{ $checkCount }} / {{ $group->per_day}}</span>
+            <span class="text-muted text-xs">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
 
           </dt>
           <dd>
