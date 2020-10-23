@@ -17,7 +17,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Laravel');
+                    ->assertSee('Helping you stick to a healthy, ethical, plant based diet.');
         });
     }
 }
