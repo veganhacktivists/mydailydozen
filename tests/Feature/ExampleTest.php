@@ -8,14 +8,14 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Right now we redirect to the login screen.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testRedirect()
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }
