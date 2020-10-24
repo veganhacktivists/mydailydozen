@@ -18,12 +18,12 @@ If you have an hour or two free and want to help out more, feel free to set up t
 ### Setting up the Project
 
 What OS are you on?
-[Windows](https://laravel.com/docs/8.x/homestead)
-[Mac](https://laravel.com/docs/8.x/valet)
-[Docker](https://laradock.io/getting-started/)
-[Linux](https://cpriego.github.io/valet-linux/)
 
-[Windows Alternative](https://www.apachefriends.org/download.html)
+- [Windows](https://laravel.com/docs/8.x/homestead)
+- [Mac](https://laravel.com/docs/8.x/valet)
+- [Docker](https://laradock.io/getting-started/)
+- [Linux](https://cpriego.github.io/valet-linux/)
+- [Windows Alternative](https://www.apachefriends.org/download.html)
 
 ```bash
 composer install
@@ -32,3 +32,5 @@ yarn run watch
 php artisan migrate
 php artisan db:seed
 ```
+
+However you get it set up is fine.
