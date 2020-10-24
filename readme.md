@@ -11,9 +11,13 @@ If you find this interesting or useful [check us out](https://veganhacktivists.o
 
 ### Contributing
 
-If you would like to help out, the single biggest thing you could do is make an account on [MyDailyDozen](https://mydailydozen.org) and make a GitHub issue for anything you could think of being improved.
+This is maintained by Team Broccoli at the Vegan Hacktivists. [Trello Board](https://trello.com/b/9oznzWwy/mydailydozenorg)
 
-If you have an hour or two free and want to help out more, feel free to set up the project and make a PR for an open issue.
+If you'd like to help out, the single biggest thing you could do is make an account on [MyDailyDozen](https://mydailydozen.org) and make a Trello card for anything you could think of being improved.
+
+If you have an hour or two free and want to help out more, feel free to set up the project and make a PR for an open Trello card.
+
+Huge thanks to everyone who has contributed or participated in this project. [A lot of people](https://veganhacktivists.org/team) have done a massive amount to get this to where it is in varying capacities. If you aren't on there and would like to be, send us an email or message us on Discord.
 
 ### Setting up the Project
 
@@ -32,5 +36,3 @@ yarn run watch
 php artisan migrate
 php artisan db:seed
 ```
-
-However you get it set up is fine.
