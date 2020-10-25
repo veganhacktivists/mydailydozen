@@ -11,6 +11,9 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\Group
  *
+ * This is a My Daily Dozen food group.
+ * Beans, blueberries, etc.
+ *
  * @property int $id
  * @property string $category_id
  * @property string $name
@@ -57,16 +60,29 @@ class Group extends Model
         'recorded_at',
     ];
 
-    public function users()
+    /**
+     * There's a pivot table between the Users and Groups.
+     * This records the check marks for the food groups on the home screen.
+     * @return BelongsToMany
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at', 'in_use');
     }
 
-    public function categories()
+    /**
+     * This lets us know if it's a key food group, a tweak, etc.
+     * @return HasMany
+     */
+    public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
     }
 
+    /**
+     * ServingSizes
+     * @return HasMany
+     */
     public function servingSizes()
     {
         return $this->hasMany(ServingSize::class);
