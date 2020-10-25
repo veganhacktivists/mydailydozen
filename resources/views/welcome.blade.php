@@ -48,15 +48,6 @@
                 </nav>
             </div>
 
-            <!--
-              Mobile menu, show/hide based on menu open state.
-              Entering: "duration-150 ease-out"
-                From: "opacity-0 scale-95"
-                To: "opacity-100 scale-100"
-              Leaving: "duration-100 ease-in"
-                From: "opacity-100 scale-100"
-                To: "opacity-0 scale-95"
-            -->
             <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
                 <div class="rounded-lg shadow-md">
                     <div class="rounded-lg bg-white shadow-xs overflow-hidden" role="menu" aria-orientation="vertical"
@@ -77,18 +68,15 @@
                             </div>
                         </div>
                         <div class="px-2 pt-2 pb-3">
-                            <a href="#"
+                            <a href="https://veganhacktivists.org"
                                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Product</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Features</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Marketplace</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Company</a>
+                               role="menuitem">Vegan Hacktivists</a>
+                            <a href="/contact"
+                               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                               role="menuitem">Contact Us</a>
+                            <a href="https://veganbootcamp.org"
+                               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                               role="menuitem">Vegan Bootcamp</a>
                         </div>
                         <div>
                             <a href="{{ route('login') }}"
@@ -130,16 +118,6 @@
     <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1580658579404-f92d99fe3edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1226&q=80"
              alt="">
-    </div>
-</div>
-<div class="relative">
-    <div class="absolute inset-0 flex flex-col">
-        <div class="flex-1"></div>
-        <div class="flex-1 w-full bg-gray-800"></div>
-    </div>
-    
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 p-5">
-        <img class="relative rounded-lg shadow-lg" src="{{ asset('img/screenshot.png') }}" alt="App screenshot">
     </div>
 </div>
 
