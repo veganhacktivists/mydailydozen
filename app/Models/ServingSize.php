@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\ServingSize
@@ -12,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $group_id
  * @property string $size_imperial
  * @property string $size_metric
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Group $group
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Group $group
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize query()
@@ -24,7 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereSizeImperial($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereSizeMetric($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class ServingSize extends Model
 {

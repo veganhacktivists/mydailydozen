@@ -6,12 +6,13 @@ use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use JsonException;
 
 class HistoryController extends Controller
 {
     /**
      * @return Application|Factory|View
-     * @throws \JsonException
+     * @throws JsonException
      */
   public function index()
   {

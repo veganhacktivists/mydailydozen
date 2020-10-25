@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\DetailType
@@ -13,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $group_id
  * @property string $name
  * @property string $video
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Group $group
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Group $group
  * @method static \Illuminate\Database\Eloquent\Builder|DetailType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DetailType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DetailType query()
