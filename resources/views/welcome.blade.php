@@ -132,6 +132,16 @@
              alt="">
     </div>
 </div>
+<div class="relative">
+    <div class="absolute inset-0 flex flex-col">
+        <div class="flex-1"></div>
+        <div class="flex-1 w-full bg-gray-800"></div>
+    </div>
+    
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 p-5">
+        <img class="relative rounded-lg shadow-lg" src="{{ asset('img/screenshot.png') }}" alt="App screenshot">
+    </div>
+</div>
 
 @include('components.footer')
 </body>
