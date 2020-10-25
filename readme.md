@@ -36,3 +36,8 @@ yarn run watch
 php artisan migrate
 php artisan db:seed
 ```
+
+Getting started working on this:
+Terminology:
+Groups: The Daily Dozen groups.
+Check the wiki for the entity relation diagram.

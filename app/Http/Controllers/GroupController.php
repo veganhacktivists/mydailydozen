@@ -10,7 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -18,7 +17,7 @@ use Illuminate\View\View;
 class GroupController extends Controller
 {
     /**
-     * Show all groups.
+     * Show all my daily dozen food groups.
      * @return Application|Factory|View
      */
     public function index()
@@ -35,7 +34,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Display a specific group.
+     * Display a specific food group's data.
      * @param Group $group
      * @return Application|Factory|View
      */
@@ -52,7 +51,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Edit a group
+     * Lets an admin edit a group.
      * @param Group $group
      * @return Application|Factory|View
      */
@@ -67,6 +66,7 @@ class GroupController extends Controller
      * @param Group $group
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Group $group, Request $request)
     {
@@ -78,8 +78,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Are we on the group list display and it's a regular user?
-     * Most common, do this first.
+     * Regular user checking a group checkbox.
      * @param Group $group
      * @param Request $request
      * @return JsonResponse
@@ -96,6 +95,7 @@ class GroupController extends Controller
     }
 
     /**
+     * This is for the administrator group edit form.
      * @param $group
      * @param $request
      * @return Application|JsonResponse|RedirectResponse|Redirector
@@ -119,7 +119,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Greeting for the user.
+     * Greeting for the user. :)
      * @param $name
      * @return string
      */
