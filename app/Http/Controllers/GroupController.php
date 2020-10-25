@@ -72,9 +72,9 @@ class GroupController extends Controller
     {
         if (Auth::user()->isAdmin())
         {
-            return $this->settingsUpdate($group, $request);
+            return $this->adminUpdate($group, $request);
         }
-        return $this->checkGroupUpdate($group, $request);
+        return $this->userUpdate($group, $request);
     }
 
     /**
