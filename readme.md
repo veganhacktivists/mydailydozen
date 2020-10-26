@@ -11,7 +11,7 @@ If you find this interesting or useful [check us out](https://veganhacktivists.o
 
 ### Contributing
 
-This is maintained by Team Broccoli at the Vegan Hacktivists. [Trello Board](https://trello.com/b/9oznzWwy/mydailydozenorg)
+This is maintained by Team Broccoli at the Vegan Hacktivists.
 
 If you'd like to help out, the single biggest thing you could do is make an account on [MyDailyDozen](https://mydailydozen.org) and make a Trello card for anything you could think of being improved.
 
@@ -21,23 +21,32 @@ Huge thanks to everyone who has contributed or participated in this project. [A 
 
 ### Setting up the Project
 
-What OS are you on?
+This is a Laravel project using Yarn, Tailwind, Alpine, etc.
 
-- [Windows](https://laravel.com/docs/8.x/homestead)
+The easiest way to get this running for people working with us that we've found:
+
+[Docker Desktop](https://www.docker.com/products/docker-desktop):
+
+```bash
+git clone git@github.com:veganhacktivists/mydailydozen.git
+cd mydailydozen
+cp .env.docker .env
+git submodule update --init laradock
+cd laradock
+docker-compose exec workspace bash
+composer install
+php artisan migrate
+php artisan db:seed
+yarn install
+yarn run watch
+```
+
+If you get stuck with the Docker try [here](https://laradock.io/getting-started/) or message on Discord.
+
+There's a lot of ways to run Laravel. There's a lot of pluses and minuses to each. Here's some other options:
+- [Vagrant / Homestead](https://laravel.com/docs/8.x/homestead)
 - [Mac](https://laravel.com/docs/8.x/valet)
-- [Docker](https://laradock.io/getting-started/)
 - [Linux](https://cpriego.github.io/valet-linux/)
 - [Windows Alternative](https://www.apachefriends.org/download.html)
 
-```bash
-composer install
-yarn install
-yarn run watch
-php artisan migrate
-php artisan db:seed
-```
-
-Getting started working on this:
-Terminology:
-Groups: The Daily Dozen groups.
-Check the wiki for the entity relation diagram.
+![ERD](https://camo.githubusercontent.com/90506238bb70d528c447e16573b7c1a52b2e9ef2/68747470733a2f2f692e696d6775722e636f6d2f6768595a3775652e706e67)
