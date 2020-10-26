@@ -6,14 +6,9 @@ use App\Models\ContactTicket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class ContactController extends Controller
+class SendContactEmailController extends Controller
 {
-    public function index()
-    {
-        return view('contact');
-    }
-
-    public function store(Request $request)
+    public function __invoke(Request $request)
     {
         $request->validate([
             'first_name' => 'required',
@@ -34,17 +29,17 @@ class ContactController extends Controller
             'message' => $body,
         ]);
 
-        // $subject = $firstName . " " . $lastName . " contacted My Daily Dozen";
+        $subject = $firstName . " " . $lastName . " contacted My Daily Dozen";
 
-        // Mail::send(
-        //     'contact',
-        //     ['subject' => $subject, 'body' => $body],
-        //     function ($message) use ($email, $subject) {
-        //         $message->from($email);
-        //         $message->to(env('MAIL_RECIPIENT'));
-        //         $message->subject($subject);
-        //     }
-        // );
+        Mail::send(
+            'contact',
+            ['subject' => $subject, 'body' => $body],
+            function ($message) use ($email, $subject) {
+                $message->from($email);
+                $message->to(env('MAIL_RECIPIENT'));
+                $message->subject($subject);
+            }
+        );
 
         return back()->with('success', true);
     }
