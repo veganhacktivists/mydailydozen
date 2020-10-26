@@ -17,13 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+Route::get('/', fn() => view('welcome'));
+Route::get('/contact', fn() => view('contact'));
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update', 'edit'
     ]);
-    Route::get('/', [GroupController::class, 'index']);
     Route::get('history', [HistoryController::class, 'index'])->name('history');
-    Route::get('metrics', [GroupController::class, 'metrics'])->name('metrics');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);

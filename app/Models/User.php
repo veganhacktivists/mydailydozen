@@ -3,16 +3,59 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\PersonalAccessToken;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $two_factor_secret
+ * @property string|null $two_factor_recovery_codes
+ * @property string|null $remember_token
+ * @property string|null $current_team_id
+ * @property string|null $profile_photo_path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection|Group[] $currentGroups
+ * @property-read int|null $current_groups_count
+ * @property-read string $profile_photo_url
+ * @property-read Collection|Group[] $groups
+ * @property-read int|null $groups_count
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read Collection|PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -62,7 +105,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function groups()
+    /**
+     * The My Daily Dozen food groups.
+     * @return BelongsToMany
+     */
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class)->withPivot(
             'checked',
@@ -77,97 +124,106 @@ class User extends Authenticatable
 
     public function notSelectedGroups()
     {
-      return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
+        return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
-
 
     public function getCheckCountForGroupAndDate($group, $date)
     {
-      $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
-      if($pivot != null){
-        return $pivot->pivot->checked;
-      }
-      return null;
+        $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
+        if ($pivot !== null) {
+            return $pivot->pivot->checked;
+        }
+        return null;
     }
 
     public function incrementCheckCountForGroupAndDate($group, $date)
     {
+        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
+        if ($currentCount === null) {
+            $this->groups()->attach($group, [
+                'checked' => 1,
+                'recorded_at' => $date
+            ]);
+            return 1;
 
-      $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
-      if($currentCount === null)
-      {
-        $this->groups()->attach($group, [
-          'checked' => 1,
-          'recorded_at' => $date
-        ]);
-        return 1;
-        
-      }else
-      {
-        $newCount = min($currentCount + 1, $group->per_day);
-        if($newCount != $currentCount){
-          $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
-            'checked' => $newCount
-          ]);
-          return $newCount;
+        } else {
+            $newCount = min($currentCount + 1, $group->per_day);
+            if ($newCount != $currentCount) {
+                $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
+                    'checked' => $newCount
+                ]);
+                return $newCount;
+            }
+            return $newCount;
+
         }
-        return $newCount;
-        
-      }
     }
 
     public function decrementCheckCountForGroupAndDate($group, $date)
     {
-      $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
+        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
 
-      if($currentCount !== null)
-      {
-        $newCount = max($currentCount - 1, 0);
-        if($newCount != $currentCount){
-          $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
-            'checked' => $newCount
-          ]);
-          return $newCount;
-          
+        if ($currentCount !== null) {
+            $newCount = max($currentCount - 1, 0);
+            if ($newCount != $currentCount) {
+                $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
+                    'checked' => $newCount
+                ]);
+                return $newCount;
+
+            }
+            return $newCount;
+
         }
-        return $newCount;
-        
-      }
     }
+
     public function totalCheckForToday()
     {
-      return $this->totalCheckForDate(Carbon::today());
+        return $this->totalCheckForDate(Carbon::today());
     }
+
     public function totalCheckForDate($date)
     {
-      $checks = $this->groups()->wherePivot('recorded_at', $date)->pluck('checked');
-      return $checks->sum();
+        $checks = $this->groups()->wherePivot('recorded_at', $date)->pluck('checked');
+        return $checks->sum();
     }
+
     public function hasGroup(Group $group)
     {
-      return $this->currentGroups()->pluck('id')->contains(function($g) use ($group) {
-        return $g == $group['id'];
-      });
+        return $this->currentGroups()->pluck('id')->contains(function ($g) use ($group) {
+            return $g == $group['id'];
+        });
 
     }
 
+    /**
+     * @param Group $group
+     */
     public function toggleGroup(Group $group)
     {
-      if($this->hasGroup($group)){
-        $this->currentGroups()->detach($group);
-      }else{
-        $this->currentGroups()->attach($group);
-      }
+        if ($this->hasGroup($group)) {
+            $this->currentGroups()->detach($group);
+        } else {
+            $this->currentGroups()->attach($group);
+        }
     }
 
-    public function unselectAllGroups()
+    /**
+     * On toggle / user settings page, unselect every group.
+     * @return void
+     */
+    public function unselectAllGroups(): void
     {
-      $this->currentGroups()->detach($this->currentGroups()->pluck('id'));
+        $this->currentGroups()->detach($this->currentGroups()->pluck('id'));
     }
 
-    public function selectAllGroups()
+    /**
+     * On toggle / user settings page, select every group.
+     * @return void
+     */
+    public function selectAllGroups(): void
     {
-      $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
+        $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
     }
 
     /**
@@ -175,7 +231,7 @@ class User extends Authenticatable
      * and access the admin interface.
      * @return bool
      */
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->email === env('ADMIN_EMAIL');
     }

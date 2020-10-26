@@ -20,12 +20,6 @@
                 <x-icons.clock />
               </x-slot>
             </x-desktop-nav-link>
-
-            <x-desktop-nav-link link="metrics" text="Metrics">
-              <x-slot name="icon">
-                <x-icons.document-report />
-              </x-slot>
-            </x-desktop-nav-link>
           </nav>
         </div>
         <div class="mt-6 flex-1 h-0 overflow-y-auto">
