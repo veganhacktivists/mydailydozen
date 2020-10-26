@@ -3,6 +3,7 @@
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update', 'edit'
     ]);
@@ -28,4 +29,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::put('settings/none', [UserController::class, 'unselectAll']);
     Route::put('settings/{group}', [UserController::class, 'update']);
     Route::get('/help', [UserController::class, 'help']);
+    Route::get('/contact', [ContactController::class, 'index']);
+    Route::post('/contact/send', [ContactController::class, 'store']);
 });
