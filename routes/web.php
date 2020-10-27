@@ -3,6 +3,7 @@
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SendContactEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('welcome'));
-Route::get('/contact', fn() => view('contact'));
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+Route::get('/', fn () => view('welcome'));
+Route::get('/contact', fn () => view('contact'));
+Route::post('/contact/send', SendContactEmailController::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update', 'edit'
     ]);
@@ -28,5 +31,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);
     Route::put('settings/{group}', [UserController::class, 'update']);
-    Route::get('/help', [UserController::class, 'help']);
 });
