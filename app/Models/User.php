@@ -108,6 +108,49 @@ class User extends Authenticatable
     ];
 
     /**
+     * @param $group
+     * @param $date
+     * @return int|mixed
+     */
+    public function incrementCheckCountForGroupAndDate($group, $date)
+    {
+        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
+        if ($currentCount === null) {
+            $this->groups()->attach($group, [
+                'checked' => 1,
+                'recorded_at' => $date
+            ]);
+            return 1;
+        }
+
+        $newCount = min($currentCount + 1, $group->per_day);
+        if ($newCount !== $currentCount) {
+            $this->groups()->wherePivot('recorded_at', $date)
+                ->updateExistingPivot($group->id, [
+                    'checked' => $newCount
+                ]);
+            return $newCount;
+        }
+        return $newCount;
+    }
+
+    /**
+     * @param $group
+     * @param $date
+     * @return void
+     */
+    public function getCheckCountForGroupAndDate($group, $date)
+    {
+        $pivot = $this->groups()
+            ->wherePivot('recorded_at', $date)
+            ->wherePivot('group_id', $group->id)
+            ->first();
+        if ($pivot !== null) {
+            return $pivot->pivot->checked;
+        }
+    }
+
+    /**
      * The My Daily Dozen food groups.
      * @return BelongsToMany
      */
@@ -120,92 +163,45 @@ class User extends Authenticatable
     }
 
     /**
-     * The food groups that show up on the home page.
-     * Has its own pivot table because we couldn't pollute the MySQL data storing checkmarks.
-     * @return BelongsToMany
+     * @param $group
+     * @param $date
+     * @return mixed
      */
-    public function currentGroups(): BelongsToMany
-    {
-        return $this->belongsToMany(Group::class, 'use_tracker');
-    }
-
-    /**
-     * Food groups that don't show up on home page.
-     * @return Group[]|Collection
-     */
-    public function notSelectedGroups()
-    {
-        return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
-    }
-
-    
-    public function getCheckCountForGroupAndDate($group, $date)
-    {
-        $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
-        if ($pivot !== null) {
-            return $pivot->pivot->checked;
-        }
-        return null;
-    }
-
-    public function incrementCheckCountForGroupAndDate($group, $date)
-    {
-        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
-        if ($currentCount === null) {
-            $this->groups()->attach($group, [
-                'checked' => 1,
-                'recorded_at' => $date
-            ]);
-            return 1;
-
-        } else {
-            $newCount = min($currentCount + 1, $group->per_day);
-            if ($newCount != $currentCount) {
-                $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
-                    'checked' => $newCount
-                ]);
-                return $newCount;
-            }
-            return $newCount;
-
-        }
-    }
-
     public function decrementCheckCountForGroupAndDate($group, $date)
     {
         $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
 
         if ($currentCount !== null) {
             $newCount = max($currentCount - 1, 0);
-            if ($newCount != $currentCount) {
-                $this->groups()->wherePivot('recorded_at', $date)->updateExistingPivot($group->id, [
-                    'checked' => $newCount
-                ]);
+            if ($newCount !== $currentCount) {
+                $this->groups()
+                    ->wherePivot('recorded_at', $date)
+                    ->updateExistingPivot($group->id, [
+                        'checked' => $newCount
+                    ]);
                 return $newCount;
-
             }
             return $newCount;
-
         }
     }
 
+    /**
+     * @return int|mixed
+     */
     public function totalCheckForToday()
     {
         return $this->totalCheckForDate(Carbon::today());
     }
 
+    /**
+     * @param $date
+     * @return int|mixed
+     */
     public function totalCheckForDate($date)
     {
-        $checks = $this->groups()->wherePivot('recorded_at', $date)->pluck('checked');
-        return $checks->sum();
-    }
-
-    public function hasGroup(Group $group)
-    {
-        return $this->currentGroups()->pluck('id')->contains(function ($g) use ($group) {
-            return $g == $group['id'];
-        });
-
+        return $this->groups()
+            ->wherePivot('recorded_at', $date)
+            ->sum('checked');
     }
 
     /**
@@ -218,6 +214,21 @@ class User extends Authenticatable
         } else {
             $this->currentGroups()->attach($group);
         }
+    }
+
+    public function hasGroup(Group $group)
+    {
+        return $this->currentGroups->modelKeys();
+    }
+
+    /**
+     * The food groups that show up on the home page.
+     * Has its own pivot table because we couldn't pollute the MySQL data storing checkmarks.
+     * @return BelongsToMany
+     */
+    public function currentGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'use_tracker');
     }
 
     /**
@@ -236,6 +247,16 @@ class User extends Authenticatable
     public function selectAllGroups(): void
     {
         $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
+    }
+
+    /**
+     * Food groups that don't show up on home page.
+     * @return Group[]|Collection
+     */
+    public function notSelectedGroups()
+    {
+        return Group::all()
+            ->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
 
     /**
