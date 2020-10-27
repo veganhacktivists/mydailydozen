@@ -138,11 +138,7 @@ class User extends Authenticatable
         return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
 
-    /**
-     * @param $group
-     * @param $date
-     * @return |null |null |null
-     */
+    
     public function getCheckCountForGroupAndDate($group, $date)
     {
         $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
