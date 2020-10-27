@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <title>My Daily Dozen</title>
@@ -112,6 +113,11 @@
 </div>
 
 <section id="contact" class="text-center">
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ __("Thank you for contacting us! We'll respond as soon as we can.") }}
+        </div>
+    @endif
 	<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
 	  <div class="relative max-w-xl mx-auto">
 	    <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404">
@@ -144,27 +150,51 @@
 	        <div>
 	          <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
 	          <div class="mt-1 relative rounded-md shadow-sm">
-	            <input id="first_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-	          </div>
-	        </div>
+	            <input id="first_name" name="first_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+              </div>
+              @if ($errors->has('first_name'))
+              <div class="text-red-500 font-weight-bold text-center mt-3">
+                  {{ $errors->first('first_name') }}
+              </div>
+              @endif
+            </div>
+
 	        <div>
 	          <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last name</label>
 	          <div class="mt-1 relative rounded-md shadow-sm">
-	            <input id="last_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-	          </div>
-	        </div>
+	            <input id="last_name" name="last_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+              </div>
+              @if ($errors->has('last_name'))
+              <div class="text-red-500 font-weight-bold text-center mt-3">
+                  {{ $errors->first('last_name') }}
+              </div>
+              @endif
+            </div>
+
 	        <div class="sm:col-span-2">
 	          <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
 	          <div class="mt-1 relative rounded-md shadow-sm">
-	            <input id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-	          </div>
-	        </div>
+	            <input id="email" type="email" name="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+              </div>
+              @if ($errors->has('email'))
+              <div class="text-red-500 font-weight-bold text-center mt-3">
+                  {{ $errors->first('email') }}
+              </div>
+              @endif
+            </div>
+
 	        <div class="sm:col-span-2">
 	          <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
 	          <div class="mt-1 relative rounded-md shadow-sm">
-	            <textarea id="message" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
-	          </div>
-	        </div>
+	            <textarea id="message" name="message" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+              </div>
+              @if ($errors->has('message'))
+              <div class="text-red-500 font-weight-bold text-center mt-3">
+                  {{ $errors->first('message') }}
+              </div>
+              @endif
+            </div>
+
 	        <div class="sm:col-span-2">
 	          <div class="flex items-start">
 	            <div class="flex-shrink-0">
@@ -190,7 +220,7 @@
 	            </button>
 	          </span>
 	        </div>
-	      </form>
+          </form>
 	    </div>
 	  </div>
 	</div>
