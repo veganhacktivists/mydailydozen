@@ -8,17 +8,11 @@
             <div>
               <div class="flex items-center">
                 <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
-                  Your History !
+                  Track your progress watching your health and helping animals.
                 </h1>
               </div>
             </div>
           </div>
-        </div>
-        <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-          <span class="shadow-sm rounded-md">
-          </span>
-          <span class="shadow-sm rounded-md">
-          </span>
         </div>
       </div>
     </div>
