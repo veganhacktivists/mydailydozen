@@ -112,6 +112,42 @@ class User extends Authenticatable
      * @param $date
      * @return int|mixed
      */
+    public function groups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class)->withPivot(
+            'checked',
+            'recorded_at',
+        );
+    }
+
+    /**
+     * The food groups that show up on the home page.
+     * Has its own pivot table because we couldn't pollute the MySQL data storing checkmarks.
+     * @return BelongsToMany
+     */
+    public function currentGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'use_tracker');
+    }
+
+    /**
+     * Food groups that don't show up on home page.
+     * @return Group[]|Collection
+     */
+    public function notSelectedGroups()
+    {
+        return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
+    }
+  
+    public function getCheckCountForGroupAndDate($group, $date)
+    {
+        $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
+        if ($pivot !== null) {
+            return $pivot->pivot->checked;
+        }
+        return null;
+    }
+
     public function incrementCheckCountForGroupAndDate($group, $date)
     {
         $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
