@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -30,18 +32,18 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $serving_sizes_count
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Group query()
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereBannerLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereIconLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group wherePerDay($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|Group newModelQuery()
+ * @method static Builder|Group newQuery()
+ * @method static Builder|Group query()
+ * @method static Builder|Group whereBannerLocation($value)
+ * @method static Builder|Group whereCategoryId($value)
+ * @method static Builder|Group whereCreatedAt($value)
+ * @method static Builder|Group whereIconLocation($value)
+ * @method static Builder|Group whereId($value)
+ * @method static Builder|Group whereName($value)
+ * @method static Builder|Group wherePerDay($value)
+ * @method static Builder|Group whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Group extends Model
 {
@@ -88,11 +90,18 @@ class Group extends Model
         return $this->hasMany(ServingSize::class);
     }
 
-    public function detailTypes()
+    /**
+     * @return HasMany
+     */
+    public function detailTypes(): HasMany
     {
         return $this->hasMany(DetailType::class);
     }
 
+    /**
+     * @param $index
+     * @return string
+     */
     public function checkedToInput($index)
     {
         if ($index < $this->checked)
