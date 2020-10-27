@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -39,22 +41,22 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read int|null $notifications_count
  * @property-read Collection|PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereCurrentTeamId($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereProfilePhotoPath($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereTwoFactorRecoveryCodes($value)
+ * @method static Builder|User whereTwoFactorSecret($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class User extends Authenticatable
 {
@@ -117,16 +119,30 @@ class User extends Authenticatable
         );
     }
 
-    public function currentGroups()
+    /**
+     * The food groups that show up on the home page.
+     * Has its own pivot table because we couldn't pollute the MySQL data storing checkmarks.
+     * @return BelongsToMany
+     */
+    public function currentGroups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'use_tracker');
     }
 
+    /**
+     * Food groups that don't show up on home page.
+     * @return Group[]|Collection
+     */
     public function notSelectedGroups()
     {
         return Group::all()->whereNotIn('id', $this->currentGroups()->pluck('id'));
     }
 
+    /**
+     * @param $group
+     * @param $date
+     * @return |null |null |null
+     */
     public function getCheckCountForGroupAndDate($group, $date)
     {
         $pivot = $this->groups()->wherePivot('recorded_at', $date)->wherePivot('group_id', $group->id)->first();
