@@ -4,18 +4,18 @@
       <div class="flex-shrink-0 p-2 rounded-lg" style="background:lightgrey;">
         <img class="w-12 h-12" src="{{ $group->icon_location }}" alt="Icon">
       </div>
-      <div class="ml-3 mt-3 flex-1">
-        <h6 class="text-md leading-5 mb-2 font-bold text-dark truncate">
+      <div class="ml-3 flex-1">
+        <h6 class="text-md leading-5 mb-3 font-bold text-dark truncate">
           {{ $group['name'] }}
         </h6>
-        <div class="flex items-center justify-end">
-          <span class="text-muted text-xs p-2">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
+        <div class="flex items-end justify-end">
+          <span class="text-muted text-xs">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
           <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
             @for ($i = 0; $i < $group['per_day']; $i++) 
               @if($i < $checkCount) 
-                <input type="checkbox" class="customCheckbox ml-2" id="{{ $group['name'].$i }}" wire:click.prevent="uncheck" checked>
+                <input type="checkbox" class="w-6 h-6 ml-2" style="cursor: pointer;" id="{{ $group['name'].$i }}" wire:click.prevent="uncheck" checked>
                 @else
-                <input type="checkbox" class="customCheckbox ml-2" id="{{ $group['name'].$i }}" wire:click.prevent="check">
+                <input type="checkbox" class="w-6 h-6 ml-2" style="cursor: pointer;" id="{{ $group['name'].$i }}" wire:click.prevent="check">
               @endif
             @endfor
           </div>
