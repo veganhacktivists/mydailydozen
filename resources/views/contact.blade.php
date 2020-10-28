@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <title>My Daily Dozen</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
 </head>
 <body class="antialiased">
 <div class="relative bg-white overflow-hidden">
@@ -145,7 +146,7 @@
 	      </p>
 	    </div>
 	    <div class="mt-12">
-	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-data="{ checked: false }" x-init="$refs.submit.disabled = true">
 	      	@csrf
 	        <div>
 	          <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
@@ -198,9 +199,9 @@
 	        <div class="sm:col-span-2">
 	          <div class="flex items-start">
 	            <div class="flex-shrink-0">
-	              <span role="checkbox" tabindex="0" aria-checked="false" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline">
+	              <span @click="checked = !checked; $refs.submit.disabled = !checked;" role="checkbox" tabindex="0" aria-checked="false" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline">
 	                <!-- On: "translate-x-5", Off: "translate-x-0" -->
-	                <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200"></span>
+	                <span aria-hidden="true" :class="{ 'translate-x-5' : checked, 'translate-x-0': !checked }" class="inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200"></span>
 	              </span>
 	            </div>
 	            <div class="ml-3">
@@ -215,7 +216,7 @@
 	        </div>
 	        <div class="sm:col-span-2">
 	          <span class="w-full inline-flex rounded-md shadow-sm">
-	            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150">
+	            <button type="submit" :class="{ 'opacity-50 cursor-not-allowed': !checked }" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150" x-ref="submit">
 	              Submit
 	            </button>
 	          </span>
@@ -226,5 +227,7 @@
 	</div>
 </section>
 @include('components.footer')
+
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
