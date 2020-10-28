@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -17,15 +18,15 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Group $group
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize query()
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereGroupId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereSizeImperial($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereSizeMetric($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ServingSize whereUpdatedAt($value)
+ * @method static Builder|ServingSize newModelQuery()
+ * @method static Builder|ServingSize newQuery()
+ * @method static Builder|ServingSize query()
+ * @method static Builder|ServingSize whereCreatedAt($value)
+ * @method static Builder|ServingSize whereGroupId($value)
+ * @method static Builder|ServingSize whereId($value)
+ * @method static Builder|ServingSize whereSizeImperial($value)
+ * @method static Builder|ServingSize whereSizeMetric($value)
+ * @method static Builder|ServingSize whereUpdatedAt($value)
  * @mixin Eloquent
  */
 class ServingSize extends Model
@@ -35,7 +36,11 @@ class ServingSize extends Model
         'size_metric',
     ];
 
-    public function group()
+    /**
+     * The My Daily Dozen food group, beans, blueberries, etc.
+     * @return BelongsTo
+     */
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
     }

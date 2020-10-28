@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
 
         @livewireStyles
 

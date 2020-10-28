@@ -31,7 +31,7 @@
               </x-slot>
             </x-desktop-nav-link>
 
-            <x-desktop-nav-link link="help" text="Help">
+            <x-desktop-nav-link link="contact" text="Contact">
               <x-slot name="icon">
                 <x-icons.question-mark-circle />
               </x-slot>
