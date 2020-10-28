@@ -1,10 +1,10 @@
 <div class="bg-white overflow-hidden shadow rounded-lg">
-  <div class="p-5">
+  <div class="p-4">
     <div class="flex items-center">
-      <div class="flex-shrink-0">
-        <img class="w-6 h-6 text-cool-gray-400" src="{{ $group->icon_location }}" alt="Icon">
+      <div class="flex-shrink-0 p-2 rounded-lg" style="background:lightgrey;">
+        <img class="w-12 h-12" src="{{ $group->icon_location }}" alt="Icon">
       </div>
-      <div class="pl-5 w-0 flex-1">
+      <div class="ml-3 mt-3 flex-1">
         <h6 class="text-md leading-5 mb-2 font-bold text-dark truncate">
           {{ $group['name'] }}
         </h6>
