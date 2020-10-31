@@ -1,4 +1,4 @@
-<div class="bg-white overflow-hidden shadow rounded-lg">
+<div class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : ''  }} border-2 bg-white overflow-hidden shadow rounded-lg">
   <div class="p-4">
     <div class="flex items-center">
       <div class="flex-shrink-0 p-2 rounded-lg" style="background:lightgrey;">
