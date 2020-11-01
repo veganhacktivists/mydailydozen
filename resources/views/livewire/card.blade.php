@@ -5,9 +5,14 @@
         <img class="w-12 h-12" src="{{ $group->icon_location }}" alt="Icon">
       </div>
       <div class="ml-3 flex-1">
-        <h6 class="text-md leading-5 mb-3 font-bold text-dark truncate">
-          {{ $group['name'] }}
-        </h6>
+        <div class="flex-1 flex items-center mb-2">
+          <h6 class="text-xl leading-5 font-bold text-dark truncate mr-3 pb-1">
+            {{ $group['name'] }}
+          </h6>
+          <a href="/groups/{{ $group['id'] }}/">
+            <img src="/assets/icon-info.svg" class="w-5 h-5" />
+          </a>
+        </div>
         <div class="flex items-end justify-end">
           <span class="text-muted text-xs">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
           <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
@@ -23,18 +28,12 @@
       </div>
     </div>
   </div>
-  <div class="bg-cool-gray-50 px-5 py-3">
-    <div class="text-sm leading-5">
-      <a href="/groups/{{ $group['id'] }}/"
-        class="font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
-        Details
-      </a>
-      @if (Auth::user()->isAdmin())
-      <a href="/groups/{{ $group['id'] }}/edit"
-        class="pl-5 font-medium text-teal-600 hover:text-teal-900 transition ease-in-out duration-150">
-        Edit
-      </a>
-      @endif
-    </div>
+  <div class="flex justify-end px-3 py-2">
+    <a href="/groups/{{ $group['id'] }}/edit" class="flex items-center">
+      <span class="font-medium mr-1">Edit</span>
+      <img src="/assets/icon-pencil.svg" class="w-6 h-6 color-inherit" />
+    </a>
   </div>
+  <!-- @if (Auth::user()->isAdmin()) -->
+  <!-- @endif -->
 </div>
