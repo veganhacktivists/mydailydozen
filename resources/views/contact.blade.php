@@ -43,11 +43,16 @@
                            class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
                         <a href="https://veganhacktivists.org"
                            class="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">About</a>
-                        <a href="{{ route('login') }}"
-                           class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
-                            in</a>
-                        <a href="{{ route('register') }}"
-                           class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+                        @auth
+                            <a href="{{ route('groups.index') }}"
+                            class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Home</a>
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}"
+                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log in</a>
+                            <a href="{{ route('register') }}"
+                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+                        @endguest
                     </div>
                 </nav>
             </div>
@@ -116,9 +121,13 @@
 
 <section id="contact" class="text-center">
     @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ __("Thank you for contacting us! We'll respond as soon as we can.") }}
-        </div>
+    <div class="p-2 bg-pine-300 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+        <span class="flex rounded-full bg-pine-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sent</span>
+        <span class="font-semibold mr-2 text-left flex-auto">Thank you for contacting us! We'll respond as soon as we can</span>
+        <button id="closeAlertButton" class="fill-current opacity-75 h-4 w-4 outline-none focus:outline-none">
+            <span>×</span>
+        </button>
+    </div>
     @endif
 	<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
 	  <div class="relative max-w-xl mx-auto">
