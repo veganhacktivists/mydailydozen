@@ -80,6 +80,7 @@
       const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       const EVENTS = JSON.parse('{!! $history !!}'); // [{year: 2020, month: 12, day: 8, count: 18}, ...]
 		function app() {
+      console.log(EVENTS)
 			return {
 				month: '',
 				year: '',
@@ -101,6 +102,7 @@
 				},
 
 				getNoOfDays() {
+          console.log(this.month)
 					let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
 
 					// find where to start calendar day of week

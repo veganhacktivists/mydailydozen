@@ -22,9 +22,16 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl leading-6 font-medium text-cool-gray-900 mb-4">The daily maximum is: {{$totalPerDay}}</h2>
       <dl class="mb-4 bg-gray-100 text-gray-500 inline-block p-3 border border-gray-500 rounded">
+        <dt>Green is greater than 60%.</dt>
+        <dt>Yellow is between 30 and 60%.</dt>
+        <dt>Red is less than 30%</dt>
+        <dt>Gray is 0%</dt>
       </dl>
       <br>
-      <p class="mb-2 bg-blue-100 text-blue-600 inline-block p-3 border border-blue-600 rounded"></p>
+      <p class="mb-2 bg-blue-100 text-blue-600 inline-block p-3 border border-blue-600 rounded">! The number in the
+        circle is
+        the
+        count, not the percentage.</p>
       <x-history-calendar :history="$history"></x-history-calendar>
     </div>
     <pre>

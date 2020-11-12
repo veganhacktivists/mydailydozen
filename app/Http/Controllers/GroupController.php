@@ -115,7 +115,7 @@ class GroupController extends Controller
         $group->banner_location = $request->banner_location;
         $group->per_day = $request->per_day;
         $group->save();
-        return redirect('/');
+        return redirect('');
     }
 
     /**

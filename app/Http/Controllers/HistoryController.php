@@ -24,7 +24,7 @@ class HistoryController extends Controller
               'day' => substr($key, 8, 2),
               'count' => $item->sum('checked'),
               'percentage' => round($item->sum('checked') / $total * 100)
-          ]), JSON_THROW_ON_ERROR),
+          ])->values(), JSON_THROW_ON_ERROR),
           'totalPerDay' => Group::all()->sum('per_day')
       ]);
   }
