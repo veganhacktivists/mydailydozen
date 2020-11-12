@@ -121,10 +121,10 @@
 
 <section id="contact" class="text-center">
     @if (session('success'))
-    <div class="p-2 bg-pine-300 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+    <div x-data="{open: true}" x-show="open" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="p-2 bg-pine-300 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-pine-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sent</span>
         <span class="font-semibold mr-2 text-left flex-auto">Thank you for contacting us! We'll respond as soon as we can</span>
-        <button id="closeAlertButton" class="fill-current opacity-75 h-4 w-4 outline-none focus:outline-none">
+        <button @click="open = false" class="fill-current opacity-75 h-4 w-4 outline-none focus:outline-none">
             <span>×</span>
         </button>
     </div>
