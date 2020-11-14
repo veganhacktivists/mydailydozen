@@ -1,5 +1,5 @@
 <div
-    class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : ''  }} border-2 bg-white overflow-hidden shadow rounded-2xl">
+    class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : ''  }} border-2 bg-white overflow-hidden rounded-2xl">
     <div class="p-4">
         <div class="flex items-center">
             <div class="flex-shrink-0">
