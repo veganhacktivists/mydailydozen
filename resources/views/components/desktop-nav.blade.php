@@ -9,13 +9,13 @@
         <div class="overflow-y-auto">
           <nav class="px-2 space-y-1">
 
-            <x-desktop-nav-link link="groups" text="Home">
+            <x-desktop-nav-link link="groups" text="My Groups">
               <x-slot name="icon">
                 <x-icons.home />
               </x-slot>
             </x-desktop-nav-link>
 
-            <x-desktop-nav-link link="history" text="History">
+            <x-desktop-nav-link link="history" text="View History">
               <x-slot name="icon">
                 <x-icons.clock />
               </x-slot>

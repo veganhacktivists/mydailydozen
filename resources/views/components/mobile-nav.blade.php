@@ -22,13 +22,13 @@
           <a href="/home"
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-pine-700 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <x-icons.home />
-            Home
+            My Groups
           </a>
 
           <a href="/history"
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <x-icons.clock />
-            History
+            View History
           </a>
 
           <a href="/metrics"
