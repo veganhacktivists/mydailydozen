@@ -21,18 +21,15 @@
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <x-history-calendar :history="$history"></x-history-calendar>
-	        <h2 class="text-2xl leading-6 font-medium text-cool-gray-900 mb-4">Your daily maximum is: {{$totalPerDay}}</h2>
-      <dl class="mb-4 bg-gray-100 text-gray-500 inline-block p-3 border border-gray-500 rounded">
-        <dt>Green is greater than 60%.</dt>
-        <dt>Yellow is between 30 and 60%.</dt>
-        <dt>Red is less than 30%</dt>
-        <dt>Gray is 0%</dt>
-      </dl>
+	        <h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-4">Your daily maximum is: {{$totalPerDay}}</h2>
+			<br>
+		<h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-6">Head over to your <a
+          href="{{route('settings')}}" class="text-blue-500 hover:underline">settings page</a> to add or remove groups!
+		</h2>
       <br>
-      <p class="mb-2 bg-blue-100 text-blue-600 inline-block p-3 border border-blue-600 rounded">! The number in the
-        circle is
-        the
-        count, not the percentage.</p>
+      <p class="mb-2 bg-green-100 text-green-600 inline-block p-3 border border-green-600 rounded">Green is greater than 60%</p>
+		<p class="mb-2 bg-yellow-100 text-yellow-600 inline-block p-3 border border-yellow-600 rounded">Yellow is between 30 and 60%.</p>
+		<p class="mb-2 bg-gray-100 text-gray-600 inline-block p-3 border border-gray-600 rounded">Gray is 0%</p>
     </div>
     <pre>
     </pre>
