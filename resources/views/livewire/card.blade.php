@@ -25,7 +25,7 @@
                     </a>
                     @endif
                 </div>
-                <div class="flex items-end justify-between">
+                <div class="flex items-end justify-end">
                     <div class="flex items-center">
                         <span class="text-muted text-xs">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
                         <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
