@@ -19,21 +19,16 @@
             </div>
           </div>
         </div>
-        <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-          <span class="shadow-sm rounded-md">
-          </span>
-          <span class="shadow-sm rounded-md">
-          </span>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Customize Groups</h2>
-      <button @click="axios.put('/settings/all').then(() => { location.reload() })">Select All</button>
-      <button @click="axios.put('/settings/none').then(() => { location.reload() })">Unselect All</button>
+      <div>
+        <button class="p-2 mr-4 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out" @click="axios.put('/settings/all').then(() => { location.reload() })">Select All</button>
+        <button class="p-2 mr-4 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out" @click="axios.put('/settings/none').then(() => { location.reload() })">Unselect All</button>
+      </div>
       @if($groups->count() > 0)
       <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         @foreach($groups as $group)

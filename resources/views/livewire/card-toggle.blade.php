@@ -1,6 +1,6 @@
-<div
+<button
   wire:click="toggleGroup"
-  class="{{ $checked ? 'border-pine-400' : ''  }} p-4 border-2 bg-white overflow-hidden rounded-2xl cursor-pointer"
+  class="{{ $checked ? 'border-pine-400' : ''  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline"
 >
     <div class="flex">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
@@ -33,4 +33,4 @@
             </div>
         </div>
     </div>
-</div>
+</button>
