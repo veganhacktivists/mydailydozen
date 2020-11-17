@@ -70,7 +70,7 @@
             </div>
             <div x-data="{ metric: true }" class="prose prose-lg text-gray-500 mx-auto">
                 <figure>
-                    <img class="w-full h-32 rounded-lg" src="{{ asset($group->banner_location) }}"
+                    <img class="w-full h-32 rounded-lg" style="object-fit: cover;" src="{{ asset($group->banner_location) }}"
                         alt="{{ $group->name }} header">
                     <figcaption>Small description here</figcaption>
                 </figure>
