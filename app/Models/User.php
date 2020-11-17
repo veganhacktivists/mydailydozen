@@ -218,7 +218,7 @@ class User extends Authenticatable
 
     public function hasGroup(Group $group)
     {
-        return $this->currentGroups->modelKeys();
+        return $this->currentGroups->contains($group);
     }
 
     /**
