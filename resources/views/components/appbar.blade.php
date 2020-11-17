@@ -61,9 +61,6 @@
                         <a href="/user/profile"
                             class="block px-4 py-2 text-sm text-cool-gray-700 hover:bg-cool-gray-100 transition ease-in-out duration-150"
                             role="menuitem">Your Profile</a>
-                        <a href="/user/api-tokens"
-                            class="block px-4 py-2 text-sm text-cool-gray-700 hover:bg-cool-gray-100 transition ease-in-out duration-150"
-                            role="menuitem">API Tokens</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
