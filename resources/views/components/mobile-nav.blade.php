@@ -44,7 +44,7 @@
             class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
             <!-- Heroicon name: cog -->
             <x-icons.cog />
-            Settings
+            Customize
           </a>
 
           <a href="/contact"

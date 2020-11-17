@@ -45,12 +45,12 @@
       </div>
       @else
       <h2 class="text-lg leading-6 font-medium text-cool-gray-900">No food groups selected to track.<a
-          href="{{route('settings')}}" class="text-blue-500 hover:underline">Settings</a>
+          href="{{route('settings')}}" class="text-blue-500 hover:underline">Customize</a>
       </h2>
       @endif
 		<br>
 		<h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-6">Head over to your <a
-          href="{{route('settings')}}" class="text-blue-500 hover:underline">settings page</a> to toggle more groups!
+          href="{{route('settings')}}" class="text-blue-500 hover:underline">customize page</a> to toggle more groups!
 		</h2>
     </div>
   </div>

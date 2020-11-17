@@ -25,7 +25,7 @@
         <div class="mt-6 flex-1 h-0 overflow-y-auto">
           <nav class="px-2 space-y-1">
 
-            <x-desktop-nav-link link="settings" text="Settings">
+            <x-desktop-nav-link link="settings" text="Customize">
               <x-slot name="icon">
                 <x-icons.cog />
               </x-slot>
