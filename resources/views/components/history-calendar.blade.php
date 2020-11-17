@@ -12,24 +12,26 @@
       <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="flex items-center justify-between py-2 px-6">
           <div>
-            <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-            <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+            <span class="text-lg font-bold text-gray-800" x-text="MONTH_NAMES[month]">
+
+            </span>
+            <span class="text-lg text-gray-600 font-normal" x-text="year">
+
+            </span>
           </div>
           <div class="border rounded-lg px-1" style="padding-top: 2px;">
-            <button type="button"
+            <button type="button" x-bind:title="previousMonthTitle()"
               class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center"
-              :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false"
-              @click="month--; getNoOfDays()">
+              x-on:click="previousMonth()">
               <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <div class="border-r inline-flex h-6"></div>
-            <button type="button"
+            <button type="button" x-bind:title="nextMonthTitle()"
               class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1"
-              :class="{'cursor-not-allowed opacity-25': month == 11 }" :disabled="month == 11 ? true : false"
-              @click="month++; getNoOfDays()">
+              x-on:click="nextMonth()">
               <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -48,18 +50,23 @@
           </div>
 
           <div class="flex flex-wrap border-t border-l">
-            <template x-for="blankday in blankdays">
-              <div style="width: 14.28%; height: 120px" class="text-center border-r border-b px-4 pt-2"></div>
+            <template x-if="blankdays > 0">
+              <template x-for="blankday in blankdays" :key="'blankday' + blankday">
+                <div style="width: 14.28%; height: 120px" class="text-center border-r border-b px-4 pt-2">
+                </div>
+              </template>
+
             </template>
-            <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
+            <template x-for="date in no_of_days" :key="'day' + date">
               <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
                 <div x-text="date"
                   class="pointer-events-none inline-flex w-6 h-6 items-center justify-center text-center leading-none rounded-full transition ease-in-out duration-100"
-                  :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
+                  :class="{'bg-blue-500 text-white': isToday(year, month, date) == true, 'text-gray-700': isToday(year, month, date) == false }">
                 </div>
                 <div style="height: 80px;padding-top: 10px;" class="overflow-y-auto mt-1">
-                  <div class="flex items-center justify-center rounded-full text-2xl" style="height: 50px; width: 50px;margin: auto;"
-                    :class="{
+                  <div x-show="isFuture(year, month, date) == false"
+                    class="flex items-center justify-center rounded-full text-2xl"
+                    style="height: 50px; width: 50px;margin: auto;" :class="{
                       'bg-pine-100 text-pine-600 border-pine-600': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 60,
                       'bg-yellow-100 text-yellow-500 border border-yellow-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 30,
                       'bg-red-100 text-red-500 border border-red-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 0,
@@ -80,12 +87,11 @@
       const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       const EVENTS = JSON.parse('{!! $history !!}'); // [{year: 2020, month: 12, day: 8, count: 18}, ...]
 		function app() {
-      console.log(EVENTS)
 			return {
 				month: '',
 				year: '',
-				no_of_days: [],
-				blankdays: [],
+				no_of_days: -1,
+        blankdays: -1,
         days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 				initDate() {
 					let today = new Date();
@@ -94,31 +100,45 @@
           this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
 				},
 
-				isToday(date) {
+				isToday(year, month, day) {
 					const today = new Date();
-					const d = new Date(this.year, this.month, date);
+					const d = new Date(year, month, day);
 
 					return today.toDateString() === d.toDateString() ? true : false;
-				},
+        },
+        isFuture(year, month, day){
+          const today = new Date();
+					const d = new Date(year, month, day);
 
+					return today.valueOf() < d.valueOf();
+        },
+        nextMonth(){
+          if(this.month == 11){
+            this.year++
+            this.month = 0
+          }else{
+            this.month++
+          }
+          this.getNoOfDays()
+        },
+        previousMonth(){
+          if(this.month == 0){
+            this.year--
+            this.month = 11
+          }else{
+            this.month--
+          }
+          this.getNoOfDays()
+        },
+        nextMonthTitle(){
+          return MONTH_NAMES[(this.month+1) % 12] + ' ' + (this.month == 11 ? this.year + 1 : this.year)
+        },
+        previousMonthTitle(){
+          return MONTH_NAMES[(this.month + 11) % 12] + ' ' + (this.month == 0 ? this.year - 1 : this.year)
+        },
 				getNoOfDays() {
-          console.log(this.month)
-					let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-
-					// find where to start calendar day of week
-					let dayOfWeek = new Date(this.year, this.month).getDay();
-					let blankdaysArray = [];
-					for ( var i=1; i <= dayOfWeek; i++) {
-						blankdaysArray.push(i);
-					}
-
-					let daysArray = [];
-					for ( var i=1; i <= daysInMonth; i++) {
-						daysArray.push(i);
-					}
-					
-					this.blankdays = blankdaysArray;
-					this.no_of_days = daysArray;
+					this.no_of_days = new Date(this.year, this.month + 1, 0).getDate();
+          this.blankdays = new Date(this.year, this.month).getDay();
 				}
 			}
 		}
