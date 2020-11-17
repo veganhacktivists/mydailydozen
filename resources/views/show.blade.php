@@ -81,7 +81,7 @@
                 <p x-show="!metric">{{ $servingSize->size_imperial }}</p>
                 <p x-show="metric">{{ $servingSize->size_metric }}</p>
                 @endforeach
-                <h3>{{ __('Detail Types') }}</h3>
+                <h3>{{ __('More Information') }}</h3>
                 @foreach ($detailTypes as $detailType)
                 <p>{{ $detailType->video }}</p>
                 @endforeach
