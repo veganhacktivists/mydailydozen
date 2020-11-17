@@ -6,12 +6,8 @@
         <div class="flex-1 min-w-0">
           <!-- Profile -->
           <div class="flex items-center">
-            <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}"
-              class="hidden h-15 w-15 rounded-full sm:block">
             <div>
               <div class="flex items-center">
-                <img class="h-15 w-15 rounded-full sm:hidden" src="{{ $user->profile_photo_url }}"
-                  alt="{{ $user->name }}">
                 <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
                   {{ $greeting }}
                 </h1>
