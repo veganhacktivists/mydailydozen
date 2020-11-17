@@ -65,7 +65,7 @@
                 <p class="text-base leading-6 text-teal-600 font-semibold tracking-wide uppercase">More
                     About</p>
                 <h1
-                    class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+                    class="mt-2 mb-8 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                     {{ $group->name }}</h1>
             </div>
             <div x-data="{ metric: true }" class="prose prose-lg text-gray-500 mx-auto">
