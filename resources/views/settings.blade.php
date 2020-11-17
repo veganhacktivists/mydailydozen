@@ -10,10 +10,8 @@
               class="hidden h-15 w-15 rounded-full sm:block">
             <div>
               <div class="flex items-center">
-                <img class="h-15 w-15 rounded-full sm:hidden" src="{{ $user->profile_photo_url }}"
-                  alt="{{ $user->name }}">
                 <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
-                  Customize Groups
+                  Enable or disable groups!
                 </h1>
               </div>
             </div>
