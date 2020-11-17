@@ -73,6 +73,15 @@
           </div>
         </div>
       </div>
+	  
+	    	<h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-4">Your current goal is: {{$totalPerDay}} groups a day.</h2>
+		<br>
+		<p class="mb-2 bg-green-100 text-green-600 inline-block p-3 border border-green-600 rounded" style="background-color:#9cd99c80;color: #086c10;">Green is greater than 60%</p>
+		<p class="mb-2 bg-yellow-100 text-yellow-600 inline-block p-3 border border-yellow-600 rounded" style="margin-left: 10px;color: #7d7119;">Yellow is between 30 and 60%</p>
+		<p class="mb-2 bg-gray-100 text-gray-600 inline-block p-3 border border-gray-600 rounded" style="margin-left: 10px;background-color: #e8e8e8;color: #757575;">Gray is 0%</p>
+    
+	
+	
     </div>
 
     <script>
