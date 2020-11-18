@@ -60,13 +60,14 @@
             <template x-for="date in no_of_days" :key="'day' + date">
               <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
                 <div x-text="date"
-                  class="pointer-events-none inline-flex w-6 h-6 items-center justify-center text-center leading-none rounded-full transition ease-in-out duration-100"
+				style="font-size: 15px;padding: 5px 6px 6px 4px;"
+				class="pointer-events-none inline-flex w-6 h-6 items-center justify-center text-center leading-none rounded-full transition ease-in-out duration-100"
                   :class="{'bg-blue-500 text-white': isToday(year, month, date) == true, 'text-gray-700': isToday(year, month, date) == false }">
                 </div>
                 <div style="height: 80px;padding-top: 10px;" class="overflow-y-auto mt-1">
                   <div x-show="isFuture(year, month, date) == false"
                     class="flex items-center justify-center rounded-full text-2xl"
-                    style="height: 50px; width: 50px;margin: auto;" :class="{
+                    style="height: 40px; width: 40px;margin: auto;font-size: 20px;" :class="{
                       'bg-pine-100 text-pine-600 border-pine-600': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 60,
                       'bg-yellow-100 text-yellow-500 border border-yellow-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 30,
                       'bg-red-100 text-red-500 border border-red-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 0,
