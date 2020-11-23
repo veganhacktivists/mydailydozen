@@ -1,6 +1,6 @@
 <button
   wire:click="toggleGroup"
-  class="{{ $checked ? 'border-pine-400' : ''  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline"
+  class="{{ $checked ? 'border-pine-400' : 'border-red-400'  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline"
 >
     <div class="flex">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
@@ -26,9 +26,15 @@
                 </a>
                 @endif
             </div>
-            <div class="flex-1 flex items-end justify-end text-pine-500">
-              @if ($checked)
-                <x-icons.check-circle />
+            <div class="flex-1 flex items-end justify-end">
+                @if ($checked)
+                    <span class="text-pine-400">
+                        <x-icons.check-circle />
+                    </span>
+                @else
+                    <span class="text-red-400">
+                        <x-icons.close-circle />
+                    </span>
               @endif
             </div>
         </div>
