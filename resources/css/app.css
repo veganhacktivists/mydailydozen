@@ -1,3 +1,16 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@media (min-width: 1280px) {
+  .home-banner {
+    left: -4vw;
+    bottom: -5vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .lg\:h-screen-half {
+    height: 50vh;
+  }
+}
