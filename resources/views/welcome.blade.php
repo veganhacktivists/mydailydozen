@@ -9,8 +9,8 @@
 <body class="antialiased">
     <div class="h-screen flex flex-col">
         <div class="relative bg-white overflow-hidden flex-1">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+            <div class="max-w-screen-xl mx-auto lg:h-full">
+                <div class="relative pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
                     <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
                         <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                             <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
@@ -116,14 +116,20 @@
                 </div>
             </div>
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                <img 
-                    class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" 
-                    src="https://images.unsplash.com/photo-1580658579404-f92d99fe3edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1226&q=80"
-                    alt="Banner Image"
-                />
+                <div class="relative lg:w-full lg:h-screen-half">
+                    <div 
+                        class="lg:w-full lg:h-full bg-pine-400"
+                    >
+                    </div>
+                    <img 
+                        class="home-banner w-full object-cover lg:absolute lg:h-full" 
+                        src="https://images.unsplash.com/photo-1580658579404-f92d99fe3edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1226&q=80"
+                        alt="Banner Image"
+                    />
+                </div>
             </div>
         </div>
+        @include('components.footer')
     </div>
-    @include('components.footer')
 </body>
 </html>
