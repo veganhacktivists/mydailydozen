@@ -98,16 +98,19 @@
                                 Eat healthy and feel good about yourself in the process.
                             </p>
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                Keep track of the foods recommended by Dr. Greger in his New York Times Bestselling book, How Not to Die, and now his new book, How Not to Diet.
+                                Use this website to keep daily track of the foods recommended by Dr. Greger in his New York Times Bestselling book, How Not to Die, and now his new book, How Not to Diet!
                             </p>
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                Dr. Greger’s Daily Dozen details the healthiest foods and how many servings of each we should try to check off every day. He explains his rationale in his book How Not to Die.
+                                Dr. Greger’s Daily Dozen details the healthiest foods and how many servings of each we should try to check off every day.
                             </p>
+							<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+							Signup now and begin keeping track the easy way with My Daily Dozen!
+							</p>
                             <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div class="rounded-md shadow">
                                     <a href="/register"
                                     class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                        Get started
+                                        Signup to get started
                                     </a>
                                 </div>
                             </div>
