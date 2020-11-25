@@ -6,6 +6,19 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 	<title>My Daily Dozen - Track the foods recommended by NutritionFacts.org!
+	
+    <link rel="canonical" href="https://mydailydozen.org/" />
+    <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
+
+    <meta property="og:url" content="https://mydailydozen.org/" />
+    <meta property="og:title" content="My Daily Dozen" />
+    <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
+    <meta property="og:image" content="https://mydailydozen.org/og-image.png" />
+    <meta property="og:image:width" content="582" />
+    <meta property="og:image:height" content="293" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+	
 </head>
 <body class="antialiased">
     <div class="h-screen flex flex-col">
