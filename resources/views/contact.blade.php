@@ -117,7 +117,7 @@
 	      </h2>
 	    </div>
 	    <div class="mt-12">
-	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-data="{ checked: false }" x-init="$refs.submit.disabled = true">
+	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-data="{ checked: false }" x-init="$refs.submit.disabled = false">
 	      	@csrf
 	        <div>
 	          <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
