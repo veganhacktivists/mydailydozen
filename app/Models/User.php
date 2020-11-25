@@ -112,18 +112,18 @@ class User extends Authenticatable
      * @param $date
      * @return int|mixed
      */
-    public function incrementCheckCountForGroupAndDate($group, $date)
+    public function setCheckCountForGroupAndDate($group, $date, $count)
     {
         $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
         if ($currentCount === null) {
             $this->groups()->attach($group, [
-                'checked' => 1,
+                'checked' => $count,
                 'recorded_at' => $date
             ]);
             return 1;
         }
 
-        $newCount = min($currentCount + 1, $group->per_day);
+        $newCount = min($count, $group->per_day);
         if ($newCount !== $currentCount) {
             $this->groups()->wherePivot('recorded_at', $date)
                 ->updateExistingPivot($group->id, [
@@ -160,29 +160,6 @@ class User extends Authenticatable
             'checked',
             'recorded_at',
         );
-    }
-
-    /**
-     * @param $group
-     * @param $date
-     * @return mixed
-     */
-    public function decrementCheckCountForGroupAndDate($group, $date)
-    {
-        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
-
-        if ($currentCount !== null) {
-            $newCount = max($currentCount - 1, 0);
-            if ($newCount !== $currentCount) {
-                $this->groups()
-                    ->wherePivot('recorded_at', $date)
-                    ->updateExistingPivot($group->id, [
-                        'checked' => $newCount
-                    ]);
-                return $newCount;
-            }
-            return $newCount;
-        }
     }
 
     /**

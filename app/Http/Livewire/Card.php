@@ -13,24 +13,17 @@ class Card extends Component
 
     public function mount(Group $group)
     {
-      $this->group = $group;
-      $this->checkCount = auth()->user()->getCheckCountForGroupAndDate($this->group, Carbon::today());
+        $this->group = $group;
+        $this->checkCount = auth()->user()->getCheckCountForGroupAndDate($this->group, Carbon::today());
     }
     public function render()
     {
         return view('livewire.card');
     }
 
-    public function check()
+    public function check($count)
     {
-      $update = auth()->user()->incrementCheckCountForGroupAndDate($this->group, Carbon::today());
-      $this->checkCount = $update;
+        $update = auth()->user()->setCheckCountForGroupAndDate($this->group, Carbon::today(), $count);
+        $this->checkCount = $update;
     }
-
-    public function uncheck()
-    {
-      $update = auth()->user()->decrementCheckCountForGroupAndDate($this->group, Carbon::today());
-      $this->checkCount = $update;
-    }
-
 }

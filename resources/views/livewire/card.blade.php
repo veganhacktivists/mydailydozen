@@ -33,10 +33,11 @@
                     <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
                         @for ($i = 0; $i < $group['per_day']; $i++) @if($i < $checkCount) <input type="checkbox"
                             class="form-checkbox w-6 h-6 ml-2 text-pine-600" style="cursor: pointer;"
-                            id="{{ $group['name'].$i }}" wire:click.prevent="uncheck" checked>
+                            id="{{ $group['name'].$i }}" wire:click.prevent="check({{$i}})" checked>
                             @else
                             <input type="checkbox" class="form-checkbox w-6 h-6 ml-2 text-pine-600"
-                                style="cursor: pointer;" id="{{ $group['name'].$i }}" wire:click.prevent="check">
+                                style="cursor: pointer;" id="{{ $group['name'].$i }}"
+                                wire:click.prevent="check({{$i + 1}})">
                             @endif
                             @endfor
                     </div>
