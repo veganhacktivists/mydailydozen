@@ -321,9 +321,20 @@ class DatabaseSeeder extends Seeder
 
         Group::all()->each(function ($group) {
             ServingSize::create([
-                'size_imperial' => 'N/A ft',
-                'size_metric' => 'N/A m',
+                'size_imperial' => '¼ cup of hummus or bean dip',
+                'size_metric' => '60g of hummus or bean dip',
                 'group_id' => $group->id,
+            ]);
+
+            ServingSize::create([
+              'size_imperial' => '1 cup of fresh peas or sprouted lentils',
+              'size_metric' => '150g of fresh peas or sprouted lentils',
+              'group_id' => $group->id,
+            ]);
+            ServingSize::create([
+              'size_imperial' => '½ cup of cooked beans, split peas, lentils, tofu or tempeh',
+              'size_metric' => '130g of cooked beans, split peas, lentils, tofu or tempeh',
+              'group_id' => $group->id,
             ]);
 
             DetailType::create([

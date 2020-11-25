@@ -5,6 +5,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SendContactEmailController;
+use App\Http\Controllers\ServingSizeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
         'index', 'show', 'update', 'edit'
     ]);
+
+    Route::get('groups/{group}/serving-sizes/create', [ServingSizeController::class, 'create']);
+    Route::post('groups/{group}/serving-sizes', [ServingSizeController::class, 'store']);
+    Route::get('groups/{group}/serving-sizes/{servingSize}/edit', [ServingSizeController::class, 'edit']);
+    Route::put('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'update']);
+    Route::delete('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'destroy']);
+
+
     Route::get('history', [HistoryController::class, 'index'])->name('history');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
     Route::put('settings/all', [UserController::class, 'selectAll']);
