@@ -8,7 +8,7 @@
           <div class="flex items-center">
             <div>
               <div class="flex items-center">
-                <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
+                <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate" style="font-weight: 500;">
                   {{ $greeting }}
                 </h1>
               </div>
