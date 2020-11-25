@@ -13,7 +13,7 @@
                     </div>
                     <div class="flex flex-0 flex-shrink-0">
                         <a href="/groups/{{ $group['id'] }}/">
-                            <img src="/assets/icon-info.svg" class="w-6 h-6" />
+                            <img src="https://i.imgur.com/OmqyxWu.png" class="w-6 h-6" />
                         </a>
                     </div>
                 </div>
