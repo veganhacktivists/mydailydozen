@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', HomeController::class);
-Route::get('/contact', fn () => view('contact'));
+Route::get('/contact', fn () => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
