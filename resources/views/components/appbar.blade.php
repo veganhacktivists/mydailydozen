@@ -23,8 +23,6 @@
                     <button
                         class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:bg-cool-gray-100 lg:p-2 lg:rounded-md lg:hover:bg-cool-gray-100"
                         id="user-menu" aria-label="User menu" aria-haspopup="true">
-                        <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_url }}"
-                            alt="{{ auth()->user()->name }}">
                         <p class="hidden ml-3 text-cool-gray-700 text-sm leading-5 font-medium lg:block">
                             {{ auth()->user()->name }}
                         </p>
