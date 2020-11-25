@@ -72,41 +72,16 @@
                                 <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="">
                             </div>
                             <div class="-mr-2">
-                                <button type="button"
-                                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                                        aria-label="Close menu">
-                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M6 18L18 6M6 6l12 12"/>
-                                    </svg>
-                                </button>
+                                <a href="/contact"
+                                class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
+                                @guest
+								<a href="{{ route('login') }}"
+                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
+                                    in</a>
+                                <a href="{{ route('register') }}"
+                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+								@endguest
                             </div>
-                        </div>
-                        <div class="px-2 pt-2 pb-3">
-                            <a href="#"
-                               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Product</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Features</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Marketplace</a>
-                            <a href="#"
-                               class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                               role="menuitem">Company</a>
-                        </div>
-                        <div>
-                            <a href="{{ route('login') }}"
-                               class="block w-full px-5 py-3 text-center font-medium text-pine-600 bg-gray-50 hover:bg-gray-100 hover:text-pine-700 focus:outline-none focus:bg-gray-100 focus:text-pine-700 transition duration-150 ease-in-out"
-                               role="menuitem">
-                                Log in
-                            </a>
-                            <a href="{{ route('register') }}"
-                               class="block w-full px-5 py-3 text-center font-medium text-pine-600 bg-gray-50 hover:bg-gray-100 hover:text-pine-700 focus:outline-none focus:bg-gray-100 focus:text-pine-700 transition duration-150 ease-in-out"
-                               role="menuitem">
-                                Register
-                            </a>
                         </div>
                     </div>
                 </div>
