@@ -113,11 +113,8 @@
 	    </svg>
 	    <div class="text-center">
 	      <h2 class="text-3xl leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-	        Contact us
+	        Get in touch with us!
 	      </h2>
-	      <p class="mt-4 text-lg leading-6 text-gray-500">
-	       	Feel free to drop us a line here!
-	      </p>
 	    </div>
 	    <div class="mt-12">
 	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-data="{ checked: false }" x-init="$refs.submit.disabled = true">
