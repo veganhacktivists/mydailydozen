@@ -104,13 +104,13 @@
                                 Dr. Greger’s Daily Dozen details the healthiest foods and how many servings of each we should try to check off every day.
                             </p>
 							<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-							Signup now and begin keeping track the easy way with My Daily Dozen! Dr. Greger also has an <a href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802" target="_blank">iOS App</a> and <a href="https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen&hl=en" target="_blank">Android App.
+							Signup now and begin keeping track the easy way with My Daily Dozen! Dr. Greger also has an <a href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802" target="_blank" style="color:#609c2a;">iOS App</a> and <a href="https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen&hl=en" target="_blank" style="color:#609c2a;">Android App.
 							</p>
                             <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div class="rounded-md shadow">
                                     <a href="/register"
                                     class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                        Signup to get started
+                                        Signup to get started!
                                     </a>
                                 </div>
                             </div>
