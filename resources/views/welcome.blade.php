@@ -97,7 +97,7 @@
                     </div>
                     <img 
                         class="home-banner w-full object-cover lg:absolute lg:h-full" 
-                        src="https://i.imgur.com/BvZt325.jpg"
+                        src="https://i.imgur.com/9PgoR3H.jpg"
                         alt="Banner Image"
                     />
                 </div>
