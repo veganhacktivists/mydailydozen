@@ -7,7 +7,23 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
-    <title>My Daily Dozen</title>
+	<title>Contact us - My Daily Dozen: track the foods recommended by NutritionFacts.org!</title>
+	
+    <link rel="canonical" href="https://mydailydozen.org/" />
+    <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
+
+    <meta property="og:url" content="https://mydailydozen.org/" />
+    <meta property="og:title" content="My Daily Dozen" />
+    <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
+    <meta property="og:image" content="https://mydailydozen.org/og-image.png" />
+    <meta property="og:image:width" content="582" />
+    <meta property="og:image:height" content="293" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />	
+	
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
 </head>
 <body class="antialiased">
@@ -71,13 +87,13 @@
     @if (session('success'))
     <div x-data="{open: true}" x-show="open" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="p-2 bg-pine-300 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-pine-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sent</span>
-        <span class="font-semibold mr-2 text-left flex-auto">Thank you for contacting us! We'll respond as soon as we can</span>
+        <span class="font-semibold mr-2 text-left flex-auto">Thank you for contacting us! We'll respond as soon as we can.</span>
         <button @click="open = false" class="fill-current opacity-75 h-4 w-4 outline-none focus:outline-none">
             <span>×</span>
         </button>
     </div>
     @endif
-	<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+	<div class="bg-white px-4 overflow-hidden sm:px-6 lg:px-8" style="margin-bottom: 70px;">
 	  <div class="relative max-w-xl mx-auto">
 	    <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404">
 	      <defs>
@@ -96,8 +112,8 @@
 	      <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
 	    </svg>
 	    <div class="text-center">
-	      <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-	        Contact Vegan Hacktivists
+	      <h2 class="text-3xl leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+	        Contact us
 	      </h2>
 	      <p class="mt-4 text-lg leading-6 text-gray-500">
 	       	Feel free to drop us a line here!
@@ -155,27 +171,9 @@
             </div>
 
 	        <div class="sm:col-span-2">
-	          <div class="flex items-start">
-	            <div class="flex-shrink-0">
-	              <span @click="checked = !checked; $refs.submit.disabled = !checked;" role="checkbox" tabindex="0" aria-checked="false" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline">
-	                <!-- On: "translate-x-5", Off: "translate-x-0" -->
-	                <span aria-hidden="true" :class="{ 'translate-x-5' : checked, 'translate-x-0': !checked }" class="inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200"></span>
-	              </span>
-	            </div>
-	            <div class="ml-3">
-	              <p class="text-base leading-6 text-gray-500">
-	                By selecting this, you agree to the
-	                <a href="#" class="font-medium text-gray-700 underline">Privacy Policy</a>
-	                and
-	                <a href="#" class="font-medium text-gray-700 underline">Cookie Policy</a>.
-	              </p>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="sm:col-span-2">
 	          <span class="w-full inline-flex rounded-md shadow-sm">
 	            <button type="submit" :class="{ 'opacity-50 cursor-not-allowed': !checked }" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150" x-ref="submit">
-	              Submit
+	              Send email
 	            </button>
 	          </span>
 	        </div>
