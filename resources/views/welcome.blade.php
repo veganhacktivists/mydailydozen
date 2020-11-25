@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
-	<title>My Daily Dozen - Track the foods recommended by NutritionFacts.org!
+	<title>My Daily Dozen - Track the foods recommended by NutritionFacts.org!</title>
 	
     <link rel="canonical" href="https://mydailydozen.org/" />
     <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
