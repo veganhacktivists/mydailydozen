@@ -5,12 +5,12 @@
 @media (min-width: 1280px) {
   .home-banner {
     left: -4vw;
-    bottom: -5vh;
+    bottom: -10vh;
   }
 }
 
 @media (min-width: 1280px) {
   .lg\:h-screen-half {
-    height: 50vh;
+    height: 70vh;
   }
 }
