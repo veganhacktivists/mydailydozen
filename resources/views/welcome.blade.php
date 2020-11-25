@@ -17,7 +17,11 @@
     <meta property="og:image:width" content="582" />
     <meta property="og:image:height" content="293" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en_US" />	
+	
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 	
 </head>
 <body class="antialiased">
