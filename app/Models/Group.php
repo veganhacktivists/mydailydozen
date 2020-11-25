@@ -55,6 +55,7 @@ class Group extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'subtitle',
         'icon_location',
         'banner_location',
         'per_day',
@@ -104,8 +105,7 @@ class Group extends Model
      */
     public function checkedToInput($index)
     {
-        if ($index < $this->checked)
-        {
+        if ($index < $this->checked) {
             return ' checked';
         }
         return '';

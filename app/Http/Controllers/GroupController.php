@@ -70,8 +70,7 @@ class GroupController extends Controller
      */
     public function update(Group $group, Request $request)
     {
-        if (Auth::user()->isAdmin())
-        {
+        if (Auth::user()->isAdmin()) {
             return $this->adminUpdate($group, $request);
         }
         return $this->userUpdate($group, $request);
@@ -105,12 +104,14 @@ class GroupController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'subtitle' => '',
             'icon_location' => 'required',
             'banner_location' => 'required',
             'per_day' => 'required',
         ]);
 
         $group->name = $request->name;
+        $group->subtitle = $request->subtitle;
         $group->icon_location = $request->icon_location;
         $group->banner_location = $request->banner_location;
         $group->per_day = $request->per_day;

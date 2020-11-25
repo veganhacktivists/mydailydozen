@@ -38,6 +38,11 @@
                         <input id="name" name="name" class="form-input block w-full sm:text-sm sm:leading-5"
                             value="{{ $group->name }}">
                     </div>
+                    <label for="subtitle" class="block text-sm font-medium leading-5 text-gray-700">Subtitle</label>
+                    <div class="my-5 relative rounded-md shadow-sm">
+                        <input id="subtitle" name="subtitle" class="form-input block w-full sm:text-sm sm:leading-5"
+                            value="{{ $group->subtitle }}">
+                    </div>
                     <label for="icon_location" class="block text-sm font-medium leading-5 text-gray-700">Icon
                         Location</label>
                     <div class="my-5 relative rounded-md shadow-sm">

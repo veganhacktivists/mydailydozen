@@ -1,4 +1,5 @@
-<div class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : ''  }} border-2 p-4 bg-white overflow-hidden rounded-2xl">
+<div
+    class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : ''  }} border-2 p-4 bg-white overflow-hidden rounded-2xl">
     <div class="flex">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
             <img class="w-16 h-16" src="{{ $group->icon_location }}" alt="Icon">
@@ -23,9 +24,12 @@
                 </a>
                 @endif
             </div>
+            <div>{{ $group['subtitle'] }}</div>
             <div class="flex-1 flex items-end justify-end">
                 <div class="flex items-center">
-                    <span class="text-muted text-xs" style="font-size: 15px;font-weight: 500;color: #4e4e4e87;">{{ $checkCount ?? 0 }} / {{ $group->per_day}}</span>
+                    <span class="text-muted text-xs"
+                        style="font-size: 15px;font-weight: 500;color: #4e4e4e87;">{{ $checkCount ?? 0 }} /
+                        {{ $group->per_day}}</span>
                     <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
                         @for ($i = 0; $i < $group['per_day']; $i++) @if($i < $checkCount) <input type="checkbox"
                             class="form-checkbox w-6 h-6 ml-2 text-pine-600" style="cursor: pointer;"
