@@ -63,29 +63,6 @@
                 From: "opacity-100 scale-100"
                 To: "opacity-0 scale-95"
             -->
-            <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-                <div class="rounded-lg shadow-md">
-                    <div class="rounded-lg bg-white shadow-xs overflow-hidden" role="menu" aria-orientation="vertical"
-                         aria-labelledby="main-menu">
-                        <div class="px-5 pt-4 flex items-center justify-between">
-                            <div>
-                                <img class="h-8 w-auto" src="{{ asset('img/mddlogo.png') }}" alt="">
-                            </div>
-                            <div class="-mr-2">
-                                <a href="/contact"
-                                class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
-                                @guest
-								<a href="{{ route('login') }}"
-                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
-                                    in</a>
-                                <a href="{{ route('register') }}"
-                                class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
-								@endguest
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
