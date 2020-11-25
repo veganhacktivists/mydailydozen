@@ -93,7 +93,7 @@
         </button>
     </div>
     @endif
-	<div class="bg-white px-4 overflow-hidden sm:px-6 lg:px-8" style="margin-bottom: 70px;">
+	<div class="bg-white pt-5 px-4 overflow-hidden sm:px-6 lg:px-8" style="margin-bottom: 70px;">
 	  <div class="relative max-w-xl mx-auto">
 	    <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404">
 	      <defs>
