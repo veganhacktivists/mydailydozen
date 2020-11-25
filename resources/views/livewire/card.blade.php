@@ -7,7 +7,7 @@
             <div class="flex items-center justify-between">
                 <div class="flex-1 flex items-center truncate">
                     <div class="flex-0 min-w-0 truncate">
-                        <h6 class="text-xl font-bold text-dark mr-3 pb-1 truncate">
+                        <h6 class="text-xl font-bold text-dark mr-3 pb-1 truncate" style="font-weight: 500;">
                             {{ $group['name'] }}
                         </h6>
                     </div>
