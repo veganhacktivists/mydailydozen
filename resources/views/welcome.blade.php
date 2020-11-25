@@ -126,7 +126,7 @@
                     </div>
                     <img 
                         class="home-banner w-full object-cover lg:absolute lg:h-full" 
-                        src="https://images.unsplash.com/photo-1580658579404-f92d99fe3edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1226&q=80"
+                        src="https://i.imgur.com/BvZt325.jpg"
                         alt="Banner Image"
                     />
                 </div>
