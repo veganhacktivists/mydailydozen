@@ -10,9 +10,10 @@
     <!-- Search bar -->
     <div class="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
         <div class="flex-1 flex">
-           <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate" style="font-size: 20px;font-weight: 500;margin: 15px 0px 0px 0px;scroll-margin-bottom: auto;">
-                  Welcome, {{ auth()->user()->name }}!
-                </h1>
+            <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate"
+                style="font-size: 20px;font-weight: 500;margin: 15px 0px 0px 0px;scroll-margin-bottom: auto;">
+                @yield('header', 'Welcome, ' . auth()->user()->name . '!')
+            </h1>
         </div>
         <div class="ml-4 flex items-center md:ml-6">
 
