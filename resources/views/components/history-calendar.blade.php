@@ -60,21 +60,20 @@
             <template x-for="date in no_of_days" :key="'day' + date">
               <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
                 <div x-text="date"
-				style="font-size: 15px;padding: 5px 6px 6px 4px;"
-				class="pointer-events-none inline-flex w-6 h-6 items-center justify-center text-center leading-none rounded-full transition ease-in-out duration-100"
+                  style="font-size: 15px;padding: 5px 6px 6px 4px;"
+                  class="pointer-events-none inline-flex w-6 h-6 items-center justify-center text-center leading-none rounded-full transition ease-in-out duration-100"
                   :class="{'bg-blue-500 text-white': isToday(year, month, date) == true, 'text-gray-700': isToday(year, month, date) == false }">
                 </div>
                 <div style="height: 80px;padding-top: 10px;" class="overflow-y-auto mt-1">
                   <div x-show="isFuture(year, month, date) == false"
                     class="flex items-center justify-center rounded-full text-2xl"
                     style="height: 40px; width: 40px;margin: auto;font-size: 20px;" :class="{
-                      'bg-pine-100 text-pine-600 border-pine-600': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 60,
-                      'bg-yellow-100 text-yellow-500 border border-yellow-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 30,
-                      'bg-red-100 text-red-500 border border-red-500': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) > 0,
-                      'bg-gray-100 text-gray-300 border border-gray-300': (EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.percentage || 0) == 0,
-                    }" x-text="EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)?.count || 0">
+                      'bg-pine-100 text-pine-600 border-pine-600': (findEvent(year, month, date)?.count || 0) == findEvent(year, month, date)?.total,
+                      'bg-yellow-100 text-yellow-500 border border-yellow-500': (findEvent(year, month, date)?.count || 0) > 0,
+                      'bg-red-100 text-red-500 border border-red-500': (findEvent(year, month, date)?.count) == 0,
+                      'bg-gray-100 text-gray-300 border border-gray-300': (findEvent(year, month, date)?.count) === undefined,
+                    }">
                   </div>
-
                 </div>
               </div>
             </template>
@@ -87,61 +86,73 @@
       const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       const EVENTS = JSON.parse('{!! $history !!}'); // [{year: 2020, month: 12, day: 8, count: 18}, ...]
-		function app() {
-			return {
-				month: '',
-				year: '',
-				no_of_days: -1,
-        blankdays: -1,
-        days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-				initDate() {
-					let today = new Date();
-					this.month = today.getMonth();
-					this.year = today.getFullYear();
-          this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
-				},
 
-				isToday(year, month, day) {
-					const today = new Date();
-					const d = new Date(year, month, day);
+      function app() {
+        return {
+          month: '',
+          year: '',
+          no_of_days: -1,
+          blankdays: -1,
+          days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
-					return today.toDateString() === d.toDateString() ? true : false;
-        },
-        isFuture(year, month, day){
-          const today = new Date();
-					const d = new Date(year, month, day);
+          initDate() {
+            let today = new Date();
+            this.month = today.getMonth();
+            this.year = today.getFullYear();
+            this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+          },
 
-					return today.valueOf() < d.valueOf();
-        },
-        nextMonth(){
-          if(this.month == 11){
-            this.year++
-            this.month = 0
-          }else{
-            this.month++
+          isToday(year, month, day) {
+            const today = new Date();
+            const d = new Date(year, month, day);
+
+            return today.toDateString() === d.toDateString() ? true : false;
+          },
+
+          isFuture(year, month, day){
+            const today = new Date();
+            const d = new Date(year, month, day);
+
+            return today.valueOf() < d.valueOf();
+          },
+
+          nextMonth(){
+            if(this.month == 11){
+              this.year++
+              this.month = 0
+            }else{
+              this.month++
+            }
+            this.getNoOfDays()
+          },
+
+          previousMonth(){
+            if(this.month == 0){
+              this.year--
+              this.month = 11
+            }else{
+              this.month--
+            }
+            this.getNoOfDays()
+          },
+
+          nextMonthTitle(){
+            return MONTH_NAMES[(this.month+1) % 12] + ' ' + (this.month == 11 ? this.year + 1 : this.year)
+          },
+
+          previousMonthTitle(){
+            return MONTH_NAMES[(this.month + 11) % 12] + ' ' + (this.month == 0 ? this.year - 1 : this.year)
+          },
+
+          getNoOfDays() {
+            this.no_of_days = new Date(this.year, this.month + 1, 0).getDate();
+            this.blankdays = new Date(this.year, this.month).getDay();
+          },
+
+          findEvent(year, month, date) {
+            return EVENTS.find(e => e.year == year && e.month == month + 1 && e.day == date)
           }
-          this.getNoOfDays()
-        },
-        previousMonth(){
-          if(this.month == 0){
-            this.year--
-            this.month = 11
-          }else{
-            this.month--
-          }
-          this.getNoOfDays()
-        },
-        nextMonthTitle(){
-          return MONTH_NAMES[(this.month+1) % 12] + ' ' + (this.month == 11 ? this.year + 1 : this.year)
-        },
-        previousMonthTitle(){
-          return MONTH_NAMES[(this.month + 11) % 12] + ' ' + (this.month == 0 ? this.year - 1 : this.year)
-        },
-				getNoOfDays() {
-					this.no_of_days = new Date(this.year, this.month + 1, 0).getDate();
-          this.blankdays = new Date(this.year, this.month).getDay();
-				}
-			}
-		}
+        }
+      }
     </script>
   </div>
