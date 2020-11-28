@@ -1,18 +1,4 @@
 <x-master>
-  <!-- Page header -->
-  <div class="bg-white shadow">
-    <div class="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
-      <div class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-cool-gray-200">
-        <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-          <span class="shadow-sm rounded-md">
-          </span>
-          <span class="shadow-sm rounded-md">
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="relative py-16 bg-white overflow-hidden">
     <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
       <div class="relative h-full text-lg max-w-prose mx-auto">
