@@ -56,11 +56,6 @@
           {{ $group->name }}</h1>
       </div>
       <div x-data="{ metric: true }" class="prose prose-lg text-gray-500 mx-auto">
-        <figure>
-          <img class="w-full h-32 rounded-lg" style="object-fit: cover;" src="{{ asset($group->banner_location) }}"
-            alt="{{ $group->name }} header">
-          <figcaption>Small description here</figcaption>
-        </figure>
         <h3>{{ __('Serving Sizes') }}</h3>
         <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
 
