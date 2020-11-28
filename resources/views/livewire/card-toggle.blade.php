@@ -4,7 +4,7 @@
 >
     <div class="flex">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
-            <img class="w-16 h-16" src="{{ $group->icon_location }}" alt="Icon">
+            <img style="border-radius: 12px;" class="w-16 h-16" src="{{ $group->icon_location }}" alt="Icon">
         </div>
         <div class="flex flex-col pl-3 flex-1">
             <div class="flex items-center justify-between">
