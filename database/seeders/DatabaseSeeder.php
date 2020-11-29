@@ -20,11 +20,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      $today = Carbon::today();
+      $yesterday = $today->addDays(-1);
+      $twoDaysBefore = $yesterday->addDays(-1);
 
-        $devUser = User::create([
+      $devUser = User::create([
             'name' => 'Vegan Hacktivists',
             'email' => 'vh@example.com',
             'email_verified_at' => now(),
+            'created_at' => $twoDaysBefore,
 
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -321,9 +325,20 @@ class DatabaseSeeder extends Seeder
 
         Group::all()->each(function ($group) {
             ServingSize::create([
-                'size_imperial' => 'N/A ft',
-                'size_metric' => 'N/A m',
+                'size_imperial' => '¼ cup of hummus or bean dip',
+                'size_metric' => '60g of hummus or bean dip',
                 'group_id' => $group->id,
+            ]);
+
+            ServingSize::create([
+              'size_imperial' => '1 cup of fresh peas or sprouted lentils',
+              'size_metric' => '150g of fresh peas or sprouted lentils',
+              'group_id' => $group->id,
+            ]);
+            ServingSize::create([
+              'size_imperial' => '½ cup of cooked beans, split peas, lentils, tofu or tempeh',
+              'size_metric' => '130g of cooked beans, split peas, lentils, tofu or tempeh',
+              'group_id' => $group->id,
             ]);
 
             DetailType::create([
@@ -334,7 +349,6 @@ class DatabaseSeeder extends Seeder
         });
 
         $devUser->selectAllGroups();
-        $today = Carbon::today();
         $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
         $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
         $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
@@ -374,7 +388,6 @@ class DatabaseSeeder extends Seeder
         $devUser->setCheckCountForGroupAndDate($weigh, $today, 1);
         $devUser->setCheckCountForGroupAndDate($weigh, $today, 1);
 
-        $yesterday = $today->addDays(-1);
         $devUser->setCheckCountForGroupAndDate($beans, $yesterday, 1);
         $devUser->setCheckCountForGroupAndDate($beans, $yesterday, 1);
         $devUser->setCheckCountForGroupAndDate($berries, $yesterday, 1);
@@ -398,7 +411,6 @@ class DatabaseSeeder extends Seeder
         $devUser->setCheckCountForGroupAndDate($tea, $yesterday, 1);
         $devUser->setCheckCountForGroupAndDate($tea, $yesterday, 1);
 
-        $twoDaysBefore = $yesterday->addDays(-1);
         $devUser->setCheckCountForGroupAndDate($beans, $twoDaysBefore, 1);
         $devUser->setCheckCountForGroupAndDate($berries, $twoDaysBefore, 1);
         $devUser->setCheckCountForGroupAndDate($undistractedMeals, $twoDaysBefore, 1);
