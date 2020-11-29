@@ -71,4 +71,61 @@
             </form>
         </div>
     </div>
+
+    <div class="mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Edit Card More Information</h2>
+            <div class="flex">
+                @include('components.more-info-dropdown')
+                @if ($selectedDetail)
+                <span class=" flex-1 h-full mx-5 inline-flex rounded-md shadow-sm">
+                    <a href="/groups/{{ $group['id'] }}/edit/" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150">
+                        Add
+                    </a>
+                </span>
+                @endif
+                @if ($detailTypes->count() > 1 && $selectedDetail)
+                <div class="flex-1 h-full">
+                    {{ Form::open([
+                        'method' => 'DELETE',
+                        'route' => ['detail.destroy', $selectedDetail->id],
+                        'onsubmit' => "return confirm('Are you sure you want to delete this? This cannot be undone.')",
+                    ]) }}
+                        {{ Form::button('Delete', [
+                                    'type' => 'submit',
+                                    'class' => 'inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150',
+                                ]) }}
+                    {{ Form::hidden('groupId', $group->id) }}
+                    {{ Form::close() }}
+                </div>
+                @endif
+            </div>
+            @if(isset($selectedDetail))
+            {{ Form::model($selectedDetail, ['route' => ['detail.update', $selectedDetail->id], 'method' => 'put']) }}
+            @else
+            {{ Form::open(['route' => 'detail.store']) }}
+            @endif
+                {{ Form::label('name', 'Name', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+                <div class="my-5 relative rounded-md shadow-sm">
+                    {{ Form::text('name', old('name'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                </div>
+
+                {{ Form::label('video', 'Video Link', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+                <div class="my-5 relative rounded-md shadow-sm">
+                    {{ Form::text('video', old('video'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                </div>
+
+                {{ Form::label('info', 'Information', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+                <div class="my-5 relative rounded-md shadow-sm">
+                    {{ Form::textarea('info', old('info'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                </div>
+
+                {{ Form::hidden('groupId', $group->id) }}
+
+                <span class="inline-flex rounded-md shadow-sm">
+                    {{ Form::submit('Submit', ['name' => 'submit', 'class' => 'inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150']) }}
+                </span>
+            {{ Form::close() }}
+        </div>
+    </div>
 </x-master>

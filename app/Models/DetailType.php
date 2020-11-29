@@ -32,6 +32,18 @@ class DetailType extends Model
 {
     use HasFactory;
 
+    /**
+     * Mass-assignable variables.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'group_id',
+        'name',
+        'video',
+        'info',
+    ];
+
     public function group()
     {
         return $this->belongsTo(Group::class);

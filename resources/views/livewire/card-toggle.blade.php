@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 @if (Auth::user()->isAdmin())
-                <a href="/groups/{{ $group['id'] }}/edit" class="ml-1">
+                <a href="/groups/{{ $group['id'] }}/edit/{{ $group->detailTypes->first()->id }}" class="ml-1">
                     <img src="/assets/icon-pencil.svg" class="w-6 h-6" />
                 </a>
                 @endif

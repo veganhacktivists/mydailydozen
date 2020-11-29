@@ -82,9 +82,17 @@
                 <p x-show="metric">{{ $servingSize->size_metric }}</p>
                 @endforeach
                 <h3>{{ __('More Information') }}</h3>
-                @foreach ($detailTypes as $detailType)
-                <p>{{ $detailType->video }}</p>
-                @endforeach
+                <div class="">
+                    @foreach ($detailTypes as $detailType)
+                    <div class="border-0 p-1" style="margin-bottom: 10px;">
+                        <iframe width="100%" height="300px" src="{{ $detailType->video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="">
+                                <h5 class=""><a href="{{ $detailType->video }}" target="_blank">{{ $detailType->name }}</a></h5>
+                                <p class="">{{ $detailType->info }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

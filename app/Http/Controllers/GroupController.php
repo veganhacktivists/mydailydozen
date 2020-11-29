@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailType;
 use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -55,10 +56,16 @@ class GroupController extends Controller
      * @param Group $group
      * @return Application|Factory|View
      */
-    public function edit(Group $group)
+    public function edit(Group $group, DetailType $detailType = null)
     {
+        $detailTypes = $group->detailTypes;
+
+        $selectedDetail = $detailTypes->contains($detailType) ? $detailType : null;
+
         return view('edit')->with([
-            'group' => $group
+            'group' => $group,
+            'detailTypes' => $detailTypes,
+            'selectedDetail' => $selectedDetail,
         ]);
     }
 
