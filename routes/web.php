@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DetailTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HistoryController;
@@ -26,8 +27,10 @@ Route::post('/contact/send', SendContactEmailController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
-        'index', 'show', 'update', 'edit'
+        'index', 'show', 'update'
     ]);
+    Route::get('groups/{group}/edit/{detailType?}', [GroupController::class, 'edit']);
+
 
     Route::get('groups/{group}/serving-sizes/create', [ServingSizeController::class, 'create']);
     Route::post('groups/{group}/serving-sizes', [ServingSizeController::class, 'store']);
@@ -41,4 +44,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);
     Route::put('settings/{group}', [UserController::class, 'update']);
+});
+
+
+/*
+ * Admin routes
+ */
+Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function () {
+    Route::post('/details', [DetailTypeController::class, 'store'])->name('detail.store');
+    Route::put('/details/{detail}', [DetailTypeController::class, 'update'])->name('detail.update');
+    Route::delete('/details/{detail}', [DetailTypeController::class, 'destroy'])->name('detail.destroy');
 });

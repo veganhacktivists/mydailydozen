@@ -48,7 +48,6 @@
         </figure>
         <h3>{{ __('Serving Sizes') }}</h3>
         <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
-
           <span class="inline-flex rounded-sm">
             <button x-on:click="metric = true"
               class="inline-flex items-center px-4 py-2 text-sm leading-4 hover:bg-pine-50 font-medium rounded focus:outline-none focus:border-pine-700 focus:shadow-outline-pine transition ease-in-out duration-150"
@@ -72,11 +71,18 @@
         </ul>
 
         <h3>{{ __('More Information') }}</h3>
-        @foreach ($detailTypes as $detailType)
-        <p>{{ $detailType->video }}</p>
-        @endforeach
+        <div class="">
+            @foreach ($detailTypes as $detailType)
+            <div class="border-0 p-1" style="margin-bottom: 10px;">
+                <iframe width="100%" height="300px" src="{{ $detailType->video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="">
+                        <h5 class=""><a href="{{ $detailType->video }}" target="_blank">{{ $detailType->name }}</a></h5>
+                        <p class="">{{ $detailType->info }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </x-master>
