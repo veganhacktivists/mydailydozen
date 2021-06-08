@@ -5,13 +5,19 @@ namespace App\Services;
 use Carbon\CarbonPeriod;
 
 class HistoryService {
+
+    const DATE_FORMAT = 'Y-m-d';
+
     public function buildForUser ($user) {
         $userGroups = $user->groups;
         $total = $userGroups->groupBy('pivot.recorded_at');
         $groupedEntries = $userGroups->pluck('pivot')->groupBy('recorded_at');
         $groupedEntriesKeys = $groupedEntries->keys();
+        $endDate = date(self::DATE_FORMAT);
 
-        $endDate = array_values(array_slice($groupedEntriesKeys->toArray(), -1))[0];
+        if(sizeof($groupedEntriesKeys) > 0) {
+            $endDate = array_values(array_slice($groupedEntriesKeys->toArray(), -1))[0];
+        }
 
         $filledEntries = $this->fillMissingDates($user->created_at, $endDate);
         $entries = collect($filledEntries)->merge($groupedEntries);
@@ -26,12 +32,12 @@ class HistoryService {
     }
 
     private function fillMissingDates ($startDate, $endDate) {
-        $startDate = $startDate->format('Y-m-d');
+        $startDate = $startDate->format(self::DATE_FORMAT);
         $period = new CarbonPeriod($startDate, $endDate);
         $dates = [];
 
         foreach ($period as $date) {
-            $dates[$date->format('Y-m-d')] = collect([[ 'checked' => 0 ]]);
+            $dates[$date->format(self::DATE_FORMAT)] = collect([[ 'checked' => 0 ]]);
         }
 
         return $dates;
