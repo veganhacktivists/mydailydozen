@@ -89,7 +89,7 @@
                     </main>
                 </div>
             </div>
-            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:pl-6">
                 <div class="relative lg:w-full lg:h-screen-half">
                     <div 
                         class="lg:w-full lg:h-full bg-pine-400"
