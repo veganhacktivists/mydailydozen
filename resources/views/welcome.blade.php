@@ -22,6 +22,7 @@
 	<!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
 	
 </head>
 <body class="antialiased">
@@ -95,15 +96,98 @@
                         class="lg:w-full lg:h-full bg-pine-400"
                     >
                     </div>
-                    <img 
-                        class="home-banner w-full object-cover lg:absolute lg:h-full" 
-                        src="https://i.imgur.com/9PgoR3H.jpg"
-                        alt=""
-                    />
+
+                    <!-- Slideshow container -->
+                    <div class="home-banner w-full object-cover lg:absolute lg:h-full" >
+                        <!-- Full-width images with rounded edges -->
+                        <img 
+                            class="slides" 
+                            src="../img/blueberry.png"
+                            alt="blueberries"
+                        />
+                        <img 
+                            class="slides" 
+                            src="../img/vegan-food.png"
+                            alt="vegan food"
+                        />
+                        <img 
+                            class="slides" 
+                            src="../img/kale.png"
+                            alt="kale"
+                        />
+                        <img 
+                            class="slides" 
+                            src="https://i.imgur.com/9PgoR3H.jpg0"
+                            alt="ingredients"
+                        />
+                        <!-- slideshow nav -->
+                        <div class="text-center">
+                            <!-- Next button -->
+                            <a class="left-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(-1)">&#10094;</a>
+                            <!-- The dots/circles -->
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(1)"></span> 
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(2)"></span> 
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(3)"></span> 
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(4)"></span> 
+                            <!-- Previous buttons -->
+                            <a class="right-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         @include('components.footer')
     </div>
+    <!-- js script for homepage image carousel -->
+    <script>
+    //set up variables
+    var slideIndex = 1;
+    var timer = null;
+    showSlides(slideIndex);
+
+    //Arrow slide controls
+    function plusSlides(n) {
+        //resets timer
+        clearTimeout(timer);
+        showSlides(slideIndex += n);
+    }
+
+    //Slide controls using dots on bottom of display
+    function currentSlide(n) {
+        clearTimeout(timer);
+        showSlides(slideIndex = n);
+    }
+
+    //function to progress image slides
+    function showSlides(n) {
+        //setup variables
+        var i;
+        var slides = document.getElementsByClassName("slides");
+        var dots = document.getElementsByClassName("dot");
+
+        if (n == undefined) {
+            n = ++slideIndex;
+        }
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+
+        //highlights dot of current image in slideshow
+        dots[slideIndex-1].className += " active";
+
+        //determines length each image is displayed for
+        timer = setTimeout(showSlides, 6000);
+    }
+    </script>
 </body>
 </html>

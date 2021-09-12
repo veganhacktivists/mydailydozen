@@ -14,3 +14,7 @@
     height: 70vh;
   }
 }
+
+.active {
+	background-color: rgb(107, 114, 128);
+}
