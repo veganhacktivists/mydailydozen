@@ -55,3 +55,13 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function () {
     Route::put('/details/{detail}', [DetailTypeController::class, 'update'])->name('detail.update');
     Route::delete('/details/{detail}', [DetailTypeController::class, 'destroy'])->name('detail.destroy');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
