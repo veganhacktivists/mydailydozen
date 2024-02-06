@@ -10,16 +10,18 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+      <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
+      <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+      <script src="{{ mix('js/app.js') }}"></script>
 
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <x-banner />
-
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
 
@@ -31,7 +33,6 @@
                     </div>
                 </header>
             @endif
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}

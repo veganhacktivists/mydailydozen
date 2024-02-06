@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('dashboard');
 Route::get('/contact', fn () => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class);
 
@@ -54,14 +54,4 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function () {
     Route::post('/details', [DetailTypeController::class, 'store'])->name('detail.store');
     Route::put('/details/{detail}', [DetailTypeController::class, 'update'])->name('detail.update');
     Route::delete('/details/{detail}', [DetailTypeController::class, 'destroy'])->name('detail.destroy');
-});
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });
