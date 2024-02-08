@@ -8,7 +8,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
 	<title>Contact us – My Daily Dozen: track the foods recommended by NutritionFacts.org!</title>
-	
+
     <link rel="canonical" href="https://mydailydozen.org/" />
     <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
 
@@ -19,8 +19,8 @@
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="250" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />	
-	
+    <meta property="og:locale" content="en_US" />
+
 	<!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -117,7 +117,7 @@
 	      </h2>
 	    </div>
 	    <div class="mt-12">
-	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-data="{ checked: false }" x-init="$refs.submit.disabled = false">
+	      <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" x-init="$refs.submit.disabled = false">
 	      	@csrf
 	        <div>
 	          <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
@@ -169,7 +169,7 @@
 
 	        <div class="sm:col-span-2">
 	          <span class="w-full inline-flex rounded-md shadow-sm">
-	            <button type="submit" :class="{ 'opacity-50 cursor-not-allowed': !checked }" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150" x-ref="submit">
+	            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150" x-ref="submit">
 	              Send email
 	            </button>
 	          </span>

@@ -41,14 +41,14 @@
             </div>
             <div class="mt-12">
                 <form action="/contact/send" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-                    x-data="{ checked: false }" x-init="$refs.submit.disabled = false">
+                    x-init="$refs.submit.disabled = false">
                     @csrf
                     <div>
                         <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First
                             name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <input id="first_name" name="first_name"
-                                class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+                            <x-input id="first_name" name="first_name"
+                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
                         @if ($errors->has('first_name'))
                         <div class="text-red-500 font-weight-bold text-center mt-3">
@@ -61,8 +61,8 @@
                         <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last
                             name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <input id="last_name" name="last_name"
-                                class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+                            <x-input id="last_name" name="last_name"
+                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
                         @if ($errors->has('last_name'))
                         <div class="text-red-500 font-weight-bold text-center mt-3">
@@ -74,8 +74,8 @@
                     <div class="sm:col-span-2">
                         <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <input id="email" type="email" name="email"
-                                class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+                            <x-input id="email" type="email" name="email"
+                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
                         @if ($errors->has('email'))
                         <div class="text-red-500 font-weight-bold text-center mt-3">
@@ -88,7 +88,7 @@
                         <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea id="message" name="message" rows="4"
-                                class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+                                class="border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
                         </div>
                         @if ($errors->has('message'))
                         <div class="text-red-500 font-weight-bold text-center mt-3">
@@ -99,7 +99,7 @@
 
                     <div class="sm:col-span-2">
                         <span class="w-full inline-flex rounded-md shadow-sm">
-                            <button type="submit" :class="{ 'opacity-50 cursor-not-allowed': !checked }"
+                            <button type="submit"
                                 class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150"
                                 x-ref="submit">
                                 Send email

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('dashboard');
 Route::get('/contact', fn () => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class);
 

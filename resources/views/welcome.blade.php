@@ -34,7 +34,7 @@
                         <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                             <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                                 <div class="flex items-center justify-between w-full md:w-auto">
-                                    <a href="{{ env('APP_URL') ?? 'https://mydailydozen.org' }}" aria-label="Home">
+                                    <a href="{{ env('APP_URL') ?? 'https://mydailydozen.org' }}" aria-label="Dashboard">
                                         <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.png') }}" alt="Dr. Greger’s Daily Dozen">
                                     </a>
                                     <div class="-mr-2 flex items-center md:hidden">

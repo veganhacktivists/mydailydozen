@@ -24,7 +24,7 @@ class GroupController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $ids = $user->currentGroups->pluck('id')->toArray();
+        $ids = $user->currentGroups?->pluck('id')->toArray() ?? [];
         $groups = Group::whereIn('id', $ids)
             ->get();
         return view('dashboard')->with([
