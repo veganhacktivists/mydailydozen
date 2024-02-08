@@ -32,7 +32,7 @@ class SendContactEmailController extends Controller
         $subject = $firstName . " " . $lastName . " contacted My Daily Dozen";
 
         Mail::send(
-            'contact',
+            'contact-email',
             ['subject' => $subject, 'body' => $body],
             function ($message) use ($email, $subject) {
                 $message->from($email);
