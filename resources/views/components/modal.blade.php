@@ -23,7 +23,7 @@ switch ($maxWidth ?? '2xl') {
 }
 @endphp
 
-<div id="{{ $id }}" x-data="{ show: @entangle($attributes->wire('model')) }"
+<div id="{{ $id }}" x-data="{ show: @entangle($attributes->wire('model')).live }"
         x-show="show"
         x-on:close.stop="show = false"
         x-on:keydown.escape.window="show = false"

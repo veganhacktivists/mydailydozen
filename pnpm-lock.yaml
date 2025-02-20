@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      alpinejs:
-        specifier: ^2.7.0
-        version: 2.7.2
     devDependencies:
       '@tailwindcss/ui':
         specifier: ^0.7.2
@@ -457,9 +453,6 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
-
-  alpinejs@2.7.2:
-    resolution: {integrity: sha512-5dAuBJbJKd53tEXCl+/Ajy9vOctOFliH3wWLH6xNnLZLI3P0M2SODjQgr4C5N4nt7f0FewT7wrvdD9QeIwdnDA==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -2897,8 +2890,6 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.0
-
-  alpinejs@2.7.2: {}
 
   ansi-regex@5.0.1: {}
 

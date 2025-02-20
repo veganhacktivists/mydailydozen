@@ -23,7 +23,6 @@
 	<!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
 </head>
 <body class="antialiased">
 <div class="relative bg-white overflow-hidden">
