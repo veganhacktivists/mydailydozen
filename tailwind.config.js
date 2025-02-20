@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/views/welcome.blade.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
     theme: {
+        screens: {
+            sm: '640px',
+            md: '1024px', // 768 + 256
+            lg: '1280px', // 1024 + 256
+            xl: '1536px', // 1280 + 256
+        },
         extend: {
             colors: {
                 'pine': {
