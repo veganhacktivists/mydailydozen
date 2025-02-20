@@ -1,12 +1,15 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
-module.exports = {
-    purge: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php'],
-
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/views/welcome.blade.php',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
     theme: {
         extend: {
-            fontFamily: {
-            },
             colors: {
                 'pine': {
                     50: '#F8FBF5',
@@ -23,12 +26,4 @@ module.exports = {
             }
         },
     },
-
-    variants: {
-        opacity: ['responsive', 'hover', 'focus', 'disabled'],
-    },
-
-    plugins: [require('@tailwindcss/ui')({
-        layout: 'sidebar',
-    })],
 };

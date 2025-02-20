@@ -11,8 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
+        @vite(['resources/css/app.css'])
 
         @livewireStyles
 
@@ -39,6 +38,6 @@
         @stack('modals')
 
         @livewireScripts
-        <script src="{{ mix('js/app.js') }}"></script>
+        @vite(['resources/js/app.js'])
     </body>
 </html>
