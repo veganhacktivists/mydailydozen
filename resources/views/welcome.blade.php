@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 	<title>My Daily Dozen – Track the foods recommended by NutritionFacts.org!</title>
-	
+
     <link rel="canonical" href="https://mydailydozen.org/" />
     <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
 
@@ -17,13 +17,13 @@
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="250" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />	
-	
+    <meta property="og:locale" content="en_US" />
+
 	<!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-	
+
 </head>
 <body class="antialiased">
     <div class="h-screen flex flex-col">
@@ -59,7 +59,7 @@
                             </div>
                         </nav>
                     </div>
-    
+
 
                     <main class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                         <div class="sm:text-center lg:text-left">
@@ -92,7 +92,7 @@
             </div>
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:pl-6">
                 <div class="relative lg:w-full lg:h-screen-half">
-                    <div 
+                    <div
                         class="lg:w-full lg:h-full bg-pine-400"
                     >
                     </div>
@@ -100,23 +100,23 @@
                     <!-- Slideshow container -->
                     <div class="home-banner w-full object-cover lg:absolute lg:h-full" >
                         <!-- Full-width images with rounded edges -->
-                        <img 
-                            class="slides" 
+                        <img
+                            class="slides"
                             src="../img/blueberry.png"
                             alt="blueberries"
                         />
-                        <img 
-                            class="slides" 
+                        <img
+                            class="slides"
                             src="../img/vegan-food.png"
                             alt="vegan food"
                         />
-                        <img 
-                            class="slides" 
+                        <img
+                            class="slides"
                             src="../img/kale.png"
                             alt="kale"
                         />
-                        <img 
-                            class="slides" 
+                        <img
+                            class="slides"
                             src="https://i.imgur.com/9PgoR3H.jpg0"
                             alt="ingredients"
                         />
@@ -125,10 +125,10 @@
                             <!-- Next button -->
                             <a class="left-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(-1)">&#10094;</a>
                             <!-- The dots/circles -->
-                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(1)"></span> 
-                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(2)"></span> 
-                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(3)"></span> 
-                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(4)"></span> 
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(1)"></span>
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(2)"></span>
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(3)"></span>
+                            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide(4)"></span>
                             <!-- Previous buttons -->
                             <a class="right-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(1)">&#10095;</a>
                         </div>

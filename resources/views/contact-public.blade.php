@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ mix('css/mydailydozen.css') }}" rel="stylesheet" type="text/css">
+    @vite(['resources/css/app.css'])
 	<title>Contact us – My Daily Dozen: track the foods recommended by NutritionFacts.org!</title>
-	
+
     <link rel="canonical" href="https://mydailydozen.org/" />
     <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
 
@@ -19,8 +18,8 @@
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="250" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />	
-	
+    <meta property="og:locale" content="en_US" />
+
 	<!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -181,6 +180,6 @@
 </section>
 @include('components.footer')
 
-<script src="{{ mix('js/app.js') }}"></script>
+@vite(['resources/js/app.js'])
 </body>
 </html>
