@@ -6,7 +6,6 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@tailwindcss/ui": "^0.7.2",
         "autoprefixer": "^10.4.20",
         "axios": "^0.21",
         "cross-env": "^7.0",

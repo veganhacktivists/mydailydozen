@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (min-width: 1280px) {
-  .home-banner {
-    left: -4vw;
-    bottom: -10vh;
-  }
-}
-
-@media (min-width: 1280px) {
-  .lg\:h-screen-half {
-    height: 70vh;
-  }
-}
-
 .active {
 	background-color: rgb(107, 114, 128);
 }

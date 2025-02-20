@@ -91,14 +91,14 @@
                 </div>
             </div>
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:pl-6">
-                <div class="relative lg:w-full lg:h-screen-half">
+                <div class="relative lg:w-full lg:h-[70vh]">
                     <div
                         class="lg:w-full lg:h-full bg-pine-400"
                     >
                     </div>
 
                     <!-- Slideshow container -->
-                    <div class="home-banner w-full object-cover lg:absolute lg:h-full" >
+                    <div class="lg:left-[-4vw] lg:bottom-[-10vh] w-full object-cover lg:absolute lg:h-full" >
                         <!-- Full-width images with rounded edges -->
                         <img
                             class="slides"
