@@ -48,13 +48,14 @@
                             name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <x-input id="first_name" name="first_name"
+                                value="{{ old('first_name') }}"
                                 class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
-                        @if ($errors->has('first_name'))
+                        @error('first_name')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('first_name') }}
                         </div>
-                        @endif
+                        @enderror
                     </div>
 
                     <div>
@@ -62,39 +63,40 @@
                             name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <x-input id="last_name" name="last_name"
+                            value="{{ old('last_name') }}"
                                 class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
-                        @if ($errors->has('last_name'))
+                        @error('last_name')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('last_name') }}
                         </div>
-                        @endif
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <x-input id="email" type="email" name="email"
+                            <x-input id="email" type="email" name="email" value="{{ old('email') ?? auth()->user()->email }}"
                                 class="py-3 px-4 block w-full transition ease-in-out duration-150" />
                         </div>
-                        @if ($errors->has('email'))
+                        @error('email')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('email') }}
                         </div>
-                        @endif
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea id="message" name="message" rows="4"
-                                class="border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+                                class="border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm py-3 px-4 block w-full transition ease-in-out duration-150">{{ old('message') }}</textarea>
                         </div>
-                        @if ($errors->has('message'))
+                        @error('message')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('message') }}
                         </div>
-                        @endif
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-2">
