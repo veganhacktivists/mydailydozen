@@ -13,3 +13,4 @@ yarn-error.log
 /public/js
 /public/css
 .DS_Store
+/_ide_helper*
