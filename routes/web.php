@@ -7,7 +7,11 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SendContactEmailController;
 use App\Http\Controllers\ServingSizeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Http\Controllers\Livewire\PrivacyPolicyController;
+use Laravel\Jetstream\Http\Controllers\Livewire\TermsOfServiceController;
+use Laravel\Jetstream\Jetstream;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +24,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
+    Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
+    Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
+}
+
 
 Route::get('/', HomeController::class);
-Route::get('/contact', fn () => Auth::check() ? view('contact-auth') : view('contact-public'));
+Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
-        'index', 'show', 'update'
+        'index',
+        'show',
+        'update'
     ]);
     Route::get('groups/{group}/edit/{detailType?}', [GroupController::class, 'edit']);
 
