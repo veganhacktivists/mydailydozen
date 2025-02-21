@@ -8,7 +8,7 @@
         @endforeach
       </div>
       @else
-      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">No food groups selected to track.<a
+      <h2 class="text-lg leading-6 font-medium text-cool-gray-900">No food groups selected to track. <a
           href="{{route('settings')}}" class="text-blue-500 hover:underline">Customize</a>
       </h2>
       @endif
