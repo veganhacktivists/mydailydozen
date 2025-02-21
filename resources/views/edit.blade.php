@@ -131,46 +131,77 @@
                 @endif
                 @if ($detailTypes->count() > 1 && $selectedDetail)
                 <div class="flex-1 h-full">
-                    {{ Form::open([
-                        'method' => 'DELETE',
-                        'route' => ['detail.destroy', $selectedDetail->id],
-                        'onsubmit' => "return confirm('Are you sure you want to delete this? This cannot be undone.')",
-                    ]) }}
-                        {{ Form::button('Delete', [
-                                    'type' => 'submit',
-                                    'class' => 'inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150',
-                                ]) }}
-                    {{ Form::hidden('groupId', $group->id) }}
-                    {{ Form::close() }}
+                    <form
+                        method="DELETE"
+                        action="{{ route('detail.destroy', $selectedDetail->id) }}"
+                        onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')"
+                    >
+                        @csrf
+                        <x-button
+                            type="submit"
+                            class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                        >
+                            Delete
+                        </x-button>
+                        <x-input type="hidden" name="groupId" value="{{ $group->id }}" />
+                    </form>
                 </div>
                 @endif
             </div>
-            @if(isset($selectedDetail))
-            {{ Form::model($selectedDetail, ['route' => ['detail.update', $selectedDetail->id], 'method' => 'put']) }}
-            @else
-            {{ Form::open(['route' => 'detail.store']) }}
-            @endif
-                {{ Form::label('name', 'Name', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+            <form
+                method="PUT"
+                action="{{ $selectedDetail ? route('detail.update', $selectedDetail->id): route('detail.store') }}"
+            >
+                @csrf
+                <label for="name" class="'block text-sm font-medium leading-5 text-gray-700">Name</label>
                 <div class="my-5 relative rounded-md shadow-sm">
-                    {{ Form::text('name', old('name'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                    <x-input
+                        type="text"
+                        name="name"
+                        value="{{ $selectedDetail?->name ?? old('name') }}"
+                        class="form-input block w-full sm:text-sm sm:leading-5"
+                    />
                 </div>
 
-                {{ Form::label('video', 'Video Link', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+                <x-label
+                    for="video"
+                    class="block text-sm font-medium leading-5 text-gray-700"
+                >
+                    Video Link
+                </x-label>
                 <div class="my-5 relative rounded-md shadow-sm">
-                    {{ Form::text('video', old('video'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                    <x-input
+                        name="video"
+                        value="{{ $selectedDetail?->video ?? old('video') }}"
+                        class="form-input block w-full sm:text-sm sm:leading-5"
+                    />
                 </div>
 
-                {{ Form::label('info', 'Information', ['class' => 'block text-sm font-medium leading-5 text-gray-700']) }}
+                <label
+                    for="info"
+                    class="block text-sm font-medium leading-5 text-gray-700"
+                >
+                    Information
+                </label>
                 <div class="my-5 relative rounded-md shadow-sm">
-                    {{ Form::textarea('info', old('info'), ['class' => 'form-input block w-full sm:text-sm sm:leading-5']) }}
+                    <textarea
+                        name="info"
+                        class="form-input block w-full sm:text-sm sm:leading-5"
+                    >{{ $selectedDetail?->info ?? old('info') }}</textarea>
                 </div>
 
-                {{ Form::hidden('groupId', $group->id) }}
+                <x-input type="hidden" name="groupId" value="{{ $group->id }}" />
 
                 <span class="inline-flex rounded-md shadow-sm">
-                    {{ Form::submit('Submit', ['name' => 'submit', 'class' => 'inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150']) }}
+                    <x-button
+                        type="submit"
+                        name="submit"
+                        class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150"
+                    >
+                        Submit
+                    </x-button>
                 </span>
-            {{ Form::close() }}
+            </form>
         </div>
     </div>
   </div>
