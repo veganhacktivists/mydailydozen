@@ -1,8 +1,8 @@
 <html>
     <head></head>
     <body>
-        <p>{{$subject}}</p>
+        <p>{{ $subject }}</p>
         <hr>
-        <p style="white-space: pre-line">{{$body}}</p>
+        <p style="white-space: pre-line">{{ $body }}</p>
     </body>
 </html>
