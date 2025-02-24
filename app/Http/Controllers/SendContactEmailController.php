@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactTicket;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 
 class SendContactEmailController extends Controller
@@ -34,8 +35,8 @@ class SendContactEmailController extends Controller
         Mail::send(
             'contact-email',
             ['subject' => $subject, 'body' => $body],
-            function ($message) use ($email, $subject) {
-                $message->from($email);
+            function (Message $message) use ($email, $subject) {
+                $message->replyTo($email);
                 $message->to(env('MAIL_RECIPIENT'));
                 $message->subject($subject);
             }
