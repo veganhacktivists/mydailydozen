@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormEmail;
 use App\Models\ContactTicket;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -23,24 +24,14 @@ class SendContactEmailController extends Controller
         $email = $request->input('email');
         $body = $request->input('message');
 
-        ContactTicket::create([
+        $ticket = ContactTicket::create([
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
             'message' => $body,
         ]);
 
-        $subject = $firstName . " " . $lastName . " contacted My Daily Dozen";
-
-        Mail::send(
-            'contact-email',
-            ['subject' => $subject, 'body' => $body],
-            function (Message $message) use ($email, $subject) {
-                $message->replyTo($email);
-                $message->to(env('MAIL_RECIPIENT'));
-                $message->subject($subject);
-            }
-        );
+        Mail::to(env('MAIL_RECIPIENT'))->send(new ContactFormEmail($ticket));
 
         return back()->with('success', true);
     }
