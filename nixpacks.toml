@@ -1,0 +1,23 @@
+[phases.setup]
+nixPkgs = [
+    "...",
+    "python311Packages.supervisor",
+
+    # Fix for coollabsio/coolify/issues/4202 (LICENSE file collision)
+    '(lib.hiPrio php83Packages.composer)',
+]
+
+[phases.build]
+cmds = [
+    "mkdir -p /etc/supervisor/conf.d/",
+    "cp /app/nixpacks/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf",
+    "cp /app/nixpacks/supervisord.conf /etc/supervisord.conf",
+    "cp /app/nixpacks/start.sh /assets/start.sh",
+    "chmod +x /assets/start.sh",
+    "chown -R www-data /app/storage",
+    "chown -R www-data /app/bootstrap/cache",
+    "...",
+]
+
+[start]
+cmd = '/assets/start.sh'
