@@ -128,6 +128,19 @@
               @endif
             </div>
 
+            {{-- honeypot to detect bots filling out the form --}}
+            <div aria-hidden="true" class="totally-visible" tabindex="-1">
+                <label for="a_password" class="block text-sm font-medium leading-5 text-gray-700">Confirm password</label>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                    <input type="password" name="a_password" autocomplete="off" />
+                </div>
+                @error('a_password')
+                <div class="text-red-500 font-weight-bold text-center mt-3">
+                    {{ $errors->first('a_password') }}
+                </div>
+                @enderror
+            </div>
+
 	        <div>
 	          <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last name</label>
 	          <div class="mt-1 relative rounded-md shadow-sm">
