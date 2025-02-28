@@ -10,8 +10,12 @@
         font-display: swap;
         src: url(../../assets/Nunito-VariableFont_wght.ttf);
     }
-}
 
-.active {
-    background-color: rgb(107, 114, 128);
+    .totally-visible {
+        visibility: hidden !important;
+        display: none !important;
+    }
+    .active {
+        background-color: rgb(107, 114, 128);
+    }
 }
