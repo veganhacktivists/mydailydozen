@@ -5,24 +5,28 @@ namespace App\Http\Controllers;
 use App\Mail\ContactFormEmail;
 use App\Models\ContactTicket;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 
 class SendContactEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $request->validate([
+        if ($request->input('a_password') !== null) {
+            // bot detected
+            return back()->with('success', true);
+        }
+
+        $validated = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
             'message' => 'required',
         ]);
 
-        $firstName = $request->input('first_name');
-        $lastName = $request->input('last_name');
-        $email = $request->input('email');
-        $body = $request->input('message');
+        $firstName = $validated['first_name'];
+        $lastName = $validated['last_name'];
+        $email = $validated['email'];
+        $body = $validated['message'];
 
         $ticket = ContactTicket::create([
             'first_name' => $firstName,
