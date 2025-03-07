@@ -14,7 +14,7 @@
                     </div>
                     <div class="flex flex-0 flex-shrink-0">
                         <a href="/groups/{{ $group['id'] }}/">
-                            <img src="https://i.imgur.com/OmqyxWu.png" class="w-6 h-6" />
+                            <x-icons.information-circle class="text-[#bababa]" />
                         </a>
                     </div>
                 </div>
