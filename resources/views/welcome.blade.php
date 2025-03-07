@@ -177,12 +177,12 @@
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
+          dots[i].className = dots[i].className.replace(" bg-[#6b7280]", "");
         }
         slides[slideIndex-1].style.display = "block";
 
         //highlights dot of current image in slideshow
-        dots[slideIndex-1].className += " active";
+        dots[slideIndex-1].className += " bg-[#6b7280]";
 
         //determines length each image is displayed for
         timer = setTimeout(showSlides, 6000);
