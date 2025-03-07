@@ -56,7 +56,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return Application|Factory|View
      */
-    public function edit(Group $group, DetailType $detailType = null)
+    public function edit(Group $group, ?DetailType $detailType = null)
     {
         $detailTypes = $group->detailTypes;
 
