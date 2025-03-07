@@ -101,22 +101,22 @@
                         <!-- Full-width images with rounded edges -->
                         <img
                             class="slides"
-                            src="../img/blueberry.png"
+                            src="{{ asset('img/blueberry.png') }}"
                             alt="blueberries"
                         />
                         <img
                             class="slides"
-                            src="../img/vegan-food.png"
+                            src="{{ asset('img/vegan-food.png') }}"
                             alt="vegan food"
                         />
                         <img
                             class="slides"
-                            src="../img/kale.png"
+                            src="{{ asset('img/kale.png') }}"
                             alt="kale"
                         />
                         <img
                             class="slides"
-                            src="https://i.imgur.com/9PgoR3H.jpg0"
+                            src="{{ asset('img/ingredients.jpg') }}"
                             alt="ingredients"
                         />
                         <!-- slideshow nav -->
