@@ -4,13 +4,13 @@ use App\Http\Controllers\DetailTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SendContactEmailController;
 use App\Http\Controllers\ServingSizeController;
+use App\Http\Controllers\TermsOfServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\Livewire\PrivacyPolicyController;
-use Laravel\Jetstream\Http\Controllers\Livewire\TermsOfServiceController;
 use Laravel\Jetstream\Jetstream;
 
 /*
