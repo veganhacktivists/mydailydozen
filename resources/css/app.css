@@ -15,7 +15,4 @@
         visibility: hidden !important;
         display: none !important;
     }
-    .active {
-        background-color: rgb(107, 114, 128);
-    }
 }
