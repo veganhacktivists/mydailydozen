@@ -132,11 +132,12 @@
                 @if ($detailTypes->count() > 1 && $selectedDetail)
                 <div class="flex-1 h-full">
                     <form
-                        method="DELETE"
+                        method="POST"
                         action="{{ route('detail.destroy', $selectedDetail->id) }}"
                         onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')"
                     >
                         @csrf
+                        @method('DELETE')
                         <x-button
                             type="submit"
                             class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
@@ -149,10 +150,11 @@
                 @endif
             </div>
             <form
-                method="PUT"
+                method="POST"
                 action="{{ $selectedDetail ? route('detail.update', $selectedDetail->id): route('detail.store') }}"
             >
                 @csrf
+                @method('PUT')
                 <label for="name" class="'block text-sm font-medium leading-5 text-gray-700">Name</label>
                 <div class="my-5 relative rounded-md shadow-sm">
                     <x-input
