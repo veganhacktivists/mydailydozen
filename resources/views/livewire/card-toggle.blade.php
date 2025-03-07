@@ -16,7 +16,7 @@
                     </div>
                     <div class="flex flex-0 flex-shrink-0">
                         <a href="/groups/{{ $group['id'] }}/">
-                            <x-icons.information-circle class="text-[#bababa]" />
+                            <x-icons.information-circle class="max-w-full text-[#bababa]" />
                         </a>
                     </div>
                 </div>
