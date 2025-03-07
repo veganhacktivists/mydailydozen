@@ -78,7 +78,7 @@
             <div class="border-0 p-1" style="margin-bottom: 10px;">
                 <iframe width="100%" height="300px" src="{{ $detailType->video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="">
-                        <p class="">{{ $detailType->info }}</p>
+                        <p class="">{!! nl2br($detailType->info) !!}</p>
                     </div>
                 </div>
             @endforeach
