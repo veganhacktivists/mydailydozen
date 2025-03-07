@@ -1,3 +1,1 @@
-@props(['disabled' => false])
-
-<input {{ $disabled ? 'disabled' : '' }} {{ $attributes->class('border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm') }}>
+<input {{ $attributes->class('border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200 p-1') }}>
