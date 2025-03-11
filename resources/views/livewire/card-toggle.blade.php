@@ -1,6 +1,6 @@
 <button
   wire:click="toggleGroup"
-  class="{{ $checked ? 'border-pine-400' : 'border-red-400'  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline"
+  class="{{ $checked ? 'border-pine-400' : 'border-red-400'  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline group"
 >
     <div class="flex gap-3">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
@@ -9,14 +9,9 @@
         <div class="flex justify-between flex-col w-full min-w-0">
             <div class="flex items-center truncate">
                 <div class="min-w-0">
-                    <h6 class="text-xl font-bold text-dark mr-3 truncate">
+                    <h6 class="text-xl font-bold text-dark truncate">
                         {{ $group['name'] }}
                     </h6>
-                </div>
-                <div class="flex-shrink-0">
-                    <a href="/groups/{{ $group['id'] }}/">
-                        <x-icons.information-circle class="max-w-full text-[#bababa]" />
-                    </a>
                 </div>
             </div>
             @if (Auth::user()->isAdmin())
@@ -24,7 +19,13 @@
                     <img src="/assets/icon-pencil.svg" class="w-6 h-6" />
                 </a>
             @endif
-            <div class="flex-1 flex items-end justify-end">
+        </div>
+        <div class="flex flex-col justify-between">
+                <div class="flex-shrink-0 group-hover:opacity-100 opacity-0 transition-opacity">
+                    <a href="/groups/{{ $group['id'] }}/">
+                        <x-icons.information-circle class="max-w-full text-[#bababa]" />
+                    </a>
+                </div>
                 @if ($checked)
                     <span class="text-pine-400">
                         <x-icons.check-circle />
@@ -34,7 +35,6 @@
                         <x-icons.close-circle />
                     </span>
                 @endif
-            </div>
         </div>
     </div>
 </button>
