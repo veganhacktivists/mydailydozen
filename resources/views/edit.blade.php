@@ -94,7 +94,7 @@
               </td>
               <td class="cursor-pointer text-blue-600 text-center">
                 <a href="/groups/{{$group->id}}/serving-sizes/{{$servingSize->id}}/edit">
-                  <img src="/assets/icon-pencil.svg" class="w-6 h-6 mx-auto" />
+                    <x-icons.pencil class="size-6 mx-auto" />
                 </a>
 
               </td>
