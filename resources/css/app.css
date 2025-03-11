@@ -11,6 +11,12 @@
         src: url(../../assets/Nunito-VariableFont_wght.ttf);
     }
 
+    a {
+        @apply text-pine-600;
+    }
+}
+
+@layer utilities {
     .totally-visible {
         visibility: hidden !important;
         display: none !important;
