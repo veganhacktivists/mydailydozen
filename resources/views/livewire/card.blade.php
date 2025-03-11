@@ -1,18 +1,19 @@
 <div
-    class="{{ $checkCount ===  $group->per_day ? 'border-pine-400' : 'border-cool-gray-100'  }} border-2 p-4 bg-white overflow-hidden rounded-2xl">
-    <div class="flex">
+    @class('border-2 p-4 bg-white overflow-hidden rounded-2xl', $checkCount ===  $group->per_day ? 'border-pine-400' : 'border-cool-gray-100')
+>
+    <div class="flex gap-3 h-full">
         <div class="flex-shrink-0 rounded-xl overflow-hidden">
-            <img style="border-radius: 12px;" class="w-16 h-16" src="{{ $group->icon_location }}" alt="Icon">
+            <img class="rounded-xl size-16" src="{{ $group->icon_location }}" alt="">
         </div>
-        <div class="flex flex-col pl-3 flex-1">
+        <div class="flex justify-between flex-grow flex-col">
             <div class="flex items-center justify-between">
-                <div class="flex-1 flex items-center truncate">
-                    <div class="flex-0 min-w-0 truncate">
-                        <h6 class="text-xl font-bold text-dark mr-3 pb-1 truncate" style="font-weight: 500;">
+                <div class="flex items-center truncate">
+                    <div class="min-w-0 truncate">
+                        <h6 class="text-xl font-medium mr-3 truncate">
                             {{ $group['name'] }}
                         </h6>
                     </div>
-                    <div class="flex flex-0 flex-shrink-0">
+                    <div class="flex flex-shrink-0">
                         <a href="/groups/{{ $group['id'] }}/">
                             <x-icons.information-circle class="max-w-full text-[#bababa]" />
                         </a>
@@ -24,7 +25,11 @@
                     </a>
                 @endif
             </div>
-            <div>{{ $group['subtitle'] }}</div>
+            @if($group['subtitle'])
+                <div>
+                    {{ $group['subtitle'] }}
+                </div>
+            @endif
             <div class="flex-1 flex items-end justify-end">
                 <div class="flex items-center">
                     <span class="text-muted text-xs"
