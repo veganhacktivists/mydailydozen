@@ -6,13 +6,13 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 	<title>My Daily Dozen – Track the foods recommended by NutritionFacts.org!</title>
 
-    <link rel="canonical" href="https://mydailydozen.org/" />
+    <link rel="canonical" href="{{ url('/') }}" />
     <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
 
-    <meta property="og:url" content="https://mydailydozen.org/" />
+    <meta property="og:url" content="{{ url('/') }}" />
     <meta property="og:title" content="My Daily Dozen" />
     <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
-    <meta property="og:image" content="https://mydailydozen.org/og-image.png" />
+    <meta property="og:image" content="{{ url('og-image.png') }}" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="250" />
     <meta property="og:type" content="website" />
@@ -33,7 +33,7 @@
                         <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                             <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                                 <div class="flex items-center justify-between w-full md:w-auto">
-                                    <a href="{{ env('APP_URL') ?? 'https://mydailydozen.org' }}" aria-label="Home">
+                                    <a href="{{ url('/') }}" aria-label="Home">
                                         <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.png') }}" alt="Dr. Greger’s Daily Dozen">
                                     </a>
                                     <div class="-mr-2 flex items-center md:hidden">
@@ -69,13 +69,13 @@
                                 Eat healthy and feel good about yourself in the process.
                             </p>
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                Use this website to keep daily track of the foods recommended by Dr. Greger in his New York Times Bestselling book, <a href="https://nutritionfacts.org/book/how-not-to-die/" target="_blank" rel="noopener">How Not to Die</a>, and now his new book, <a href="https://nutritionfacts.org/book/how-not-to-diet/" target="_blank" rel="noopener">How Not to Diet</a>!
+                                Use this website to keep daily track of the foods recommended by Dr. Greger in his New York Times Bestselling book, <x-link href="https://nutritionfacts.org/book/how-not-to-die/">How Not to Die</x-link>, and now his new book, <x-link href="https://nutritionfacts.org/book/how-not-to-diet/">How Not to Diet</x-linka>!
                             </p>
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                                 Dr. Greger’s Daily Dozen details the healthiest foods and how many servings of each we should try to check off every day.
                             </p>
 							<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-							Signup for free and begin keeping <b>track of your health</b> with My Daily Dozen! Dr. Greger also has an <a href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802" target="_blank" rel="noopener">iOS App</a> and <a href="https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen&hl=en" target="_blank" rel="noopener">Android App</a>.
+							Signup for free and begin keeping <b>track of your health</b> with My Daily Dozen! Dr. Greger also has an <x-link href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802">iOS App</x-link> and <x-link href="https://play.google.com/store/apps/details?id=org.nutritionfacts.dailydozen">Android App</x-link>.
 							</p>
                             <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div class="rounded-md shadow">
