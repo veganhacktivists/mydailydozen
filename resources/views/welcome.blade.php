@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
-	<title>My Daily Dozen – Track the foods recommended by NutritionFacts.org!</title>
-
-    <link rel="canonical" href="{{ url('/') }}" />
-    <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
-
-    <meta property="og:url" content="{{ url('/') }}" />
-    <meta property="og:title" content="My Daily Dozen" />
-    <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
-    <meta property="og:image" content="{{ url('og-image.png') }}" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="250" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-
-	<!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-
-    @stack('scripts')
-</head>
-<body class="antialiased">
+<x-guest-layout>
     <div class="h-screen flex flex-col">
         <div class="relative bg-white overflow-hidden flex-1">
             <div class="max-w-screen-xl mx-auto lg:h-full">
@@ -109,5 +83,4 @@
         </div>
         @include('components.footer')
     </div>
-</body>
-</html>
+</x-guest-layout>
