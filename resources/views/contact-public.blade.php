@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.css'])
-	<title>Contact us – My Daily Dozen: track the foods recommended by NutritionFacts.org!</title>
-
-    <link rel="canonical" href="{{ url('/') }}" />
-    <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
-
-    <meta property="og:url" content="{{ url('/') }}" />
-    <meta property="og:title" content="My Daily Dozen" />
-    <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
-    <meta property="og:image" content="{{ url('og-image.png') }}" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="250" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-
-	<!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-</head>
-<body class="antialiased">
+<x-guest-layout title="Contact Us">
 <div class="relative bg-white overflow-hidden">
     <div class="max-w-screen-xl mx-auto">
         <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -181,6 +156,4 @@
 </section>
 @include('components.footer')
 
-@vite(['resources/js/app.js'])
-</body>
-</html>
+</x-guest-layout>
