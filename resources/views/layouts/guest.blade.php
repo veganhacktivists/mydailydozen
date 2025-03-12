@@ -72,12 +72,10 @@
                 </div>
             </div>
         </nav>
-        <main class="font-sans text-gray-900 antialiased">
+        <main class="flex-grow font-sans text-gray-900 antialiased">
             {{ $slot }}
         </main>
-        <div class="flex-grow justify-center flex place-items-end">
-            <x-footer />
-        </div>
+        <x-footer />
         @livewireScripts
         @stack('scripts')
     </body>
