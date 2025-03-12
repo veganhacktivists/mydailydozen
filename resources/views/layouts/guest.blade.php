@@ -40,9 +40,45 @@
         @livewireStyles
 
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body class="min-h-screen bg-white flex flex-col">
+        <nav class="relative pt-6 px-4 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
+                <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+                    <div class="flex items-center justify-between w-full md:w-auto">
+                        <a href="{{ url('/') }}" aria-label="Home">
+                            <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.png') }}" alt="Dr. Greger’s Daily Dozen">
+                        </a>
+                        <div class="-mr-2 flex items-center md:hidden">
+                            <a href="/contact"
+                            class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
+                            @guest
+                            <a href="{{ route('login') }}"
+                            class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
+                                in</a>
+                            <a href="{{ route('register') }}"
+                            class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+                            @endguest
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block md:ml-10 md:pr-4">
+                    <a href="/contact"
+                    class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
+                    @guest
+                    <a href="{{ route('login') }}"
+                    class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
+                        in</a>
+                    <a href="{{ route('register') }}"
+                    class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+                    @endguest
+                </div>
+            </div>
+        </nav>
+        <main class="font-sans text-gray-900 antialiased">
             {{ $slot }}
+        </main>
+        <div class="flex-grow justify-center flex place-items-end">
+            <x-footer />
         </div>
         @livewireScripts
         @stack('scripts')
