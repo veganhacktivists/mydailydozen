@@ -93,7 +93,7 @@
 	      	@csrf
 	        <div>
                 <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
-                <x-input class="mt-1 w-full py-3 px-4 transition ease-in-out duration-150" id="first_name" name="first_name" />
+                <x-input value="{{ old('first_name') }}" class="mt-1 w-full py-3 px-4 transition ease-in-out duration-150" id="first_name" name="first_name" />
               @error('first_name')
               <div class="text-red-500 font-weight-bold text-center mt-3">
                   {{ $errors->first('first_name') }}
@@ -104,7 +104,7 @@
             {{-- honeypot to detect bots filling out the form --}}
             <div aria-hidden="true" class="totally-visible" tabindex="-1">
                 <label for="a_password" class="block text-sm font-medium leading-5 text-gray-700">Confirm password</label>
-                <x-input type="password" name="a_password" autocomplete="off" />
+                <x-input value="{{ old('a_password') }}" type="password" name="a_password" autocomplete="off" />
                 @error('a_password')
                 <div class="text-red-500 font-weight-bold text-center mt-3">
                     {{ $errors->first('a_password') }}
@@ -114,7 +114,7 @@
 
 	        <div>
 	            <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last name</label>
-                <x-input id="last_name" name="last_name" class="mt-1 w-full py-3 px-4 transition ease-in-out duration-150" />
+                <x-input value="{{ old('last_name') }}" id="last_name" name="last_name" class="mt-1 w-full py-3 px-4 transition ease-in-out duration-150" />
               @error('last_name')
               <div class="text-red-500 font-weight-bold text-center mt-3">
                   {{ $errors->first('last_name') }}
@@ -124,7 +124,7 @@
 
 	        <div class="sm:col-span-2">
 	            <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
-                <x-input id="email" type="email" name="email" class="mt-1 py-3 px-4 w-full transition ease-in-out duration-150" />
+                <x-input value="{{ old('email') }}" id="email" type="email" name="email" class="mt-1 py-3 px-4 w-full transition ease-in-out duration-150" />
               @error('email')
               <div class="text-red-500 font-weight-bold text-center mt-3">
                   {{ $errors->first('email') }}
@@ -134,7 +134,7 @@
 
 	        <div class="sm:col-span-2">
 	            <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
-                <x-textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full transition ease-in-out duration-150" />
+                <x-textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full transition ease-in-out duration-150">{{ old('message') }}</x-textarea>
               @error('message')
               <div class="text-red-500 font-weight-bold text-center mt-3">
                   {{ $errors->first('message') }}
