@@ -40,7 +40,7 @@
         @livewireStyles
 
     </head>
-    <body class="min-h-screen bg-white flex flex-col">
+    <body class="min-h-screen bg-white flex flex-col overflow-x-hidden">
         <nav class="relative pt-6 px-4 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                 <div class="gap-x-4 flex items-center justify-between flex-wrap w-full md:w-auto">
