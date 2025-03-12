@@ -46,11 +46,9 @@
                     <div>
                         <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First
                             name</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
                             <x-input id="first_name" name="first_name"
                                 value="{{ old('first_name') }}"
-                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
-                        </div>
+                                class="mt-1 py-3 px-4 block w-full transition ease-in-out duration-150" />
                         @error('first_name')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('first_name') }}
@@ -61,9 +59,7 @@
                     {{-- honeypot to detect bots filling out the form --}}
                     <div aria-hidden="true" class="totally-visible" tabindex="-1">
                         <label for="a_password" class="block text-sm font-medium leading-5 text-gray-700">Confirm password</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
-                            <input type="password" name="a_password" autocomplete="off" />
-                        </div>
+                        <x-input type="password" name="a_password" autocomplete="off" />
                         @error('a_password')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('a_password') }}
@@ -76,11 +72,8 @@
                     <div>
                         <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last
                             name</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
-                            <x-input id="last_name" name="last_name"
-                            value="{{ old('last_name') }}"
-                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
-                        </div>
+                        <x-input id="last_name" name="last_name" value="{{ old('last_name') }}" class="mt-1 w-full py-3 px-4 transition ease-in-out duration-150" />
+
                         @error('last_name')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('last_name') }}
@@ -90,10 +83,8 @@
 
                     <div class="sm:col-span-2">
                         <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
-                            <x-input id="email" type="email" name="email" value="{{ old('email') ?? auth()->user()->email }}"
-                                class="py-3 px-4 block w-full transition ease-in-out duration-150" />
-                        </div>
+                        <x-input id="email" type="email" name="email" value="{{ old('email') ?? auth()->user()->email }}"
+                                class="mt-1 py-3 px-4 block w-full transition ease-in-out duration-150" />
                         @error('email')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
                             {{ $errors->first('email') }}
@@ -104,8 +95,8 @@
                     <div class="sm:col-span-2">
                         <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <textarea id="message" name="message" rows="4"
-                                class="border-gray-300 focus:border-blue-200 focus:ring-blue-200 rounded-md shadow-sm py-3 px-4 block w-full transition ease-in-out duration-150">{{ old('message') }}</textarea>
+                            <x-textarea id="message" name="message" rows="4"
+                            class="mt-1 py-3 px-4 block w-full transition ease-in-out duration-150">{{ old('message') }}</x-textarea>
                         </div>
                         @error('message')
                         <div class="text-red-500 font-weight-bold text-center mt-3">
