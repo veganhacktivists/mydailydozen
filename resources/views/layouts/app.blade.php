@@ -11,6 +11,7 @@
         @vite(['resources/css/app.css'])
         @livewireStyles
 
+        @stack('scripts')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
