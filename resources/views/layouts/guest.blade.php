@@ -1,4 +1,4 @@
-@props(['title'])
+@props(['title', 'showNavigation' => false, 'mainClass' => null])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -40,7 +40,8 @@
         @livewireStyles
 
     </head>
-    <body class="min-h-screen bg-white flex flex-col overflow-x-hidden">
+    <body {{ $attributes->class("min-h-screen flex flex-col overflow-x-hidden") }}>
+        @if($showNavigation)
         <nav class="relative pt-6 px-4 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                 <div class="gap-x-4 gap-y-2 flex items-center justify-between flex-wrap w-full md:w-auto">
@@ -72,7 +73,8 @@
                 </div>
             </div>
         </nav>
-        <main {{ $attributes->class('flex-grow self-center font-sans text-gray-900 antialiased') }}>
+        @endif
+        <main @class($mainClass)>
             {{ $slot }}
         </main>
         <x-footer />
