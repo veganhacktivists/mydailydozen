@@ -6,15 +6,11 @@
         <img class="slides" src="{{ $img['src'] }}" alt="{{ $img['alt'] }}" />
     @endforeach
     <!-- slideshow nav -->
-    <div class="text-center">
-        <!-- Next button -->
-        <a class="left-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(-1)">&#10094;</a>
+    <div class="text-center mt-3">
         <!-- The dots/circles -->
         @foreach ($images as $img)
-            <span class="dot h-4 w-4 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition duration-500 ease-in-out hover:bg-gray-400" onclick="currentSlide({{ $loop->index + 1 }})"></span>
+            <button type="button" class="dot size-5 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition-colors hover:bg-gray-400" onclick="currentSlide({{ $loop->index + 1 }})"></button>
         @endforeach
-        <!-- Previous buttons -->
-        <a class="right-2 text-4xl text-gray-400 hover:text-gray-500 transition duration-500 ease-in-out cursor-pointer m-0.5" onclick="plusSlides(1)">&#10095;</a>
     </div>
 </div>
 
@@ -57,7 +53,7 @@
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("!bg-[#6b7280]")
+            dots[i].classList.remove("!bg-[#6b7280]")
         }
         slides[slideIndex-1].style.display = "block";
 
