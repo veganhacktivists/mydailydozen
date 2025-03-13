@@ -1,6 +1,6 @@
 <x-guest-layout title="Contact Us" class="bg-white" showNavigation>
 
-<section id="contact" class="text-center">
+<section id="contact">
     @if (session('success'))
     <div x-data="{open: true}" x-show="open" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="p-2 bg-pine-300 items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-pine-500 uppercase px-2 py-1 text-xs font-bold mr-3">Sent</span>
