@@ -143,9 +143,8 @@ class User extends Authenticatable
             ->wherePivot('recorded_at', $date)
             ->wherePivot('group_id', $group->id)
             ->first();
-        if ($pivot !== null) {
-            return $pivot->pivot->checked;
-        }
+
+        return $pivot?->pivot?->checked ?? 0;
     }
 
     /**
