@@ -154,7 +154,7 @@
                 action="{{ $selectedDetail ? route('detail.update', $selectedDetail->id): route('detail.store') }}"
             >
                 @csrf
-                @method('PUT')
+                @method($selectedDetail ? 'PUT' : 'POST')
                 <label for="name" class="'block text-sm font-medium leading-5 text-gray-700">Name</label>
                 <div class="my-5 relative rounded-md shadow-sm">
                     <x-input
