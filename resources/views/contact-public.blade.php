@@ -1,4 +1,4 @@
-<x-guest-layout title="Contact Us">
+<x-guest-layout title="Contact Us" class="bg-white" showNavigation>
 
 <section id="contact" class="text-center">
     @if (session('success'))

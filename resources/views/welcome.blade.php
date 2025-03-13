@@ -1,4 +1,4 @@
-<x-guest-layout class="grid place-items-center">
+<x-guest-layout mainClass="grid place-items-center flex-grow" class="bg-white" showNavigation>
 <div class="md:p-10 flex gap-x-20 flex-col lg:flex-row max-w-screen-xl m-auto place-items-center justify-center">
     <div class="max-w-screen-sm md:min-w-[510px] mx-auto">
         <div class="pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
