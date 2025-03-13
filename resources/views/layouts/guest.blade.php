@@ -43,7 +43,7 @@
     <body class="min-h-screen bg-white flex flex-col overflow-x-hidden">
         <nav class="relative pt-6 px-4 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
-                <div class="gap-x-4 flex items-center justify-between flex-wrap w-full md:w-auto">
+                <div class="gap-x-4 gap-y-2 flex items-center justify-between flex-wrap w-full md:w-auto">
                     <a class="flex-shrink-0" href="{{ url('/') }}" aria-label="Home">
                         <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.png') }}" alt="Dr. Greger’s Daily Dozen">
                     </a>
