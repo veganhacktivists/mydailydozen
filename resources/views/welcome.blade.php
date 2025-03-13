@@ -1,7 +1,7 @@
 <x-guest-layout class="grid place-items-center">
-<div class="flex gap-20 flex-col md:flex-row max-w-screen-xl m-auto place-items-center justify-center">
-    <div class="max-w-screen-xl mx-auto">
-        <div class="pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
+<div class="md:p-10 flex gap-x-20 flex-col lg:flex-row max-w-screen-xl m-auto place-items-center justify-center">
+    <div class="max-w-screen-sm md:min-w-[510px] mx-auto">
+        <div class="pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
             <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div class="sm:text-center lg:text-left">
                     <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="relative flex-grow">
-        <div class="absolute top-[-100vh] right-[-100vw] left-16 bottom-24 bg-pine-400 -z-10"></div>
+        <div class="hidden lg:block absolute top-[-100vh] right-[-100vw] left-16 bottom-24 bg-pine-400 -z-10"></div>
         <x-carousel
             class="max-w-4xl"
             :images="[
