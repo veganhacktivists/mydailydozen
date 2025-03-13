@@ -1,5 +1,6 @@
-<x-guest-layout>
-    <div class="max-w-screen-xl mx-auto lg:h-full">
+<x-guest-layout class="grid place-items-center">
+<div class="flex gap-20 flex-col md:flex-row max-w-screen-xl m-auto place-items-center justify-center">
+    <div class="max-w-screen-xl mx-auto">
         <div class="pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
             <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div class="sm:text-center lg:text-left">
@@ -30,21 +31,17 @@
             </div>
         </div>
     </div>
-    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:pl-6">
-        <div class="lg:w-full lg:h-[70vh]">
-            <div
-                class="lg:w-full lg:h-full bg-pine-400"
-            >
-            </div>
-            <x-carousel
-                class="lg:left-[-4vw] lg:bottom-[-10vh] w-full object-cover lg:absolute lg:h-full"
-                :images="[
-                    ['src' => asset('img/blueberry.png'), 'alt' => 'blueberries' ],
-                    ['src' => asset('img/vegan-food.png'), 'alt' => 'vegan food' ],
-                    ['src' => asset('img/kale.png'), 'alt' => 'kale' ],
-                    ['src' => asset('img/ingredients.jpg'), 'alt' => 'ingredients' ],
-                ]"
-            />
-        </div>
+    <div class="relative flex-grow">
+        <div class="absolute top-[-100vh] right-[-100vw] left-16 bottom-24 bg-pine-400 -z-10"></div>
+        <x-carousel
+            class="max-w-4xl"
+            :images="[
+                ['src' => asset('img/blueberry.png'), 'alt' => 'blueberries' ],
+                ['src' => asset('img/vegan-food.png'), 'alt' => 'vegan food' ],
+                ['src' => asset('img/kale.png'), 'alt' => 'kale' ],
+                ['src' => asset('img/ingredients.jpg'), 'alt' => 'ingredients' ],
+            ]"
+        />
     </div>
+</div>
 </x-guest-layout>

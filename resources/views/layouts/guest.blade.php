@@ -72,7 +72,7 @@
                 </div>
             </div>
         </nav>
-        <main class="flex-grow font-sans text-gray-900 antialiased">
+        <main {{ $attributes->class('flex-grow self-center font-sans text-gray-900 antialiased') }}>
             {{ $slot }}
         </main>
         <x-footer />
