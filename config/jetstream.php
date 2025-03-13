@@ -30,7 +30,7 @@ return [
 
     'features' => [
         Features::profilePhotos(),
-        Features::api(),
+        // Features::api(),
         // Features::termsAndPrivacyPolicy()
         // Features::teams(),
     ],
