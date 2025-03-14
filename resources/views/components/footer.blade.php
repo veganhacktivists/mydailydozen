@@ -8,8 +8,10 @@
         <div>
             Visit <x-link href="https://nutritionfacts.org/">NutritionFacts.org</x-link>
         </div>
+        @if(env('MAIL_RECIPIENT'))
         <div>
-            <x-link href="mailto:contact@mydailydozen.org">Get in touch!</x-link>
+            <x-link href="mailto:{{ env('MAIL_RECIPIENT') }}">Get in touch!</x-link>
         </div>
+        @endif
     </div>
 </footer>
