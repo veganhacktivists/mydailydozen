@@ -144,7 +144,7 @@ class User extends Authenticatable
             ->wherePivot('group_id', $group->id)
             ->first();
 
-        return $pivot?->pivot?->checked ?? 0;
+        return $pivot?->pivot?->checked;
     }
 
     /**
