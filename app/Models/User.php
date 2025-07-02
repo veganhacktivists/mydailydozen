@@ -139,12 +139,7 @@ class User extends Authenticatable
         return $newCount;
     }
 
-    /**
-     * @param $group
-     * @param $date
-     * @return void
-     */
-    public function getCheckCountForGroupAndDate($group, $date)
+    public function getCheckCountForGroupAndDate($group, $date): int
     {
         $pivot = $this->groups()
             ->wherePivot('recorded_at', $date)
