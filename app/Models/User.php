@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Eloquent;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -107,6 +108,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // This is overridden so the response isn't slowed down.
+    public function sendPasswordResetNotification($token): void
+    {
+        dispatch(fn () => $this->notify(new ResetPasswordNotification($token)))->afterResponse();
+    }
+
     /**
      * @param $group
      * @param $date
@@ -132,12 +139,7 @@ class User extends Authenticatable
         return $newCount;
     }
 
-    /**
-     * @param $group
-     * @param $date
-     * @return void
-     */
-    public function getCheckCountForGroupAndDate($group, $date)
+    public function getCheckCountForGroupAndDate($group, $date): int
     {
         $pivot = $this->groups()
             ->wherePivot('recorded_at', $date)
