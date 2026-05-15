@@ -1,5 +1,5 @@
 [phases.setup]
-nixpkgsArchive = 'be9e214982e20b8310878ac2baa063a961c1bdf6'
+nixpkgsArchive = '9885d46f5002d060d38adda8cc3d789847e12a2a'
 nixPkgs = [
     "...",
     "python311Packages.supervisor",
