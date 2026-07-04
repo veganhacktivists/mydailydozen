@@ -33,7 +33,7 @@ class DetailTypeController extends Controller
             'info' => 'required',
         ]);
 
-        $detailType = DetailType::where('id', $detailTypeId)->first();
+        $detailType = DetailType::findOrFail($detailTypeId);
 
         $detailType->name = $request->name;
         $detailType->video = $request->video;
@@ -45,7 +45,7 @@ class DetailTypeController extends Controller
 
     public function destroy(Request $request, $detailTypeId)
     {
-        $detailType = DetailType::where('id', $detailTypeId)->first();
+        $detailType = DetailType::findOrFail($detailTypeId);
 
         if (DetailType::all()->count() > 1) {
             $detailType->delete();

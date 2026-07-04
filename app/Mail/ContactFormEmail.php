@@ -14,13 +14,11 @@ class ContactFormEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    // public string $subject;
     /**
      * Create a new message instance.
      */
     public function __construct(public ContactTicket $ticket)
     {
-        // $this->subject = $firstName . " " . $lastName . " contacted My Daily Dozen";
     }
 
     /**
@@ -29,7 +27,7 @@ class ContactFormEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->ticket->firstName . " " . $this->ticket->last_name . " contacted My Daily Dozen"
+            subject: $this->subjectLine()
         );
     }
 
@@ -41,10 +39,18 @@ class ContactFormEmail extends Mailable
         return new Content(
             markdown: 'mail.contact',
             with: [
-                'subject' => $this->subject,
+                'subject' => $this->subjectLine(),
                 'ticket' => $this->ticket
             ]
         );
+    }
+
+    /**
+     * The subject line, reused for both the envelope and the email heading.
+     */
+    private function subjectLine(): string
+    {
+        return $this->ticket->first_name . " " . $this->ticket->last_name . " contacted My Daily Dozen";
     }
 
     /**

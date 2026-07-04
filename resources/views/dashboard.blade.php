@@ -4,7 +4,7 @@
       @if($groups->count() > 0)
       <div class="mt-2 mb-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         @foreach($groups as $group)
-        <livewire:card :group="$group" />
+        <livewire:card :group="$group" :check-count="$checkCounts[$group->id] ?? 0" />
         @endforeach
       </div>
       <h2 class="text-lg leading-6 font-medium text-cool-gray-900 mb-6" style="font-weight: 400;">Head over to your <a
