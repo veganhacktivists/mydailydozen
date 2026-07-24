@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailType;
 use App\Models\Group;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -27,10 +28,19 @@ class GroupController extends Controller
         $ids = $user->currentGroups->pluck('id')->toArray();
         $groups = Group::whereIn('id', $ids)
             ->get();
+
+        // Fetch today's checkmark counts in a single pivot query and hand them to
+        // each card, rather than letting every card query the pivot on mount (N+1).
+        $checkCounts = $user->groups()
+            ->wherePivot('recorded_at', Carbon::today())
+            ->get()
+            ->mapWithKeys(fn (Group $group) => [$group->id => (int) $group->pivot->checked]);
+
         return view('dashboard')->with([
             'user' => $user,
             'greeting' => $this->generateGreeting($user->name),
             'groups' => $groups,
+            'checkCounts' => $checkCounts,
         ]);
     }
 

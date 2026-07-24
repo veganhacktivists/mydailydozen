@@ -122,14 +122,18 @@ class User extends Authenticatable
     public function setCheckCountForGroupAndDate($group, $date, $count)
     {
         $newCount = min($count, $group->per_day);
-        $currentCount = $this->getCheckCountForGroupAndDate($group, $date);
 
-        if ($currentCount === null) {
+        $pivot = $this->groups()
+            ->wherePivot('recorded_at', $date)
+            ->wherePivot('group_id', $group->id)
+            ->first()?->pivot;
+
+        if ($pivot === null) {
             $this->groups()->attach($group, [
                 'checked' => $newCount,
                 'recorded_at' => $date
             ]);
-        } elseif ($newCount !== $currentCount) {
+        } elseif ($newCount !== (int) $pivot->checked) {
             $this->groups()->wherePivot('recorded_at', $date)
                 ->updateExistingPivot($group->id, [
                     'checked' => $newCount
