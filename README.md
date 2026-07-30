@@ -12,7 +12,28 @@ servings of each we should try to check off every day.
 
 ## Setup
 
-See the [Vegan Hacktivists documentation](https://github.com/veganhacktivists/documentation).
+Laravel 11 on PHP 8.3, run through [Laravel Sail](https://laravel.com/docs/11.x/sail),
+which brings up the app, PostgreSQL and Mailpit in Docker. The front end needs
+Node 22 and pnpm.
+
+```
+cp .env.example .env
+composer install
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate --seed
+./vendor/bin/sail pnpm install
+./vendor/bin/sail pnpm dev
+```
+
+The site is then at http://localhost and Mailpit at http://localhost:8025.
+Seeding loads the food groups and, outside production, a dev login of
+`vh@example.com` / `password`. Run the tests with
+`./vendor/bin/sail artisan test`.
+
+Without PHP and Composer on your machine, run that first `composer install` in a
+container instead — see
+[Executing Composer Commands](https://laravel.com/docs/11.x/sail#executing-composer-commands).
 
 ## Database setup
 
