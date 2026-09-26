@@ -24,7 +24,7 @@ class HistoryService {
                 substr($day->recorded_at, 0, 10) => ['count' => (int) $day->count, 'total' => (int) $day->total],
             ]);
 
-        $endDate = $recorded->keys()->last() ?? date(self::DATE_FORMAT);
+        $endDate = $recorded->keys()->last() ?? $user->today()->format(self::DATE_FORMAT);
         $entries = collect($this->fillMissingDates($user->created_at, $endDate))->merge($recorded);
 
         return $entries->map(fn ($item, $key) => [

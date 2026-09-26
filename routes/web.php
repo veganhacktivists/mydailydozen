@@ -12,6 +12,7 @@ use App\Http\Controllers\ServingSizeController;
 use App\Http\Controllers\TermsOfServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Jetstream\Jetstream;
 
 /*
@@ -35,6 +36,11 @@ Route::get('/up', HealthController::class)->withoutMiddleware('web');
 Route::get('/', HomeController::class);
 Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class)->middleware('throttle:contact');
+
+// Fortify's own sign-up route, with a rate limit it has no setting for
+Route::post('/register', [RegisteredUserController::class, 'store'])
+    ->middleware(['throttle:register', 'guest:'.config('fortify.guard')])
+    ->name('register.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([

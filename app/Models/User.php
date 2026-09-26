@@ -170,7 +170,15 @@ class User extends Authenticatable
      */
     public function totalCheckForToday()
     {
-        return $this->totalCheckForDate(Carbon::today());
+        return $this->totalCheckForDate($this->today());
+    }
+
+    /**
+     * Today in the user's own timezone, or UTC until their browser has sent it.
+     */
+    public function today(): Carbon
+    {
+        return Carbon::today($this->timezone ?? config('app.timezone'));
     }
 
     /**

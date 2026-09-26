@@ -32,4 +32,10 @@ return [
 
     'coolify_proxy_ips' => array_values(array_filter(array_map('trim', explode(',', env('COOLIFY_PROXY_IPS', ''))))),
 
+    // Umami, self-hosted by Vegan Hacktivists. Nothing loads until a website id is set.
+    'umami' => [
+        'website_id' => env('UMAMI_WEBSITE_ID'),
+        'script_url' => env('UMAMI_SCRIPT_URL', 'https://analytics.veganhacktivists.org/script.js'),
+    ],
+
 ];

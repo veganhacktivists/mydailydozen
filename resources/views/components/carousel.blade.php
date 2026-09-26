@@ -3,13 +3,21 @@
 <div {{ $attributes }}>
     <!-- Full-width images with rounded edges -->
     @foreach ($images as $img)
-        <img class="slides" src="{{ $img['src'] }}" alt="{{ $img['alt'] }}" />
+        <img
+            class="slides"
+            src="{{ $img['src'] }}"
+            @isset($img['srcset']) srcset="{{ $img['srcset'] }}" sizes="(min-width: 896px) 896px, 100vw" @endisset
+            alt="{{ $img['alt'] }}"
+            width="1600"
+            height="1200"
+            @if ($loop->first) fetchpriority="high" style="display: block" @else loading="lazy" style="display: none" @endif
+        />
     @endforeach
     <!-- slideshow nav -->
     <div class="text-center mt-3">
         <!-- The dots/circles -->
         @foreach ($images as $img)
-            <button type="button" class="dot size-5 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition-colors hover:bg-gray-400" onclick="currentSlide({{ $loop->index + 1 }})"></button>
+            <button type="button" aria-label="Show {{ $img['alt'] }}" class="dot size-5 m-1 bg-gray-300 rounded-full cursor-pointer inline-block transition-colors hover:bg-gray-400" onclick="currentSlide({{ $loop->index + 1 }})"></button>
         @endforeach
     </div>
 </div>
@@ -56,6 +64,7 @@
             dots[i].classList.remove("!bg-[#6b7280]")
         }
         slides[slideIndex-1].style.display = "block";
+        slides[slideIndex % slides.length].loading = "eager";
 
         //highlights dot of current image in slideshow
         dots[slideIndex-1].classList.add("!bg-[#6b7280]");

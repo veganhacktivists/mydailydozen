@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailType;
 use App\Models\Group;
-use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -31,13 +30,13 @@ class GroupController extends Controller
         // Fetch today's checkmark counts in a single pivot query and hand them to
         // each card, rather than letting every card query the pivot on mount (N+1).
         $checkCounts = $user->groups()
-            ->wherePivot('recorded_at', Carbon::today())
+            ->wherePivot('recorded_at', $user->today())
             ->get()
             ->mapWithKeys(fn (Group $group) => [$group->id => (int) $group->pivot->checked]);
 
         return view('dashboard')->with([
             'user' => $user,
-            'greeting' => $this->generateGreeting($user->name),
+            'greeting' => $this->generateGreeting($user->name, $user->timezone),
             'groups' => $groups,
             'checkCounts' => $checkCounts,
         ]);
@@ -109,9 +108,9 @@ class GroupController extends Controller
      * @param $name
      * @return string
      */
-    private function generateGreeting($name)
+    private function generateGreeting($name, $timezone)
     {
-        $hour = date('H');
+        $hour = now($timezone ?? config('app.timezone'))->hour;
         $greeting = '';
         if ($hour >= 18) {
             $greeting .= "Good evening, ";

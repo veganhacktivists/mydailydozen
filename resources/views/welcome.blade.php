@@ -4,9 +4,9 @@
         <div class="pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-full">
             <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div class="sm:text-center lg:text-left">
-                    <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+                    <h1 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                         My Daily <span class="text-pine-600">Dozen</span>
-                    </h2>
+                    </h1>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                         Eat healthy and feel good about yourself in the process.
                     </p>
@@ -36,10 +36,10 @@
         <x-carousel
             class="max-w-4xl"
             :images="[
-                ['src' => asset('img/blueberry.webp'), 'alt' => 'blueberries' ],
-                ['src' => asset('img/vegan-food.webp'), 'alt' => 'vegan food' ],
-                ['src' => asset('img/kale.webp'), 'alt' => 'kale' ],
-                ['src' => asset('img/ingredients.jpg'), 'alt' => 'ingredients' ],
+                ['src' => asset('img/blueberry.webp'), 'srcset' => asset('img/blueberry-800.webp').' 800w, '.asset('img/blueberry.webp').' 1600w', 'alt' => 'blueberries' ],
+                ['src' => asset('img/vegan-food.webp'), 'srcset' => asset('img/vegan-food-800.webp').' 800w, '.asset('img/vegan-food.webp').' 1600w', 'alt' => 'vegan food' ],
+                ['src' => asset('img/kale.webp'), 'srcset' => asset('img/kale-800.webp').' 800w, '.asset('img/kale.webp').' 1600w', 'alt' => 'kale' ],
+                ['src' => asset('img/ingredients.jpg'), 'srcset' => asset('img/ingredients-800.webp').' 800w, '.asset('img/ingredients.jpg').' 1000w', 'alt' => 'ingredients' ],
             ]"
         />
     </div>
