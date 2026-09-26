@@ -1,4 +1,4 @@
-@props(['title', 'showNavigation' => false, 'mainClass' => null])
+@props(['title', 'showNavigation' => false, 'mainClass' => null, 'noindex' => false])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -8,22 +8,17 @@
 
         @vite(['resources/js/app.js', 'resources/css/app.css'])
 
-        <title>
-            @isset($title)
-                {{ $title }} –
-            @endisset
-            {{ config('app.name') }}
-            @empty($title)
-                – Track the foods recommended by NutritionFacts.org!
-            @endempty
-        </title>
+        <title>{{ isset($title) ? $title.' – '.config('app.name') : config('app.name').' – Track the foods recommended by NutritionFacts.org!' }}</title>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="canonical" href="{{ url('/') }}" />
+        @if($noindex)
+        <meta name="robots" content="noindex" />
+        @endif
+        <link rel="canonical" href="{{ url()->current() }}" />
         <meta name="description" content="Track the foods recommended by NutritionFacts.org!" />
 
-        <meta property="og:url" content="{{ url('/') }}" />
+        <meta property="og:url" content="{{ url()->current() }}" />
         <meta property="og:title" content="My Daily Dozen" />
         <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
         <meta property="og:image" content="{{ url('og-image.png') }}" />
@@ -31,6 +26,10 @@
         <meta property="og:image:height" content="250" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        @if(request()->is('/'))
+        <script type="application/ld+json">{!! json_encode(['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => config('app.name'), 'url' => url('/')], JSON_UNESCAPED_SLASHES) !!}</script>
+        @endif
 
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/png" href="/favicon.png" />
