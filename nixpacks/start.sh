@@ -19,5 +19,5 @@ php-fpm -y ./nixpacks/php-fpm.conf
 # Start Supervisor
 supervisord -c /etc/supervisord.conf
 
-# Start Nginx
-nginx -c /etc/nginx.conf
+# Start Nginx as PID 1 so it gets the container's stop signal
+exec nginx -c /etc/nginx.conf
