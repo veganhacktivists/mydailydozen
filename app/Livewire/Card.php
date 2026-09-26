@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Group;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class Card extends Component
@@ -28,7 +27,7 @@ class Card extends Component
         $this->group = $group;
         // The dashboard batches today's pivot counts and passes them in to avoid an
         // N+1 query per card; fall back to a lookup when the count isn't provided.
-        $this->checkCount = $checkCount ?? Auth::user()->getCheckCountForGroupAndDate($this->group, Carbon::today());
+        $this->checkCount = $checkCount ?? Auth::user()->getCheckCountForGroupAndDate($this->group, Auth::user()->today());
         $this->updateCheckboxes();
     }
 
@@ -39,7 +38,7 @@ class Card extends Component
 
     public function check($count)
     {
-        $update = Auth::user()->setCheckCountForGroupAndDate($this->group, Carbon::today(), $count);
+        $update = Auth::user()->setCheckCountForGroupAndDate($this->group, Auth::user()->today(), $count);
         $this->checkCount = $update;
         $this->updateCheckboxes();
     }

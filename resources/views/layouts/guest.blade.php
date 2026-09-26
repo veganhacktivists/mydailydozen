@@ -12,6 +12,8 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <x-remember-timezone />
+
         @if($noindex)
         <meta name="robots" content="noindex" />
         @endif
