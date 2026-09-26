@@ -3,6 +3,7 @@
 use App\Http\Controllers\DetailTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HealthController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\UserController;
@@ -30,6 +31,7 @@ if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
 }
 
 
+Route::get('/up', HealthController::class)->withoutMiddleware('web');
 Route::get('/', HomeController::class);
 Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class)->middleware('throttle:contact');
