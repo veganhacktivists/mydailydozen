@@ -15,7 +15,8 @@
         "laravel/jetstream": "^5.5",
         "laravel/sanctum": "^4.3",
         "laravel/tinker": "^3.0",
-        "livewire/livewire": "^3.8"
+        "livewire/livewire": "^3.8",
+        "sentry/sentry-laravel": "^4.28"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.7",
