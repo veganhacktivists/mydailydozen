@@ -1,4 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
 import typography from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
@@ -32,6 +33,7 @@ export default {
                     800: "#304E15",
                     900: "#20340E",
                 },
+                "cool-gray": colors.gray,
             },
         },
     },
