@@ -26,4 +26,17 @@ class AppPagesTest extends TestCase
         preg_match_all('/<a href="\/(\w+)"\s+aria-current="page"/', $html, $current);
         $this->assertSame(['history', 'history'], $current[1]);
     }
+
+    public function test_both_contact_pages_use_the_same_form(): void
+    {
+        $public = $this->get('/contact')->assertOk()->getContent();
+        $signedIn = $this->actingAs($this->makeUser('ada@example.com'))->get('/contact')->assertOk()->getContent();
+
+        foreach ([$public, $signedIn] as $html) {
+            preg_match_all('/<pattern id="([^"]+)"/', $html, $ids);
+            $this->assertCount(2, array_unique($ids[1]));
+            $this->assertSame(1, substr_count($html, 'action="/contact/send"'));
+        }
+        $this->assertStringContainsString('value="ada@example.com"', $signedIn);
+    }
 }
