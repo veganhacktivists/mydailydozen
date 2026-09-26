@@ -13,6 +13,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <x-remember-timezone />
+        <x-umami />
 
         @if($noindex)
         <meta name="robots" content="noindex" />
