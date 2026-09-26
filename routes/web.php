@@ -32,7 +32,7 @@ if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
 
 Route::get('/', HomeController::class);
 Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
-Route::post('/contact/send', SendContactEmailController::class);
+Route::post('/contact/send', SendContactEmailController::class)->middleware('throttle:contact');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
