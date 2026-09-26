@@ -20,7 +20,7 @@ class HistoryController extends Controller
       $user = auth()->user();
       return view('history')->with([
           'history' => json_encode($historyService->buildForUser($user)->values(), JSON_THROW_ON_ERROR),
-          'totalPerDay' => Group::all()->sum('per_day')
+          'totalPerDay' => Group::sum('per_day')
       ]);
   }
 }
