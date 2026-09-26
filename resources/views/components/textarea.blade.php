@@ -1,1 +1,1 @@
-<textarea {{ $attributes->class('border-gray-300 border focus:border-pine-600 focus:outline-none focus:ring-2 focus:ring-pine-500/40 rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200 p-1') }}>{{ $slot }}</textarea>
+<textarea {{ $attributes->class('border-gray-300 border focus:border-pine-600 focus:outline-none focus:ring-2 focus:ring-pine-500/40 rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200 px-3 py-2') }}>{{ $slot }}</textarea>
