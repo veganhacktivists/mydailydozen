@@ -21,9 +21,10 @@
         <meta property="og:url" content="{{ url()->current() }}" />
         <meta property="og:title" content="My Daily Dozen" />
         <meta property="og:description" content="Track the foods recommended by NutritionFacts.org!" />
-        <meta property="og:image" content="{{ url('og-image.png') }}" />
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="250" />
+        <meta property="og:image" content="{{ url('og-image.jpg') }}" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Dr. Greger’s Daily Dozen" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_large_image" />
