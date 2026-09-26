@@ -66,4 +66,14 @@ class CheckCountPersistenceTest extends TestCase
         $this->assertSame(2, $returned);
         $this->assertSame(2, $user->fresh()->getCheckCountForGroupAndDate($group, $today));
     }
+
+    public function test_check_count_cannot_go_below_zero(): void
+    {
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $today = Carbon::today();
+
+        $this->assertSame(0, $user->setCheckCountForGroupAndDate($group, $today, -4));
+        $this->assertSame(0, $user->fresh()->getCheckCountForGroupAndDate($group, $today));
+    }
 }

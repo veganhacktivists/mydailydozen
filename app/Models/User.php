@@ -121,7 +121,7 @@ class User extends Authenticatable
      */
     public function setCheckCountForGroupAndDate($group, $date, $count)
     {
-        $newCount = min($count, $group->per_day);
+        $newCount = max(0, min((int) $count, $group->per_day));
 
         $pivot = $this->groups()
             ->wherePivot('recorded_at', $date)
