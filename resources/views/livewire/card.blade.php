@@ -39,7 +39,6 @@
                     <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
                         @for ($i = 0; $i < $group['per_day']; $i++)
                             <input
-                                @id($group['name'].$i)
                                 type="checkbox"
                                 class="w-6 h-6 ml-2 text-pine-600"
                                 style="cursor: pointer;"

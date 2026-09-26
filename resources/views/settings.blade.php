@@ -13,7 +13,7 @@
             @if($groups->count() > 0)
             <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach($groups as $group)
-                <livewire:card-toggle :group="$group" />
+                <livewire:card-toggle :group="$group" :key="'toggle-'.$group->id" />
                 @endforeach
             </div>
             @else
