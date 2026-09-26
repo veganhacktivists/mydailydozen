@@ -95,8 +95,8 @@
 
       status(date) {
         const event = this.event(date);
-        if (event === undefined) return 'none';
-        if (event.total && event.count >= event.total) return 'complete';
+        if (event === undefined || !event.total) return 'none';
+        if (event.count >= event.total) return 'complete';
         if (event.count > 0) return 'partial';
         return 'missed';
       },
@@ -108,8 +108,7 @@
 
       label(date) {
         const event = this.event(date);
-        if (event === undefined) return '–';
-        return event.total ? `${event.count} / ${event.total}` : '0';
+        return event?.total ? `${event.count} / ${event.total}` : '–';
       },
 
       nextMonth() {
