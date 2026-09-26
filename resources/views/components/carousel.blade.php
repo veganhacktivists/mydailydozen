@@ -8,6 +8,8 @@
             src="{{ $img['src'] }}"
             @isset($img['srcset']) srcset="{{ $img['srcset'] }}" sizes="(min-width: 896px) 896px, 100vw" @endisset
             alt="{{ $img['alt'] }}"
+            width="1600"
+            height="1200"
             @if ($loop->first) fetchpriority="high" style="display: block" @else loading="lazy" style="display: none" @endif
         />
     @endforeach

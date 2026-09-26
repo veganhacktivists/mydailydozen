@@ -49,7 +49,7 @@
             <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                 <div class="gap-x-4 gap-y-2 flex items-center justify-between flex-wrap w-full md:w-auto">
                     <a class="flex-shrink-0" href="{{ url('/') }}" aria-label="Home">
-                        <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.webp') }}" alt="Dr. Greger’s Daily Dozen">
+                        <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.webp') }}" width="694" height="160" alt="Dr. Greger’s Daily Dozen">
                     </a>
                     <div class="-mr-2 flex items-center flex-shrink-0 md:hidden">
                         <a href="/contact"
