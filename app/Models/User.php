@@ -246,6 +246,6 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return $this->email === env('ADMIN_EMAIL');
+        return $this->email === config('app.admin_email');
     }
 }

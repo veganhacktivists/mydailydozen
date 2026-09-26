@@ -7,7 +7,6 @@ use App\Models\Group;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -80,44 +79,13 @@ class GroupController extends Controller
     }
 
     /**
+     * This is for the administrator group edit form.
      * @param Group $group
      * @param Request $request
-     * @return JsonResponse
+     * @return RedirectResponse|Redirector
      * @throws ValidationException
      */
     public function update(Group $group, Request $request)
-    {
-        if (Auth::user()->isAdmin()) {
-            return $this->adminUpdate($group, $request);
-        }
-        return $this->userUpdate($group, $request);
-    }
-
-    /**
-     * Regular user checking a group checkbox.
-     * @param Group $group
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
-    private function userUpdate($group, $request)
-    {
-        $this->validate($request, [
-            'checked' => 'required',
-        ]);
-
-        $result = Auth::user()->checkEvent($group, $request->checked);
-        return response()->json($result, 201);
-    }
-
-    /**
-     * This is for the administrator group edit form.
-     * @param $group
-     * @param $request
-     * @return Application|JsonResponse|RedirectResponse|Redirector
-     * @throws ValidationException
-     */
-    private function adminUpdate($group, $request)
     {
         $this->validate($request, [
             'name' => 'required',

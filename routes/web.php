@@ -38,17 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([
         'index',
         'show',
-        'update'
     ]);
-    Route::get('groups/{group}/edit/{detailType?}', [GroupController::class, 'edit']);
-
-
-    Route::get('groups/{group}/serving-sizes/create', [ServingSizeController::class, 'create']);
-    Route::post('groups/{group}/serving-sizes', [ServingSizeController::class, 'store']);
-    Route::get('groups/{group}/serving-sizes/{servingSize}/edit', [ServingSizeController::class, 'edit']);
-    Route::put('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'update']);
-    Route::delete('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'destroy']);
-
 
     Route::get('history', [HistoryController::class, 'index'])->name('history');
     Route::get('settings', [UserController::class, 'show'])->name('settings');
@@ -61,7 +51,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 /*
  * Admin routes
  */
-Route::middleware(['auth', 'admin'])->namespace('Admin')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+    Route::get('groups/{group}/edit/{detailType?}', [GroupController::class, 'edit']);
+
+    Route::scopeBindings()->group(function () {
+        Route::get('groups/{group}/serving-sizes/create', [ServingSizeController::class, 'create']);
+        Route::post('groups/{group}/serving-sizes', [ServingSizeController::class, 'store']);
+        Route::get('groups/{group}/serving-sizes/{servingSize}/edit', [ServingSizeController::class, 'edit']);
+        Route::put('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'update']);
+        Route::delete('groups/{group}/serving-sizes/{servingSize}', [ServingSizeController::class, 'destroy']);
+    });
+
     Route::post('/details', [DetailTypeController::class, 'store'])->name('detail.store');
     Route::put('/details/{detail}', [DetailTypeController::class, 'update'])->name('detail.update');
     Route::delete('/details/{detail}', [DetailTypeController::class, 'destroy'])->name('detail.destroy');

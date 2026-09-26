@@ -10,8 +10,9 @@ class DetailTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'groupId' => 'required|exists:groups,id',
             'name' => 'required',
-            'video' => 'required',
+            'video' => 'required|url:https',
             'info' => 'required',
         ]);
 
@@ -29,7 +30,7 @@ class DetailTypeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'video' => 'required',
+            'video' => 'required|url:https',
             'info' => 'required',
         ]);
 
@@ -40,17 +41,17 @@ class DetailTypeController extends Controller
         $detailType->info = $request->info;
         $detailType->save();
 
-        return redirect('groups/' . $request->groupId);
+        return redirect('groups/' . $detailType->group_id);
     }
 
     public function destroy(Request $request, $detailTypeId)
     {
         $detailType = DetailType::findOrFail($detailTypeId);
 
-        if (DetailType::all()->count() > 1) {
+        if ($detailType->group->detailTypes()->count() > 1) {
             $detailType->delete();
         }
 
-        return redirect('groups/' . $request->groupId);
+        return redirect('groups/' . $detailType->group_id);
     }
 }
