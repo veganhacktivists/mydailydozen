@@ -1,5 +1,5 @@
 <footer>
-    <div class="py-4 flex flex-col md:flex-row w-fit mx-auto text-gray-400 text-center md:divide-x first:[&>*]:pl-0 last:[&>*]:pr-0 [&>*]:px-2">
+    <div class="py-4 flex flex-col md:flex-row w-fit mx-auto text-gray-500 text-center md:divide-x first:[&>*]:pl-0 last:[&>*]:pr-0 [&>*]:px-2">
         <div>
             Get the <x-link href="https://apps.apple.com/us/app/dr-gregers-daily-dozen/id1060700802">iOS</x-link>
             or
