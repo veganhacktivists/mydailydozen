@@ -121,7 +121,7 @@ class User extends Authenticatable
      */
     public function setCheckCountForGroupAndDate($group, $date, $count)
     {
-        $newCount = min($count, $group->per_day);
+        $newCount = max(0, min((int) $count, $group->per_day));
 
         $pivot = $this->groups()
             ->wherePivot('recorded_at', $date)
@@ -246,6 +246,6 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return $this->email === env('ADMIN_EMAIL');
+        return $this->email === config('app.admin_email');
     }
 }

@@ -8,9 +8,9 @@
         <div>
             Visit <x-link href="https://nutritionfacts.org/">NutritionFacts.org</x-link>
         </div>
-        @if(env('MAIL_RECIPIENT'))
+        @if(config('mail.recipient'))
         <div>
-            <x-link href="mailto:{{ env('MAIL_RECIPIENT') }}">Get in touch!</x-link>
+            <x-link href="mailto:{{ config('mail.recipient') }}">Get in touch!</x-link>
         </div>
         @endif
     </div>

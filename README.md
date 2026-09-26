@@ -12,7 +12,7 @@ servings of each we should try to check off every day.
 
 ## Setup
 
-Laravel 11 on PHP 8.3, run through [Laravel Sail](https://laravel.com/docs/11.x/sail),
+Laravel 13 on PHP 8.3, run through [Laravel Sail](https://laravel.com/docs/13.x/sail),
 which brings up the app, PostgreSQL and Mailpit in Docker. The front end needs
 Node 22 and pnpm.
 
@@ -33,7 +33,7 @@ Seeding loads the food groups and, outside production, a dev login of
 
 Without PHP and Composer on your machine, run that first `composer install` in a
 container instead — see
-[Executing Composer Commands](https://laravel.com/docs/11.x/sail#executing-composer-commands).
+[Executing Composer Commands](https://laravel.com/docs/13.x/sail#executing-composer-commands).
 
 ## Database setup
 

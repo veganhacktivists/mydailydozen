@@ -30,4 +30,6 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'coolify_proxy_ips' => array_values(array_filter(array_map('trim', explode(',', env('COOLIFY_PROXY_IPS', ''))))),
+
 ];

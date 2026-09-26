@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\ServingSize;
-use Auth;
 use Illuminate\Http\Request;
 
 class ServingSizeController extends Controller
@@ -41,17 +40,14 @@ class ServingSizeController extends Controller
      */
     public function store(Group $group, Request $request)
     {
-        if (Auth::user()->isAdmin()) {
-            
-          $servingSize = new ServingSize($this->validate($request, [
+        $servingSize = new ServingSize($this->validate($request, [
             'size_metric' => 'required',
             'size_imperial' => 'required'
-          ]));
-          $servingSize->group_id = $group->id;
-        
-          $servingSize->save();
-          return redirect("groups/".$servingSize->group->id."/edit");
-        }
+        ]));
+        $servingSize->group_id = $group->id;
+
+        $servingSize->save();
+        return redirect("groups/".$servingSize->group->id."/edit");
     }
 
     /**
@@ -62,19 +58,16 @@ class ServingSizeController extends Controller
      */
     public function update(Group $group, ServingSize $servingSize, Request $request)
     {
-        if (Auth::user()->isAdmin()) {
-
-            $this->validate($request, [
+        $this->validate($request, [
             'size_metric' => 'required',
             'size_imperial' => 'required'
         ]);
 
         $servingSize->size_metric = $request->size_metric;
         $servingSize->size_imperial = $request->size_imperial;
-       
+
         $servingSize->save();
         return redirect("groups/".$servingSize->group->id."/edit");
-        }
     }
 
         /**
@@ -85,9 +78,7 @@ class ServingSizeController extends Controller
      */
     public function destroy(Group $group, ServingSize $servingSize, Request $request)
     {
-        if (Auth::user()->isAdmin()) {
-          $servingSize->delete();
-          return back();
-        }
+        $servingSize->delete();
+        return back();
     }
 }

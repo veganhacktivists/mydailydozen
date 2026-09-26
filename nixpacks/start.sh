@@ -5,6 +5,8 @@ set -euo pipefail
 # Run Laravel migrations
 php artisan migrate --force
 
+php artisan optimize
+
 # Create a public symlink to the storage directory
 php artisan storage:link
 

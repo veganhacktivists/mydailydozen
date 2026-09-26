@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Group;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
@@ -11,26 +9,6 @@ use Tests\TestCase;
 class CheckCountPersistenceTest extends TestCase
 {
     use RefreshDatabase;
-
-    private function makeUser(): User
-    {
-        return User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
-        ]);
-    }
-
-    private function makeGroup(int $perDay = 3): Group
-    {
-        return Group::create([
-            'category_id' => '1',
-            'name' => 'Beans',
-            'icon_location' => 'icon.png',
-            'banner_location' => 'banner.png',
-            'per_day' => $perDay,
-        ]);
-    }
 
     /**
      * Regression: the first checkbox tick of a food group on a given day used to
@@ -87,5 +65,15 @@ class CheckCountPersistenceTest extends TestCase
 
         $this->assertSame(2, $returned);
         $this->assertSame(2, $user->fresh()->getCheckCountForGroupAndDate($group, $today));
+    }
+
+    public function test_check_count_cannot_go_below_zero(): void
+    {
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $today = Carbon::today();
+
+        $this->assertSame(0, $user->setCheckCountForGroupAndDate($group, $today, -4));
+        $this->assertSame(0, $user->fresh()->getCheckCountForGroupAndDate($group, $today));
     }
 }
