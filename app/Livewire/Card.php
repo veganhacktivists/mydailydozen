@@ -41,5 +41,6 @@ class Card extends Component
         $update = Auth::user()->setCheckCountForGroupAndDate($this->group, Auth::user()->today(), $count);
         $this->checkCount = $update;
         $this->updateCheckboxes();
+        $this->dispatch('serving-checked', group: $this->group->id, count: $update);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class AppPagesTest extends TestCase
@@ -38,5 +40,15 @@ class AppPagesTest extends TestCase
             $this->assertSame(1, substr_count($html, 'action="/contact/send"'));
         }
         $this->assertStringContainsString('value="ada@example.com"', $signedIn);
+    }
+
+    public function test_ticking_a_serving_tells_the_daily_total(): void
+    {
+        $this->actingAs($this->makeUser());
+        $group = $this->makeGroup(perDay: 3);
+
+        Livewire::test(Card::class, ['group' => $group])
+            ->call('check', 2)
+            ->assertDispatched('serving-checked', group: $group->id, count: 2);
     }
 }
