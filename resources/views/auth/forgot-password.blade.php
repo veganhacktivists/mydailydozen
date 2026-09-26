@@ -9,7 +9,7 @@
         </div>
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 rounded-lg bg-pine-50 px-3 py-2 text-sm font-medium text-pine-800 ring-1 ring-pine-200" role="status">
                 {{ session('status') }}
             </div>
         @endif
@@ -20,8 +20,8 @@
             @csrf
 
             <div class="block">
-                <x-label value="{{ __('Email') }}" />
-                <x-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-label for="email" value="{{ __('Email') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" autocomplete="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">

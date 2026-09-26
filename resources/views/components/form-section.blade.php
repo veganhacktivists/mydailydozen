@@ -8,7 +8,7 @@
 
     <div class="mt-5 md:mt-0 md:col-span-2">
         <form wire:submit="{{ $submit }}">
-            <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
                         {{ $form }}
@@ -16,7 +16,7 @@
                 </div>
 
                 @if (isset($actions))
-                    <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <div class="flex items-center justify-end border-t border-gray-100 bg-gray-50 px-4 py-3 text-right sm:px-6">
                         {{ $actions }}
                     </div>
                 @endif

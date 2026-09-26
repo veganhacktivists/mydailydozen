@@ -1,89 +1,49 @@
 <x-master>
-  <div class="relative py-16 bg-white overflow-hidden">
-    <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
-      <div class="relative h-full text-lg max-w-prose mx-auto">
-        <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none"
-          viewBox="0 0 404 384">
-          <defs>
-            <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20"
-              patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
-        </svg>
-        <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32" width="404" height="384"
-          fill="none" viewBox="0 0 404 384">
-          <defs>
-            <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20"
-              patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
-        </svg>
-        <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none"
-          viewBox="0 0 404 384">
-          <defs>
-            <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20"
-              patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
-        </svg>
-      </div>
-    </div>
-    <div class="relative px-4 sm:px-6 lg:px-8">
-      <div class="text-lg max-w-prose mx-auto mb-6">
-        <p class="text-base leading-6 text-teal-600 font-semibold tracking-wide uppercase">More
-          About</p>
-        <h1 class="mt-2 mb-8 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-          {{ $group->name }}</h1>
-      </div>
-      <div x-data="{ metric: true }" class="prose prose-lg text-gray-500 mx-auto">
+  <div class="mt-8">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
         @if($group->banner_location !== "/img/dummy_banner.png")
-            <figure>
-            <img class="w-full h-32 rounded-lg" style="object-fit: cover;" src="{{ asset($group->banner_location) }}"
-                alt="{{ $group->name }} header">
-            </figure>
+          <img class="h-40 w-full object-cover sm:h-56" src="{{ asset($group->banner_location) }}" alt="{{ $group->name }} header">
         @endif
-        <h3>{{ __('Serving Sizes') }}</h3>
-        <div class="btn-group btn-group-toggle inline" data-toggle="buttons">
-          <span class="inline-flex rounded-sm">
-            <button x-on:click="metric = true"
-              class="inline-flex items-center px-4 py-2 text-sm leading-4 hover:bg-pine-50 font-medium rounded focus:outline-none focus:border-pine-700 focus:shadow-outline-pine transition ease-in-out duration-150"
-              :class="{'text-white bg-pine-600 hover:bg-pine-500 active:bg-pine-700': metric}">
-              Metric
-            </button>
-          </span>
-          <span class="inline-flex rounded-sm ">
-            <button x-on:click="metric = false"
-              class="inline-flex items-center px-4 py-2 text-sm leading-4 hover:bg-pine-50 font-medium rounded  focus:outline-none focus:border-pine-700 focus:shadow-outline-pine  transition ease-in-out duration-150"
-              :class="{'text-white bg-pine-600 hover:bg-pine-500 active:bg-pine-700': !metric}">
-              Imperial
-            </button>
-          </span>
-        </div>
-        <ul>
-          @foreach ($servingSizes as $servingSize)
-          <li x-show="!metric">{{ $servingSize->size_imperial }}</li>
-          <li x-show="metric">{{ $servingSize->size_metric }}</li>
-          @endforeach
-        </ul>
+        <div class="p-6 sm:p-10">
+          <p class="text-sm font-semibold uppercase tracking-wide text-pine-700">More About</p>
+          <h1 class="mt-1 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $group->name }}</h1>
 
-        <h3>{{ __('More Information') }}</h3>
-        <div class="">
-            @foreach ($detailTypes as $detailType)
-            <div class="border-0 p-1" style="margin-bottom: 10px;">
-                <iframe width="100%" height="300px" src="{{ $detailType->video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="">
-                        <p class="">{!! nl2br(e($detailType->info)) !!}</p>
-                    </div>
-                </div>
+          <section x-data="{ metric: true }" class="mt-8">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <h2 class="text-xl font-semibold text-gray-900">{{ __('Serving Sizes') }}</h2>
+              <div class="inline-flex rounded-lg bg-gray-100 p-1">
+                @foreach (['Metric' => 'true', 'Imperial' => 'false'] as $system => $value)
+                  <button type="button" x-on:click="metric = {{ $value }}" :aria-pressed="(metric === {{ $value }}).toString()"
+                    class="rounded-md px-3 py-1.5 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500"
+                    :class="metric === {{ $value }} ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'">
+                    {{ $system }}
+                  </button>
+                @endforeach
+              </div>
+            </div>
+            @foreach (['size_metric' => 'metric', 'size_imperial' => '!metric'] as $size => $shown)
+              <ul class="mt-4 divide-y divide-gray-100 rounded-xl ring-1 ring-gray-200" x-show="{{ $shown }}" @if ($size === 'size_imperial') x-cloak @endif>
+                @foreach ($servingSizes as $servingSize)
+                  <li class="px-4 py-3 text-gray-700">{{ $servingSize->$size }}</li>
+                @endforeach
+              </ul>
             @endforeach
+          </section>
+
+          <section class="mt-10">
+            <h2 class="text-xl font-semibold text-gray-900">{{ __('More Information') }}</h2>
+            @foreach ($detailTypes as $detailType)
+              <div class="mt-4 aspect-video overflow-hidden rounded-xl bg-gray-100">
+                <iframe class="size-full" src="{{ $detailType->video }}" title="{{ $detailType->name }}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="prose prose-lg mt-6 max-w-none text-gray-600">
+                <p>{!! nl2br(e($detailType->info)) !!}</p>
+              </div>
+            @endforeach
+          </section>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </x-master>

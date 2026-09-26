@@ -13,7 +13,7 @@
 
     <div class="flex-1 overflow-auto focus:outline-none" tabindex="0">
       <x-appbar></x-appbar>
-      <main class="flex-1 relative pb-8 z-0 overflow-y-auto">
+      <main class="flex-1 relative pb-8 overflow-y-auto">
         {{$slot}}
       </main>
     </div>
