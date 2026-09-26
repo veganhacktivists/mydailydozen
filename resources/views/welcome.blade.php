@@ -36,10 +36,10 @@
         <x-carousel
             class="max-w-4xl"
             :images="[
-                ['src' => asset('img/blueberry.webp'), 'alt' => 'blueberries' ],
-                ['src' => asset('img/vegan-food.webp'), 'alt' => 'vegan food' ],
-                ['src' => asset('img/kale.webp'), 'alt' => 'kale' ],
-                ['src' => asset('img/ingredients.jpg'), 'alt' => 'ingredients' ],
+                ['src' => asset('img/blueberry.webp'), 'srcset' => asset('img/blueberry-800.webp').' 800w, '.asset('img/blueberry.webp').' 1600w', 'alt' => 'blueberries' ],
+                ['src' => asset('img/vegan-food.webp'), 'srcset' => asset('img/vegan-food-800.webp').' 800w, '.asset('img/vegan-food.webp').' 1600w', 'alt' => 'vegan food' ],
+                ['src' => asset('img/kale.webp'), 'srcset' => asset('img/kale-800.webp').' 800w, '.asset('img/kale.webp').' 1600w', 'alt' => 'kale' ],
+                ['src' => asset('img/ingredients.jpg'), 'srcset' => asset('img/ingredients-800.webp').' 800w, '.asset('img/ingredients.jpg').' 1000w', 'alt' => 'ingredients' ],
             ]"
         />
     </div>
