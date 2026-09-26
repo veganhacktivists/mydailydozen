@@ -1,40 +1,33 @@
-<button
-  wire:click="toggleGroup"
-  class="{{ $checked ? 'border-pine-400' : 'border-red-400'  }} p-4 border-2 bg-white overflow-hidden rounded-2xl focus:outline-none focus:shadow-outline group"
->
-    <div class="flex gap-3">
-        <div class="flex-shrink-0 rounded-xl overflow-hidden">
-            <img style="border-radius: 12px;" class="w-16 h-16" src="{{ $group->icon_location }}" alt="Icon">
-        </div>
-        <div class="flex justify-between flex-col w-full min-w-0">
-            <div class="flex items-center truncate">
-                <div class="min-w-0">
-                    <h6 class="text-xl font-bold text-dark truncate">
-                        {{ $group['name'] }}
-                    </h6>
-                </div>
-            </div>
+<div wire:click="toggleGroup" @class([
+    'flex cursor-pointer items-center gap-3 rounded-2xl p-4 shadow-sm ring-1 transition',
+    'bg-white ring-pine-300 hover:ring-pine-400' => $checked,
+    'bg-gray-50 ring-gray-200 hover:ring-gray-300' => ! $checked,
+])>
+    <img @class(['size-14 flex-shrink-0 rounded-xl transition', 'opacity-50 grayscale' => ! $checked]) src="{{ $group->icon_location }}" alt="">
+    <div class="min-w-0 flex-1">
+        <h2 @class(['truncate text-lg font-semibold', 'text-gray-900' => $checked, 'text-gray-500' => ! $checked])>
+            {{ $group['name'] }}
+        </h2>
+        <div class="-ml-1.5 mt-0.5 flex items-center">
+            <a href="/groups/{{ $group['id'] }}/" aria-label="{{ $group['name'] }}" @click.stop
+                class="rounded-full p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-pine-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                <x-icons.information-circle class="size-5" />
+            </a>
             @if (Auth::user()->isAdmin())
-                <a href="/groups/{{ $group['id'] }}/edit/{{ $group->detailTypes->first()->id }}" class="ml-1">
-                    <x-icons.pencil class="size-6" />
+                <a href="/groups/{{ $group['id'] }}/edit/{{ $group->detailTypes->first()->id }}" @click.stop
+                    class="rounded-full p-1.5 transition hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                    <x-icons.pencil class="size-5" />
                 </a>
             @endif
         </div>
-        <div class="flex flex-col justify-between">
-                <div class="flex-shrink-0 group-hover:opacity-100 opacity-0 transition-opacity">
-                    <a href="/groups/{{ $group['id'] }}/">
-                        <x-icons.information-circle class="max-w-full text-[#bababa]" />
-                    </a>
-                </div>
-                @if ($checked)
-                    <span class="text-pine-400">
-                        <x-icons.check-circle />
-                    </span>
-                @else
-                    <span class="text-red-400">
-                        <x-icons.close-circle />
-                    </span>
-                @endif
-        </div>
     </div>
-</button>
+    <button type="button" role="switch" aria-checked="{{ $checked ? 'true' : 'false' }}" aria-label="{{ $group['name'] }}"
+        wire:loading.class="opacity-60"
+        @class([
+            'relative inline-flex h-7 w-12 flex-shrink-0 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2',
+            'bg-pine-600' => $checked,
+            'bg-gray-300' => ! $checked,
+        ])>
+        <span @class(['inline-block size-5 rounded-full bg-white shadow transition-transform', 'translate-x-6' => $checked, 'translate-x-1' => ! $checked])></span>
+    </button>
+</div>

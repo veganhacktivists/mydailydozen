@@ -1,13 +1,16 @@
 <!-- Off-canvas menu for mobile -->
-<div class="lg:hidden" x-show="mobileNavOpened">
+<div class="lg:hidden" x-show="mobileNavOpened" x-cloak x-transition:leave="transition duration-200"
+  @keydown.escape.window="mobileNavOpened = false">
   <div class="fixed inset-0 flex z-40">
-    <div class="fixed inset-0">
-      <div class="absolute inset-0 bg-cool-gray-600 opacity-75"></div>
-    </div>
-    <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-pine-600">
+    <div class="fixed inset-0 bg-cool-gray-600/75" aria-hidden="true" @click="mobileNavOpened = false"
+      x-show="mobileNavOpened" x-transition.opacity.duration.200ms></div>
+    <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-pine-600"
+      x-show="mobileNavOpened"
+      x-transition:enter="transition ease-out duration-200" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+      x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full">
       <div class="absolute top-0 right-0 -mr-14 p-1">
         <button @click="mobileNavOpened = false"
-          class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-cool-gray-600"
+          class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           aria-label="Close sidebar">
           <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -19,33 +22,30 @@
       </div>
       <div class="mt-5 overflow-y-auto">
         <nav class="px-2 space-y-1">
-          <a href="/groups"
-            class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-pine-700 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
-            <x-icons.home />
-            My Groups
-          </a>
-
-          <a href="/history"
-            class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
-            <x-icons.clock />
-            View History
-          </a>
+          <x-desktop-nav-link class="text-base" link="groups" text="My Groups">
+            <x-slot name="icon">
+              <x-icons.home />
+            </x-slot>
+          </x-desktop-nav-link>
+          <x-desktop-nav-link class="text-base" link="history" text="View History">
+            <x-slot name="icon">
+              <x-icons.clock />
+            </x-slot>
+          </x-desktop-nav-link>
         </nav>
       </div>
       <div class="mt-6 flex-1 h-0 overflow-y-auto">
         <nav class="px-2 space-y-1">
-          <a href="/settings"
-            class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
-            <!-- Heroicon name: cog -->
-            <x-icons.cog />
-            Customize
-          </a>
-
-          <a href="/contact"
-            class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-pine-100 hover:text-white hover:bg-pine-500 focus:outline-none focus:bg-pine-500 transition ease-in-out duration-150">
-            <x-icons.question-mark-circle />
-            Contact
-          </a>
+          <x-desktop-nav-link class="text-base" link="settings" text="Customize">
+            <x-slot name="icon">
+              <x-icons.cog />
+            </x-slot>
+          </x-desktop-nav-link>
+          <x-desktop-nav-link class="text-base" link="contact" text="Contact">
+            <x-slot name="icon">
+              <x-icons.question-mark-circle />
+            </x-slot>
+          </x-desktop-nav-link>
         </nav>
       </div>
     </div>

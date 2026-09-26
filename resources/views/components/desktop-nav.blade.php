@@ -9,13 +9,13 @@
         <div class="overflow-y-auto">
           <nav class="px-2 space-y-1">
 
-            <x-desktop-nav-link link="groups" text="My Groups">
+            <x-desktop-nav-link class="text-sm" link="groups" text="My Groups">
               <x-slot name="icon">
                 <x-icons.home />
               </x-slot>
             </x-desktop-nav-link>
 
-            <x-desktop-nav-link link="history" text="View History">
+            <x-desktop-nav-link class="text-sm" link="history" text="View History">
               <x-slot name="icon">
                 <x-icons.clock />
               </x-slot>
@@ -25,13 +25,13 @@
         <div class="mt-6 flex-1 h-0 overflow-y-auto">
           <nav class="px-2 space-y-1">
 
-            <x-desktop-nav-link link="settings" text="Customize">
+            <x-desktop-nav-link class="text-sm" link="settings" text="Customize">
               <x-slot name="icon">
                 <x-icons.cog />
               </x-slot>
             </x-desktop-nav-link>
 
-            <x-desktop-nav-link link="contact" text="Contact">
+            <x-desktop-nav-link class="text-sm" link="contact" text="Contact">
               <x-slot name="icon">
                 <x-icons.question-mark-circle />
               </x-slot>

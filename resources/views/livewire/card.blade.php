@@ -1,54 +1,46 @@
-<div
-    @class('border-2 p-4 bg-white overflow-hidden rounded-2xl', $checkCount ===  $group->per_day ? 'border-pine-400' : 'border-cool-gray-100')
->
-    <div class="flex gap-3 h-full">
-        <div class="flex-shrink-0 rounded-xl overflow-hidden">
-            <img class="rounded-xl size-16" src="{{ $group->icon_location }}" alt="">
-        </div>
-        <div class="flex justify-between flex-grow min-w-0 flex-col">
-            <div class="flex gap-3 items-center justify-between">
-                <div class="flex flex-shrink gap-3 items-center min-w-0">
-                    <div class="min-w-0 w-fit max-w-full">
-                        <h6 class="text-xl font-medium truncate">
-                            {{ $group['name'] }}
-                        </h6>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <a href="/groups/{{ $group['id'] }}/">
-                            <x-icons.information-circle class="max-w-full text-[#bababa]" />
-                        </a>
-                    </div>
-                </div>
-                @if (Auth::user()->isAdmin())
-                    <a href="/groups/{{ $group['id'] }}/edit/{{ $group->detailTypes->first()->id }}" class="ml-1">
-                        <x-icons.pencil class="size-6" />
-                    </a>
-                @endif
-            </div>
+@php($done = $checkCount >= $group->per_day)
+<div @class([
+    'flex flex-col justify-between gap-4 rounded-2xl p-4 shadow-sm ring-1 transition-colors duration-300',
+    'bg-pine-50 ring-pine-300' => $done,
+    'bg-white ring-gray-200' => ! $done,
+])>
+    <div class="flex items-start gap-3">
+        <img class="size-14 flex-shrink-0 rounded-xl" src="{{ $group->icon_location }}" alt="">
+        <div class="min-w-0 flex-1">
+            <h2 class="truncate text-lg font-semibold text-gray-900">{{ $group['name'] }}</h2>
             @if($group['subtitle'])
-                <div>
-                    {{ $group['subtitle'] }}
-                </div>
+                <p class="truncate text-sm text-gray-500">{{ $group['subtitle'] }}</p>
             @endif
-            <div class="flex items-end justify-end">
-                <div class="flex items-center">
-                    <span class="text-muted text-[15px] font-medium text-[#4e4e4e]/35"
-                    >
-                        {{ $checkCount ?? 0 }} /
-                        {{ $group->per_day}}</span>
-                    <div class="flex text-lg leading-7 font-medium text-cool-gray-900">
-                        @for ($i = 0; $i < $group['per_day']; $i++)
-                            <input
-                                type="checkbox"
-                                class="w-6 h-6 ml-2 text-pine-600"
-                                style="cursor: pointer;"
-                                wire:click.prevent="check({{$i < $checkCount ? $i : $i + 1}})"
-                                wire:model="checkboxes.{{ $i }}"
-                            />
-                        @endfor
-                    </div>
-                </div>
-            </div>
         </div>
+        <div class="-mr-1 -mt-1 flex flex-shrink-0 items-center">
+            <a href="/groups/{{ $group['id'] }}/" aria-label="{{ $group['name'] }}"
+                class="rounded-full p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-pine-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                <x-icons.information-circle class="size-6" />
+            </a>
+            @if (Auth::user()->isAdmin())
+                <a href="/groups/{{ $group['id'] }}/edit/{{ $group->detailTypes->first()->id }}"
+                    class="rounded-full p-1.5 transition hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                    <x-icons.pencil class="size-6" />
+                </a>
+            @endif
+        </div>
+    </div>
+    <div class="flex items-center justify-between gap-3">
+        <div class="flex flex-wrap gap-2" wire:loading.class="opacity-60">
+            @for ($i = 0; $i < $group['per_day']; $i++)
+                <input
+                    type="checkbox"
+                    class="serving"
+                    aria-label="{{ $group['name'] }} {{ $i + 1 }} / {{ $group->per_day }}"
+                    wire:click.prevent="check({{$i < $checkCount ? $i : $i + 1}})"
+                    wire:model="checkboxes.{{ $i }}"
+                />
+            @endfor
+        </div>
+        <span @class([
+            'flex-shrink-0 text-sm font-semibold tabular-nums',
+            'text-pine-700' => $done,
+            'text-gray-500' => ! $done,
+        ])>{{ $checkCount ?? 0 }} / {{ $group->per_day }}</span>
     </div>
 </div>
