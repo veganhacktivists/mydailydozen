@@ -36,9 +36,9 @@
         <x-carousel
             class="max-w-4xl"
             :images="[
-                ['src' => asset('img/blueberry.png'), 'alt' => 'blueberries' ],
-                ['src' => asset('img/vegan-food.png'), 'alt' => 'vegan food' ],
-                ['src' => asset('img/kale.png'), 'alt' => 'kale' ],
+                ['src' => asset('img/blueberry.webp'), 'alt' => 'blueberries' ],
+                ['src' => asset('img/vegan-food.webp'), 'alt' => 'vegan food' ],
+                ['src' => asset('img/kale.webp'), 'alt' => 'kale' ],
                 ['src' => asset('img/ingredients.jpg'), 'alt' => 'ingredients' ],
             ]"
         />
