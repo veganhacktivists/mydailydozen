@@ -9,7 +9,7 @@
         </div>
 
         @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 rounded-lg bg-pine-50 px-3 py-2 text-sm font-medium text-pine-800 ring-1 ring-pine-200" role="status">
                 {{ __('A new verification link has been sent to the email address you provided during registration.') }}
             </div>
         @endif
