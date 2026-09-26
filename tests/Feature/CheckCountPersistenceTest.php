@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Group;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
@@ -11,26 +9,6 @@ use Tests\TestCase;
 class CheckCountPersistenceTest extends TestCase
 {
     use RefreshDatabase;
-
-    private function makeUser(): User
-    {
-        return User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
-        ]);
-    }
-
-    private function makeGroup(int $perDay = 3): Group
-    {
-        return Group::create([
-            'category_id' => '1',
-            'name' => 'Beans',
-            'icon_location' => 'icon.png',
-            'banner_location' => 'banner.png',
-            'per_day' => $perDay,
-        ]);
-    }
 
     /**
      * Regression: the first checkbox tick of a food group on a given day used to
