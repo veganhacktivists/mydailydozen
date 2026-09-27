@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Group;
 use App\Models\ServingSize;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -19,11 +20,18 @@ class AdminRoutesTest extends TestCase
         parent::setUp();
 
         $this->withoutVite();
-        config(['app.admin_email' => 'admin@example.com']);
 
         $this->group = $this->makeGroup();
         $this->servingSize = $this->group->servingSizes()->create(['size_metric' => '130 g', 'size_imperial' => '½ cup']);
         $this->group->detailTypes()->create(['name' => 'Why', 'video' => 'https://www.youtube.com/embed/abc', 'info' => 'Info']);
+    }
+
+    private function makeAdmin(): User
+    {
+        $admin = $this->makeUser('admin@example.com');
+        $admin->forceFill(['is_admin' => true])->save();
+
+        return $admin;
     }
 
     private function groupFields(array $overrides = []): array
@@ -59,7 +67,7 @@ class AdminRoutesTest extends TestCase
 
     public function test_the_admin_can_edit_a_group(): void
     {
-        $this->actingAs($this->makeUser('admin@example.com'));
+        $this->actingAs($this->makeAdmin());
 
         $this->get("/groups/{$this->group->id}/edit")->assertOk();
         $this->put("/groups/{$this->group->id}", $this->groupFields(['name' => 'Beans and lentils']))->assertRedirect();
@@ -69,7 +77,7 @@ class AdminRoutesTest extends TestCase
 
     public function test_a_serving_size_is_only_reachable_through_its_own_group(): void
     {
-        $this->actingAs($this->makeUser('admin@example.com'));
+        $this->actingAs($this->makeAdmin());
         $other = $this->makeGroup();
 
         $this->delete("/groups/{$other->id}/serving-sizes/{$this->servingSize->id}")->assertNotFound();
@@ -79,7 +87,7 @@ class AdminRoutesTest extends TestCase
 
     public function test_a_groups_last_detail_type_is_kept(): void
     {
-        $this->actingAs($this->makeUser('admin@example.com'));
+        $this->actingAs($this->makeAdmin());
         $this->makeGroup()->detailTypes()->create(['name' => 'Why', 'video' => 'https://www.youtube.com/embed/def', 'info' => 'Info']);
         $only = $this->group->detailTypes()->first();
 
@@ -90,7 +98,7 @@ class AdminRoutesTest extends TestCase
 
     public function test_a_detail_video_has_to_be_an_https_link(): void
     {
-        $this->actingAs($this->makeUser('admin@example.com'));
+        $this->actingAs($this->makeAdmin());
 
         $this->post('/details', [
             'groupId' => $this->group->id,
@@ -100,5 +108,54 @@ class AdminRoutesTest extends TestCase
         ])->assertSessionHasErrors('video');
 
         $this->assertDatabaseCount('detail_types', 1);
+    }
+
+    public function test_a_detail_video_has_to_be_a_youtube_embed(): void
+    {
+        $this->actingAs($this->makeAdmin());
+        $detail = $this->group->detailTypes()->first();
+
+        $this->put("/details/{$detail->id}", ['name' => 'Why', 'video' => 'https://attacker.example/embed/abcdefghijk', 'info' => 'Info'])
+            ->assertSessionHasErrors('video');
+        $this->put("/details/{$detail->id}", ['name' => 'Why', 'video' => 'https://www.youtube.com/embed/-mOYGq24xQc', 'info' => 'Info'])
+            ->assertSessionHasNoErrors();
+
+        $this->assertSame('https://www.youtube.com/embed/-mOYGq24xQc', $detail->fresh()->video);
+    }
+
+    public function test_taking_the_admin_email_does_not_make_you_admin(): void
+    {
+        config(['app.admin_email' => 'admin@example.com']);
+        $user = $this->makeUser('someone@example.com');
+        $user->forceFill(['email' => 'admin@example.com'])->save();
+
+        $this->actingAs($user)->get("/groups/{$this->group->id}/edit")->assertNotFound();
+    }
+
+    public function test_the_admin_email_is_carried_over_once(): void
+    {
+        $admin = $this->makeUser('Admin@Example.com');
+        $other = $this->makeUser('other@example.com');
+        config(['app.admin_email' => 'admin@example.com']);
+        $migration = require database_path('migrations/2026_09_27_000000_add_is_admin_to_users_table.php');
+
+        $migration->down();
+        $migration->up();
+
+        $this->assertTrue($admin->fresh()->isAdmin());
+        $this->assertFalse($other->fresh()->isAdmin());
+    }
+
+    public function test_an_admin_can_be_granted_and_revoked(): void
+    {
+        $user = $this->makeUser('ada@example.com');
+
+        $this->artisan('user:admin', ['email' => 'ADA@example.com'])->assertSuccessful();
+        $this->assertTrue($user->fresh()->isAdmin());
+
+        $this->artisan('user:admin', ['email' => 'ada@example.com', '--revoke' => true])->assertSuccessful();
+        $this->assertFalse($user->fresh()->isAdmin());
+
+        $this->artisan('user:admin', ['email' => 'nobody@example.com'])->assertFailed();
     }
 }
