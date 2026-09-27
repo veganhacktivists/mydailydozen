@@ -97,4 +97,30 @@ class SecurityTest extends TestCase
 
         $this->post('/user/confirm-password', ['password' => 'password'])->assertTooManyRequests();
     }
+
+    public function test_contact_messages_stay_text_in_the_staff_email(): void
+    {
+        $ticket = ContactTicket::create([
+            'first_name' => 'Ada',
+            'last_name' => 'Lovelace',
+            'email' => 'ada@example.com',
+            'message' => '[Click here](https://evil.example/) ![](https://evil.example/p.gif)',
+        ]);
+
+        $html = (new ContactFormEmail($ticket))->render();
+
+        $this->assertStringNotContainsString('href="https://evil.example', $html);
+        $this->assertStringNotContainsString('src="https://evil.example', $html);
+        $this->assertStringContainsString('Click here', $html);
+    }
+
+    public function test_a_name_cannot_add_lines_to_the_staff_email(): void
+    {
+        $this->post('/contact/send', [
+            'first_name' => "Ada\n- Email: someone@example.com",
+            'last_name' => 'Lovelace',
+            'email' => 'ada@example.com',
+            'message' => 'Hello',
+        ])->assertSessionHasErrors('first_name');
+    }
 }
