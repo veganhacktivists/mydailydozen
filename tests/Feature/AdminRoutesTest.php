@@ -169,4 +169,24 @@ class AdminRoutesTest extends TestCase
 
         $this->assertSame(3, (int) $this->group->fresh()->per_day);
     }
+
+    public function test_a_normal_youtube_link_is_saved_as_an_embed(): void
+    {
+        $this->actingAs($this->makeAdmin());
+        $detail = $this->group->detailTypes()->first();
+
+        foreach (['https://www.youtube.com/watch?v=KVYmfTTw7_g&t=10s', 'https://youtu.be/KVYmfTTw7_g', 'https://youtube.com/shorts/KVYmfTTw7_g'] as $link) {
+            $this->put("/details/{$detail->id}", ['name' => 'Why', 'video' => $link, 'info' => 'Info'])->assertSessionHasNoErrors();
+            $this->assertSame('https://www.youtube.com/embed/KVYmfTTw7_g', $detail->fresh()->video);
+        }
+    }
+
+    public function test_deleting_a_serving_size_asks_first(): void
+    {
+        $this->actingAs($this->makeAdmin());
+
+        $html = $this->get("/groups/{$this->group->id}/edit")->getContent();
+
+        $this->assertMatchesRegularExpression('/<form id="delete-form-'.$this->servingSize->id.'"[^>]*onsubmit="return confirm\(/', $html);
+    }
 }

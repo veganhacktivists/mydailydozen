@@ -39,7 +39,11 @@ class Card extends Component
     #[Renderless]
     public function check($count): ?int
     {
-        if ($this->timezone !== Auth::user()->timezone || $this->date !== Auth::user()->today()->toDateString()) {
+        $stale = $this->timezone !== Auth::user()->timezone
+            || $this->date !== Auth::user()->today()->toDateString()
+            || ! Auth::user()->currentGroups()->whereKey($this->group->id)->exists();
+
+        if ($stale) {
             $this->redirectRoute('groups.index');
 
             return null;

@@ -35,7 +35,7 @@ class MigrateGroupUserTable extends Migration
      */
     public function down()
     {
-        Schema::create('group_user', function (Blueprint $table) {
+        Schema::table('group_user', function (Blueprint $table) {
             $table->dropColumn('in_use');
             $table->integer('checked')->change();
         });

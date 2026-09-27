@@ -24,99 +24,64 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
-        $today = Carbon::today();
-        $yesterday = $today->addDays(-1);
-        $twoDaysBefore = $yesterday->addDays(-1);
+        if (User::where('email', 'vh@example.com')->exists()) {
+            return;
+        }
+
+        $today = Carbon::today()->toImmutable();
 
         $devUser = User::create([
             'name' => 'Vegan Hacktivists',
             'email' => 'vh@example.com',
             'email_verified_at' => now(),
-            'created_at' => $twoDaysBefore,
+            'created_at' => $today->subDays(2),
 
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ]);
-
-        $beans = Group::where('name', "Beans")->firstOrFail();
-        $berries = Group::where('name', "Berries")->firstOrFail();
-        $fruits = Group::where('name', "Other Fruits")->firstOrFail();
-        $cruciferous = Group::where('name', "Cruciferous Vegetables")->firstOrFail();
-        $otherVegetables = Group::where('name', "Other Vegetables")->firstOrFail();
-        $grains = Group::where('name', "Whole Grains")->firstOrFail();
-        $beverages = Group::where('name', "Beverages")->firstOrFail();
-        $negativeCaloriePreload = Group::where('name', "Negative Calorie Preload")->firstOrFail();
-        $vinegar = Group::where('name', "Incorporate Vinegar")->firstOrFail();
-        $undistractedMeals = Group::where('name', "Undistracted Meals")->firstOrFail();
-        $tea = Group::where('name', "Green Tea")->firstOrFail();
-        $twentyMinute = Group::where('name', "Twenty-minute Rule")->firstOrFail();
-        $weigh = Group::where('name', "Weigh Twice Daily")->firstOrFail();
-
         $devUser->selectAllGroups();
-        $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beans, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($berries, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($fruits, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($fruits, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($fruits, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($cruciferous, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($cruciferous, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($cruciferous, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($otherVegetables, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($otherVegetables, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($negativeCaloriePreload, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($negativeCaloriePreload, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($negativeCaloriePreload, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($undistractedMeals, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($undistractedMeals, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($undistractedMeals, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($twentyMinute, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($twentyMinute, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($twentyMinute, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($weigh, $today, 1);
-        $devUser->setCheckCountForGroupAndDate($weigh, $today, 1);
 
-        $devUser->setCheckCountForGroupAndDate($beans, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($beans, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($berries, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($fruits, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($cruciferous, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($cruciferous, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($otherVegetables, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($grains, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($beverages, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($negativeCaloriePreload, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($negativeCaloriePreload, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($vinegar, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($undistractedMeals, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $yesterday, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $yesterday, 1);
+        $servings = [
+            0 => [
+                'Beans' => 3,
+                'Berries' => 1,
+                'Other Fruits' => 3,
+                'Cruciferous Vegetables' => 3,
+                'Other Vegetables' => 2,
+                'Whole Grains' => 3,
+                'Beverages' => 5,
+                'Negative Calorie Preload' => 3,
+                'Incorporate Vinegar' => 3,
+                'Undistracted Meals' => 3,
+                'Green Tea' => 3,
+                'Twenty-minute Rule' => 3,
+                'Weigh Twice Daily' => 2,
+            ],
+            1 => [
+                'Beans' => 2,
+                'Berries' => 1,
+                'Other Fruits' => 1,
+                'Cruciferous Vegetables' => 2,
+                'Other Vegetables' => 1,
+                'Whole Grains' => 3,
+                'Beverages' => 3,
+                'Negative Calorie Preload' => 2,
+                'Incorporate Vinegar' => 3,
+                'Undistracted Meals' => 1,
+                'Green Tea' => 2,
+            ],
+            2 => [
+                'Beans' => 1,
+                'Berries' => 1,
+                'Undistracted Meals' => 1,
+                'Green Tea' => 2,
+            ],
+        ];
 
-        $devUser->setCheckCountForGroupAndDate($beans, $twoDaysBefore, 1);
-        $devUser->setCheckCountForGroupAndDate($berries, $twoDaysBefore, 1);
-        $devUser->setCheckCountForGroupAndDate($undistractedMeals, $twoDaysBefore, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $twoDaysBefore, 1);
-        $devUser->setCheckCountForGroupAndDate($tea, $twoDaysBefore, 1);
+        foreach ($servings as $daysAgo => $groups) {
+            foreach ($groups as $name => $count) {
+                $devUser->setCheckCountForGroupAndDate(Group::where('name', $name)->firstOrFail(), $today->subDays($daysAgo), $count);
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ class DetailTypeController extends Controller
 {
     public function store(Request $request)
     {
+        $request->merge(['video' => $this->embedUrl((string) $request->input('video'))]);
         $this->validate($request, [
             'groupId' => 'required|exists:groups,id',
             'name' => 'required',
@@ -28,6 +29,7 @@ class DetailTypeController extends Controller
 
     public function update(Request $request, $detailTypeId)
     {
+        $request->merge(['video' => $this->embedUrl((string) $request->input('video'))]);
         $this->validate($request, [
             'name' => 'required',
             'video' => ['required', 'regex:#^https://www\.youtube(-nocookie)?\.com/embed/[\w-]{11}(\?[^\s"]*)?$#'],
@@ -53,5 +55,13 @@ class DetailTypeController extends Controller
         }
 
         return redirect('groups/' . $detailType->group_id);
+    }
+
+    // youtube.com/watch?v=…, youtu.be/… and /shorts/… links become the /embed/ URL the page's iframe needs
+    private function embedUrl(string $url): string
+    {
+        return preg_match('#^https?://(?:www\.|m\.)?(?:youtube\.com/(?:watch\?(?:[^\s]*&)?v=|shorts/)|youtu\.be/)([\w-]{11})#', $url, $match)
+            ? "https://www.youtube.com/embed/{$match[1]}"
+            : $url;
     }
 }

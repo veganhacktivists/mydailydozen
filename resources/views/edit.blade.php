@@ -100,7 +100,8 @@
               </td>
               <td class="cursor-pointer text-red-600 text-center">
                 <form id="delete-form-{{$servingSize->id}}"
-                  action="/groups/{{$group->id}}/serving-sizes/{{$servingSize->id}}" method="POST">
+                  action="/groups/{{$group->id}}/serving-sizes/{{$servingSize->id}}" method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')">
                   @method("DELETE")
                   @csrf
                   <button type="submit">

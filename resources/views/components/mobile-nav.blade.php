@@ -1,5 +1,5 @@
 <!-- Off-canvas menu for mobile -->
-<div class="lg:hidden" x-show="mobileNavOpened" x-cloak x-transition:leave="transition duration-200"
+<div class="lg:hidden" x-show="mobileNavOpened" x-cloak x-trap.inert.noscroll="mobileNavOpened" x-transition:leave="transition duration-200"
   @keydown.escape.window="mobileNavOpened = false">
   <div class="fixed inset-0 flex z-40">
     <div class="fixed inset-0 bg-cool-gray-600/75" aria-hidden="true" @click="mobileNavOpened = false"

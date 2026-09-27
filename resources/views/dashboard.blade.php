@@ -2,7 +2,7 @@
   <div class="mt-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       @if($groups->count() > 0)
-      @php($counts = $groups->mapWithKeys(fn ($group) => [$group->id => min($checkCounts[$group->id] ?? 0, $group->per_day)]))
+      @php($counts = $groups->mapWithKeys(fn ($group) => [$group->id => max(0, min($checkCounts[$group->id] ?? 0, $group->per_day))]))
       <div class="mb-5 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200"
         x-data="{ counts: @js($counts), total: {{ $groups->sum('per_day') }}, done() { return Object.values(this.counts).reduce((a, b) => a + b, 0) } }"
         @serving-checked.window="counts[$event.detail.group] = $event.detail.count">
