@@ -22,6 +22,13 @@
             <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" />
             <x-input-error for="email" class="mt-2" />
         </div>
+
+        <!-- Current password, only asked for when the email changes -->
+        <div class="col-span-6 sm:col-span-4" x-data="{ saved: @js($this->user->email) }" x-show="($wire.state.email || '').toLowerCase() !== saved.toLowerCase()" x-cloak>
+            <x-label for="current_password" value="{{ __('Current Password') }}" />
+            <x-input id="current_password" type="password" class="mt-1 block w-full" wire:model="state.current_password" autocomplete="current-password" />
+            <x-input-error for="current_password" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

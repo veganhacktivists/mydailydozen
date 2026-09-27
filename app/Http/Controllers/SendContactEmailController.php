@@ -18,8 +18,8 @@ class SendContactEmailController extends Controller
         }
 
         $validated = $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'first_name' => ['required', 'max:255', 'not_regex:/[\r\n]/'],
+            'last_name' => ['required', 'max:255', 'not_regex:/[\r\n]/'],
             'email' => 'required|email|max:255',
             'message' => 'required|max:500',
         ]);
