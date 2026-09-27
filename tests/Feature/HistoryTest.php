@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Services\HistoryService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class HistoryTest extends TestCase
@@ -18,7 +19,7 @@ class HistoryTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_history_runs_from_sign_up_to_the_latest_recorded_day(): void
+    public function test_history_includes_the_latest_recorded_day(): void
     {
         Carbon::setTestNow('2026-09-20 09:00:00');
         $user = $this->makeUser();
@@ -69,5 +70,38 @@ class HistoryTest extends TestCase
         $today = app(HistoryService::class)->buildForUser($user->fresh())->last();
 
         $this->assertSame([2, 2], [$today['count'], $today['total']]);
+    }
+
+    public function test_history_includes_days_after_the_last_tick(): void
+    {
+        Carbon::setTestNow('2026-09-27 12:00:00');
+        $user = $this->makeUser();
+        $user->forceFill(['created_at' => '2026-09-24 12:00:00'])->save();
+        $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
+        $user->setCheckCountForGroupAndDate($group, Carbon::parse('2026-09-25'), 1);
+
+        $history = app(HistoryService::class)->buildForUser($user)
+            ->keyBy(fn ($day) => "{$day['year']}-{$day['month']}-{$day['day']}");
+
+        $this->assertSame(0, $history['2026-09-26']['count']);
+        $this->assertSame(0, $history['2026-09-27']['count']);
+    }
+
+    public function test_negative_legacy_ticks_do_not_reduce_the_daily_total(): void
+    {
+        $user = $this->makeUser();
+        $beans = $this->makeGroup();
+        $berries = $this->makeGroup();
+        $user->currentGroups()->attach([$beans->id, $berries->id]);
+
+        DB::table('group_user')->insert([
+            ['user_id' => $user->id, 'group_id' => $beans->id, 'recorded_at' => $user->today(), 'checked' => -2],
+            ['user_id' => $user->id, 'group_id' => $berries->id, 'recorded_at' => $user->today(), 'checked' => 1],
+        ]);
+
+        $today = app(HistoryService::class)->buildForUser($user)->last();
+
+        $this->assertSame(1, $today['count']);
     }
 }

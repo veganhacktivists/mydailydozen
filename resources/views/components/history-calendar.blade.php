@@ -95,7 +95,7 @@
 
       status(date) {
         const event = this.event(date);
-        if (event === undefined || !event.total) return 'none';
+        if (event === undefined || !event.total || (this.isToday(date) && event.count === 0)) return 'none';
         if (event.count >= event.total) return 'complete';
         if (event.count > 0) return 'partial';
         return 'missed';
