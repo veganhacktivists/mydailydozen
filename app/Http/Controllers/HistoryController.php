@@ -19,6 +19,7 @@ class HistoryController extends Controller
       $user = auth()->user();
       return view('history')->with([
           'history' => json_encode($historyService->buildForUser($user)->values(), JSON_THROW_ON_ERROR),
+          'today' => $user->today()->toDateString(),
       ]);
   }
 }

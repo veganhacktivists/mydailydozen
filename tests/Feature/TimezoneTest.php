@@ -27,6 +27,7 @@ class TimezoneTest extends TestCase
         $user = $this->makeUser();
         $user->forceFill(['timezone' => 'America/Los_Angeles'])->save();
         $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
 
         Livewire::actingAs($user)->test(Card::class, ['group' => $group])->call('check', 1);
 
@@ -38,7 +39,10 @@ class TimezoneTest extends TestCase
         Carbon::setTestNow('2026-09-27 03:00:00');
         $user = $this->makeUser();
 
-        Livewire::actingAs($user)->test(Card::class, ['group' => $this->makeGroup()])->call('check', 1);
+        $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
+
+        Livewire::actingAs($user)->test(Card::class, ['group' => $group])->call('check', 1);
 
         $this->assertSame('2026-09-27', substr(DB::table('group_user')->value('recorded_at'), 0, 10));
     }
@@ -68,6 +72,7 @@ class TimezoneTest extends TestCase
         Carbon::setTestNow('2026-09-27 03:00:00');
         $user = $this->makeUser();
         $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
         $user->setCheckCountForGroupAndDate($group, Carbon::parse('2026-09-26'), 1);
 
         $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
@@ -85,6 +90,7 @@ class TimezoneTest extends TestCase
         Carbon::setTestNow('2026-09-26 23:59:00');
         $user = $this->makeUser();
         $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
         $user->setCheckCountForGroupAndDate($group, $user->today(), 1);
 
         $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
@@ -101,6 +107,7 @@ class TimezoneTest extends TestCase
         Carbon::setTestNow('2026-09-27 12:00:00');
         $user = $this->makeUser();
         $group = $this->makeGroup();
+        $user->currentGroups()->attach($group->id);
 
         $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
         $user->forceFill(['timezone' => 'Europe/London'])->save();

@@ -6,6 +6,7 @@ use App\Livewire\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use App\Livewire\CardToggle;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class AppPagesTest extends TestCase
@@ -45,8 +46,10 @@ class AppPagesTest extends TestCase
 
     public function test_ticking_a_serving_tells_the_daily_total(): void
     {
-        $this->actingAs($this->makeUser());
+        $user = $this->makeUser();
         $group = $this->makeGroup(perDay: 3);
+        $user->currentGroups()->attach($group->id);
+        $this->actingAs($user);
 
         Livewire::test(Card::class, ['group' => $group])
             ->call('check', 2)
@@ -89,5 +92,39 @@ class AppPagesTest extends TestCase
 
         $this->actingAs($user)->put('/settings/none')->assertRedirect('/settings');
         $this->assertSame(0, $user->currentGroups()->count());
+    }
+
+    public function test_an_open_dashboard_cannot_tick_a_food_turned_off_elsewhere(): void
+    {
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $user->currentGroups()->sync([$group->id]);
+        $this->actingAs($user);
+        $card = Livewire::test(Card::class, ['group' => $group]);
+
+        $user->currentGroups()->detach($group->id);
+        $card->call('check', 1)->assertRedirect(route('groups.index'));
+
+        $this->assertDatabaseMissing('group_user', ['user_id' => $user->id, 'group_id' => $group->id]);
+    }
+
+    public function test_a_negative_count_left_in_the_database_does_not_break_the_dashboard(): void
+    {
+        $user = $this->makeUser();
+        $user->markEmailAsVerified();
+        $group = $this->makeGroup();
+        $user->currentGroups()->sync([$group->id]);
+        DB::table('group_user')->insert(['user_id' => $user->id, 'group_id' => $group->id, 'recorded_at' => $user->today(), 'checked' => -1]);
+
+        $this->actingAs($user)->get('/groups')->assertOk()->assertSee('aria-valuenow', false)->assertSeeText('0 / 3');
+    }
+
+    public function test_the_calendar_takes_today_from_the_server(): void
+    {
+        $user = $this->makeUser();
+        $user->markEmailAsVerified();
+        $user->forceFill(['timezone' => 'Pacific/Kiritimati'])->save();
+
+        $this->actingAs($user)->get('/history')->assertOk()->assertSee("const TODAY = '{$user->today()->toDateString()}'", false);
     }
 }

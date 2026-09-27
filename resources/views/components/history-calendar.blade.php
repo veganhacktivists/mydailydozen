@@ -64,8 +64,12 @@
   const EVENTS = {!! $history !!}; // [{year: "2020", month: "12", day: "08", count: 18, total: 24}, ...]
   const EVENTS_BY_DATE = Object.fromEntries(EVENTS.map(e => [`${+e.year}-${+e.month}-${+e.day}`, e]));
 
+  // The server's date for the user, so the highlighted day matches the one ticks are saved against
+  const TODAY = @js($today);
+
   function historyCalendar() {
-    const today = new Date();
+    const [todayYear, todayMonth, todayDay] = TODAY.split('-').map(Number);
+    const today = new Date(todayYear, todayMonth - 1, todayDay);
 
     return {
       month: today.getMonth(),
@@ -75,6 +79,10 @@
 
       init() {
         this.getNoOfDays();
+
+        // Past midnight, reload so the new day and its tick status appear
+        const now = new Date();
+        setTimeout(() => location.reload(), new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1) - now + 1000);
       },
 
       isToday(date) {
