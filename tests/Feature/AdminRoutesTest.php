@@ -158,4 +158,15 @@ class AdminRoutesTest extends TestCase
 
         $this->artisan('user:admin', ['email' => 'nobody@example.com'])->assertFailed();
     }
+
+    public function test_servings_a_day_has_to_be_a_small_whole_number(): void
+    {
+        $this->actingAs($this->makeAdmin());
+
+        foreach ([-1, 0, 1.5, 13, 'three'] as $perDay) {
+            $this->put("/groups/{$this->group->id}", $this->groupFields(['per_day' => $perDay]))->assertSessionHasErrors('per_day');
+        }
+
+        $this->assertSame(3, (int) $this->group->fresh()->per_day);
+    }
 }
