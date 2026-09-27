@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
@@ -124,22 +125,12 @@ class User extends Authenticatable
     {
         $newCount = max(0, min((int) $count, $group->per_day));
 
-        $pivot = $this->groups()
-            ->wherePivot('recorded_at', $date)
-            ->wherePivot('group_id', $group->id)
-            ->first()?->pivot;
-
-        if ($pivot === null) {
-            $this->groups()->attach($group, [
-                'checked' => $newCount,
-                'recorded_at' => $date
-            ]);
-        } elseif ($newCount !== (int) $pivot->checked) {
-            $this->groups()->wherePivot('recorded_at', $date)
-                ->updateExistingPivot($group->id, [
-                    'checked' => $newCount
-                ]);
-        }
+        // One statement, so two tabs ticking the first box of a day can't both insert the row
+        DB::table('group_user')->upsert(
+            ['group_id' => $group->id, 'user_id' => $this->id, 'recorded_at' => $date, 'checked' => $newCount, 'created_at' => now(), 'updated_at' => now()],
+            ['group_id', 'user_id', 'recorded_at'],
+            ['checked', 'updated_at'],
+        );
 
         return $newCount;
     }
