@@ -5,39 +5,8 @@
       <div class="bg-white rounded mx-5 flex items-center flex-shrink-0 px-4 py-4">
         <a href="{{ url('/groups') }}"><img class="h-8 w-auto" src="{{ asset('img/mddlogo.webp') }}" width="694" height="160" alt="My Daily Dozen" style="height: 40px;"></a>
       </div>
-      <div class="mt-5 flex-1 flex flex-col overflow-y-auto">
-        <div class="overflow-y-auto">
-          <nav class="px-2 space-y-1">
-
-            <x-desktop-nav-link class="text-sm" link="groups" text="My Groups">
-              <x-slot name="icon">
-                <x-icons.home />
-              </x-slot>
-            </x-desktop-nav-link>
-
-            <x-desktop-nav-link class="text-sm" link="history" text="View History">
-              <x-slot name="icon">
-                <x-icons.clock />
-              </x-slot>
-            </x-desktop-nav-link>
-          </nav>
-        </div>
-        <div class="mt-6 flex-1 h-0 overflow-y-auto">
-          <nav class="px-2 space-y-1">
-
-            <x-desktop-nav-link class="text-sm" link="settings" text="Customize">
-              <x-slot name="icon">
-                <x-icons.cog />
-              </x-slot>
-            </x-desktop-nav-link>
-
-            <x-desktop-nav-link class="text-sm" link="contact" text="Contact">
-              <x-slot name="icon">
-                <x-icons.question-mark-circle />
-              </x-slot>
-            </x-desktop-nav-link>
-          </nav>
-        </div>
+      <div class="mt-5 flex-1 overflow-y-auto">
+        <x-nav-links size="text-sm" />
       </div>
     </div>
   </div>

@@ -50,28 +50,13 @@
                     <a class="flex-shrink-0" href="{{ url('/') }}" aria-label="Home">
                         <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.webp') }}" width="694" height="160" alt="Dr. Greger’s Daily Dozen">
                     </a>
-                    <div class="-mr-2 flex items-center flex-shrink-0 md:hidden">
-                        <a href="/contact"
-                        class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
+                    <div class="-mr-2 flex flex-shrink-0 items-center gap-8 md:ml-6 md:mr-0 md:pr-4">
+                        <a href="/contact" class="font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900">Contact</a>
                         @guest
-                        <a href="{{ route('login') }}"
-                        class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
-                            in</a>
-                        <a href="{{ route('register') }}"
-                        class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
+                            <a href="{{ route('login') }}" class="font-medium text-pine-600 transition duration-150 ease-in-out hover:text-pine-900">Log in</a>
+                            <a href="{{ route('register') }}" class="font-medium text-pine-600 transition duration-150 ease-in-out hover:text-pine-900">Register</a>
                         @endguest
                     </div>
-                </div>
-                <div class="hidden md:block md:ml-10 md:pr-4">
-                    <a href="/contact"
-                    class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Contact</a>
-                    @guest
-                    <a href="{{ route('login') }}"
-                    class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Log
-                        in</a>
-                    <a href="{{ route('register') }}"
-                    class="ml-8 font-medium text-pine-600 hover:text-pine-900 transition duration-150 ease-in-out">Register</a>
-                    @endguest
                 </div>
             </div>
         </nav>
