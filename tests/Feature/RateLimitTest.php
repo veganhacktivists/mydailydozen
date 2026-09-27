@@ -61,4 +61,19 @@ class RateLimitTest extends TestCase
         $this->post('/contact/send', $message(3))->assertTooManyRequests();
         $this->assertDatabaseCount('contact_tickets', 3);
     }
+
+    public function test_reset_links_are_throttled(): void
+    {
+        $this->makeUser();
+
+        for ($i = 0; $i < 3; $i++) {
+            $this->post('/forgot-password', ['email' => 'test@example.com'])->assertRedirect();
+        }
+        $this->post('/forgot-password', ['email' => 'test@example.com'])->assertTooManyRequests();
+
+        for ($i = 0; $i < 7; $i++) {
+            $this->post('/forgot-password', ['email' => "other$i@example.com"])->assertRedirect();
+        }
+        $this->post('/forgot-password', ['email' => 'another@example.com'])->assertTooManyRequests();
+    }
 }

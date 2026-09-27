@@ -91,7 +91,7 @@ class GroupController extends Controller
             'subtitle' => '',
             'icon_location' => 'required',
             'banner_location' => 'required',
-            'per_day' => 'required',
+            'per_day' => 'required|integer|min:1|max:12',
         ]);
 
         $group->name = $request->name;

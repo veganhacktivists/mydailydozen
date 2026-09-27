@@ -104,4 +104,16 @@ class HistoryTest extends TestCase
 
         $this->assertSame(1, $today['count']);
     }
+
+    public function test_history_starts_on_the_day_you_signed_up_where_you_are(): void
+    {
+        Carbon::setTestNow('2026-09-27 01:00:00');
+        $user = $this->makeUser();
+        $user->forceFill(['timezone' => 'Asia/Tokyo', 'created_at' => '2026-09-26 23:00:00'])->save();
+
+        $days = app(HistoryService::class)->buildForUser($user->fresh())
+            ->map(fn ($day) => "{$day['year']}-{$day['month']}-{$day['day']}")->values()->all();
+
+        $this->assertSame(['2026-09-27'], $days);
+    }
 }

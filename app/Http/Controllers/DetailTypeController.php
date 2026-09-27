@@ -12,7 +12,7 @@ class DetailTypeController extends Controller
         $this->validate($request, [
             'groupId' => 'required|exists:groups,id',
             'name' => 'required',
-            'video' => 'required|url:https',
+            'video' => ['required', 'regex:#^https://www\.youtube(-nocookie)?\.com/embed/[\w-]{11}(\?[^\s"]*)?$#'],
             'info' => 'required',
         ]);
 
@@ -30,7 +30,7 @@ class DetailTypeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'video' => 'required|url:https',
+            'video' => ['required', 'regex:#^https://www\.youtube(-nocookie)?\.com/embed/[\w-]{11}(\?[^\s"]*)?$#'],
             'info' => 'required',
         ]);
 
