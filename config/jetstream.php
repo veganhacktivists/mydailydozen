@@ -29,7 +29,7 @@ return [
     */
 
     'features' => [
-        Features::profilePhotos(),
+        // Features::profilePhotos(),
         // Features::api(),
         // Features::termsAndPrivacyPolicy()
         // Features::teams(),
