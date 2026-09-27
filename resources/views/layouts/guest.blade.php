@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        @vite(['resources/js/app.js', 'resources/css/app.css'])
+        @vite('resources/css/app.css')
 
         <title>{{ isset($title) ? $title.' – '.config('app.name') : config('app.name').' – Track the foods recommended by NutritionFacts.org!' }}</title>
 
@@ -40,7 +40,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
         <!-- Styles -->
-        @livewireStyles
 
     </head>
     <body {{ $attributes->class("min-h-screen flex flex-col overflow-x-hidden") }}>
@@ -81,7 +80,6 @@
             {{ $slot }}
         </main>
         <x-footer />
-        @livewireScripts
         @stack('scripts')
     </body>
 </html>

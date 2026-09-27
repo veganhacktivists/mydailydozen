@@ -59,7 +59,7 @@ class AppPagesTest extends TestCase
 
         Livewire::test(Card::class, ['group' => $this->makeGroup(perDay: 1), 'checkCount' => 3])
             ->assertSet('checkCount', 1)
-            ->assertSee('1 / 1');
+            ->assertSeeText('1 / 1');
     }
 
     public function test_the_customise_switch_does_what_this_tab_shows(): void
@@ -76,5 +76,18 @@ class AppPagesTest extends TestCase
 
         $tab->assertSet('checked', false);
         $this->assertFalse($user->currentGroups()->whereKey($group->id)->exists());
+    }
+
+    public function test_select_all_and_unselect_all_work_without_javascript(): void
+    {
+        $user = $this->makeUser();
+        $user->markEmailAsVerified();
+        $groups = [$this->makeGroup(), $this->makeGroup()];
+
+        $this->actingAs($user)->put('/settings/all')->assertRedirect('/settings');
+        $this->assertSame(2, $user->currentGroups()->count());
+
+        $this->actingAs($user)->put('/settings/none')->assertRedirect('/settings');
+        $this->assertSame(0, $user->currentGroups()->count());
     }
 }
