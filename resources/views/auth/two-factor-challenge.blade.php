@@ -54,4 +54,8 @@
             </form>
         </div>
     </x-authentication-card>
+
+    @push('scripts')
+        @vite('resources/js/alpine.js')
+    @endpush
 </x-guest-layout>

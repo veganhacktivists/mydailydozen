@@ -4,6 +4,6 @@
   {{ $slot }}
   <x-remember-timezone />
   <x-umami />
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite('resources/css/app.css')
   @livewireStyles
 </head>

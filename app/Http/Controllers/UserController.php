@@ -42,8 +42,9 @@ class UserController extends Controller
      */
     public function selectAll()
     {
+        auth()->user()->selectAllGroups();
 
-      auth()->user()->selectAllGroups();
+        return redirect()->route('settings');
     }
 
     /**
@@ -51,6 +52,8 @@ class UserController extends Controller
      */
     public function unselectAll()
     {
-      auth()->user()->unselectAllGroups();
+        auth()->user()->unselectAllGroups();
+
+        return redirect()->route('settings');
     }
 }

@@ -4,4 +4,8 @@
             Get in touch with us!
         </h1>
     </x-contact-form>
+
+    @push('scripts')
+        @vite('resources/js/alpine.js')
+    @endpush
 </x-guest-layout>

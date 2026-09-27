@@ -77,4 +77,17 @@ class AppPagesTest extends TestCase
         $tab->assertSet('checked', false);
         $this->assertFalse($user->currentGroups()->whereKey($group->id)->exists());
     }
+
+    public function test_select_all_and_unselect_all_work_without_javascript(): void
+    {
+        $user = $this->makeUser();
+        $user->markEmailAsVerified();
+        $groups = [$this->makeGroup(), $this->makeGroup()];
+
+        $this->actingAs($user)->put('/settings/all')->assertRedirect('/settings');
+        $this->assertSame(2, $user->currentGroups()->count());
+
+        $this->actingAs($user)->put('/settings/none')->assertRedirect('/settings');
+        $this->assertSame(0, $user->currentGroups()->count());
+    }
 }
