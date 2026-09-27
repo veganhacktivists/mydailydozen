@@ -20,33 +20,8 @@
       <div class="bg-white rounded mx-5 flex-shrink-0 flex items-center px-4 py-4">
         <img class="h-8 w-auto" src="{{ asset('img/mddlogo.webp') }}" width="694" height="160" alt="My Daily Dozen Logo">
       </div>
-      <div class="mt-5 overflow-y-auto">
-        <nav class="px-2 space-y-1">
-          <x-desktop-nav-link class="text-base" link="groups" text="My Groups">
-            <x-slot name="icon">
-              <x-icons.home />
-            </x-slot>
-          </x-desktop-nav-link>
-          <x-desktop-nav-link class="text-base" link="history" text="View History">
-            <x-slot name="icon">
-              <x-icons.clock />
-            </x-slot>
-          </x-desktop-nav-link>
-        </nav>
-      </div>
-      <div class="mt-6 flex-1 h-0 overflow-y-auto">
-        <nav class="px-2 space-y-1">
-          <x-desktop-nav-link class="text-base" link="settings" text="Customize">
-            <x-slot name="icon">
-              <x-icons.cog />
-            </x-slot>
-          </x-desktop-nav-link>
-          <x-desktop-nav-link class="text-base" link="contact" text="Contact">
-            <x-slot name="icon">
-              <x-icons.question-mark-circle />
-            </x-slot>
-          </x-desktop-nav-link>
-        </nav>
+      <div class="mt-5 flex-1 overflow-y-auto">
+        <x-nav-links size="text-base" />
       </div>
     </div>
     <div class="flex-shrink-0 w-14">

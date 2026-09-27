@@ -25,8 +25,6 @@ class Card extends Component
         $this->group = $group;
         $this->date = Auth::user()->today()->toDateString();
         $this->timezone = Auth::user()->timezone;
-        // The dashboard batches today's pivot counts and passes them in to avoid an
-        // N+1 query per card; fall back to a lookup when the count isn't provided.
         $this->checkCount = max(0, min($checkCount ?? Auth::user()->getCheckCountForGroupAndDate($this->group, Auth::user()->today()), $this->group->per_day));
     }
 

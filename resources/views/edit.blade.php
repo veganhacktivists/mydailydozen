@@ -1,211 +1,103 @@
 @section('header', 'Edit food groups on the site.')
 <x-master>
-  <!-- Page header -->
-  <div class="bg-white shadow">
-    <div class="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
-      <div class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-cool-gray-200">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center">
-            <div>
-              <div class="flex items-center">
-                <h1 class="ml-3 text-2xl font-bold leading-7 text-cool-gray-900 sm:leading-9 sm:truncate">
-                  Edit Group
-                </h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
-          <span class="shadow-sm rounded-md">
-          </span>
-          <span class="shadow-sm rounded-md">
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <x-admin-header>Edit Group</x-admin-header>
 
-  <div class="mt-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <form action="/groups/{{$group->id}}" method="POST">
-        @method('PUT')
-        @csrf
+  <div class="mx-auto mt-8 max-w-6xl space-y-10 px-4 sm:px-6 lg:px-8">
+    <form action="/groups/{{ $group->id }}" method="POST" class="max-w-xl space-y-5">
+      @method('PUT')
+      @csrf
+      @foreach (['name' => 'Name', 'subtitle' => 'Subtitle', 'icon_location' => 'Icon Location', 'banner_location' => 'Banner Location', 'per_day' => 'Per Day'] as $field => $label)
         <div>
-          <label for="name" class="block text-md font-medium leading-5 text-gray-700">Name</label>
-          <div class="my-5 relative rounded-md shadow-sm">
-            <input id="name" name="name" class="form-input block w-full sm:text-sm sm:leading-5"
-              value="{{ $group->name }}">
-          </div>
-          <label for="subtitle" class="block text-md font-medium leading-5 text-gray-700">Subtitle</label>
-          <div class="my-5 relative rounded-md shadow-sm">
-            <input id="subtitle" name="subtitle" class="form-input block w-full sm:text-sm sm:leading-5"
-              value="{{ $group->subtitle }}">
-          </div>
-          <label for="icon_location" class="block text-md font-medium leading-5 text-gray-700">Icon
-            Location</label>
-          <div class="my-5 relative rounded-md shadow-sm">
-            <input id="icon_location" name="icon_location" class="form-input block w-full sm:text-sm sm:leading-5"
-              value="{{ $group->icon_location }}">
-          </div>
-          <label for="banner_location" class="block text-md font-medium leading-5 text-gray-700">Banner
-            Location</label>
-          <div class="my-5 relative rounded-md shadow-sm">
-            <input id="banner_location" name="banner_location" class="form-input block w-full sm:text-sm sm:leading-5"
-              value="{{ $group->banner_location }}">
-          </div>
-          <label for="per_day" class="block text-md font-medium leading-5 text-gray-700">Per Day</label>
-          <div class="my-5 relative rounded-md shadow-sm">
-            <input id="per_day" name="per_day" class="form-input block w-full sm:text-sm sm:leading-5"
-              value="{{ $group->per_day }}">
-          </div>
-
-
-          <span class="inline-flex rounded-md shadow-sm">
-            <button type="submit"
-              class="inline-flex items-center px-5 py-3 border border-transparent text-lg leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150">
-              Submit
-            </button>
-          </span>
+          <x-label for="{{ $field }}" :value="$label" />
+          <x-input id="{{ $field }}" name="{{ $field }}" class="mt-1 block w-full" value="{{ old($field, $group->$field) }}" />
+          <x-input-error :for="$field" class="mt-2" />
         </div>
-      </form>
-      <div class="mt-6">
-        <label class="block text-md font-medium leading-5 text-gray-700">Serving sizes</label>
-        <table class="table-fixed">
-          <thead>
-            <tr class="border-b-2 border-gray-300 text-left leading-4 text-pine-500">
-              <th class="px-6 py-3">Metric
-              </th>
-              <th class="px-6 py-3">Imperial
-              </th>
-              <th class="px-6 py-3 text-center">Edit
-              </th>
-              <th class="px-6 py-3 text-center">Delete
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($group->servingSizes as $servingSize)
-            <tr class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-black-500">
-              <td class="px-6 py-3">
-                {{ $servingSize->size_metric }}
-              </td>
-              <td class="px-6 py-3">
-                {{ $servingSize->size_imperial }}
-              </td>
-              <td class="cursor-pointer text-blue-600 text-center">
-                <a href="/groups/{{$group->id}}/serving-sizes/{{$servingSize->id}}/edit">
-                    <x-icons.pencil class="size-6 mx-auto" />
+      @endforeach
+      <x-button>Submit</x-button>
+    </form>
+
+    <div>
+      <x-label value="Serving sizes" />
+      <table class="mt-2 w-full max-w-xl table-fixed text-left">
+        <thead>
+          <tr class="border-b-2 border-gray-300 text-pine-700">
+            <th class="px-6 py-3">Metric</th>
+            <th class="px-6 py-3">Imperial</th>
+            <th class="px-6 py-3 text-center">Edit</th>
+            <th class="px-6 py-3 text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($group->servingSizes as $servingSize)
+            <tr class="border-b border-gray-200">
+              <td class="px-6 py-3">{{ $servingSize->size_metric }}</td>
+              <td class="px-6 py-3">{{ $servingSize->size_imperial }}</td>
+              <td class="text-center">
+                <a href="/groups/{{ $group->id }}/serving-sizes/{{ $servingSize->id }}/edit" aria-label="Edit"
+                  class="inline-flex rounded-full p-1.5 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                  <x-icons.pencil class="size-6" />
                 </a>
-
               </td>
-              <td class="cursor-pointer text-red-600 text-center">
-                <form id="delete-form-{{$servingSize->id}}"
-                  action="/groups/{{$group->id}}/serving-sizes/{{$servingSize->id}}" method="POST"
+              <td class="text-center text-red-600">
+                <form id="delete-form-{{ $servingSize->id }}" action="/groups/{{ $group->id }}/serving-sizes/{{ $servingSize->id }}" method="POST"
                   onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')">
-                  @method("DELETE")
+                  @method('DELETE')
                   @csrf
-                  <button type="submit">
+                  <button type="submit" aria-label="Delete"
+                    class="inline-flex rounded-full p-1.5 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
                     <x-icons.trash />
-
                   </button>
                 </form>
               </td>
             </tr>
-            @endforeach
-          </tbody>
-        </table>
-        <a href="/groups/{{$group->id}}/serving-sizes/create" class="block py-2 text-blue-500 cursor-pointer">Add a new
-          serving size...</a>
-      </div>
+          @endforeach
+        </tbody>
+      </table>
+      <a href="/groups/{{ $group->id }}/serving-sizes/create" class="mt-2 inline-block py-2 font-medium">Add a new serving size...</a>
     </div>
-    <div class="mt-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-lg leading-6 font-medium text-cool-gray-900">Edit Card More Information</h2>
-            <div class="flex">
-                @include('components.more-info-dropdown')
-                @if ($selectedDetail)
-                <span class=" flex-1 h-full mx-5 inline-flex rounded-md shadow-sm">
-                    <a href="/groups/{{ $group['id'] }}/edit/" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-pine-600 hover:bg-pine-500 focus:outline-none focus:border-pine-700 focus:shadow-outline-pine active:bg-pine-700 transition ease-in-out duration-150">
-                        Add
-                    </a>
-                </span>
-                @endif
-                @if ($detailTypes->count() > 1 && $selectedDetail)
-                <div class="flex-1 h-full">
-                    <form
-                        method="POST"
-                        action="{{ route('detail.destroy', $selectedDetail->id) }}"
-                        onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')"
-                    >
-                        @csrf
-                        @method('DELETE')
-                        <x-button
-                            type="submit"
-                            class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                        >
-                            Delete
-                        </x-button>
-                        <x-input type="hidden" name="groupId" value="{{ $group->id }}" />
-                    </form>
-                </div>
-                @endif
-            </div>
-            <form
-                method="POST"
-                action="{{ $selectedDetail ? route('detail.update', $selectedDetail->id): route('detail.store') }}"
-            >
-                @csrf
-                @method($selectedDetail ? 'PUT' : 'POST')
-                <label for="name" class="'block text-sm font-medium leading-5 text-gray-700">Name</label>
-                <div class="my-5 relative rounded-md shadow-sm">
-                    <x-input
-                        type="text"
-                        name="name"
-                        value="{{ $selectedDetail?->name ?? old('name') }}"
-                        class="form-input block w-full sm:text-sm sm:leading-5"
-                    />
-                </div>
 
-                <x-label
-                    for="video"
-                    class="block text-sm font-medium leading-5 text-gray-700"
-                >
-                    Video Link
-                </x-label>
-                <div class="my-5 relative rounded-md shadow-sm">
-                    <x-input
-                        name="video"
-                        value="{{ $selectedDetail?->video ?? old('video') }}"
-                        class="form-input block w-full sm:text-sm sm:leading-5"
-                    />
-                </div>
+    <div>
+      <h2 class="text-lg font-semibold text-cool-gray-900">Edit Card More Information</h2>
+      <div class="mt-3 flex flex-wrap items-start gap-3">
+        @include('components.more-info-dropdown')
+        @if ($selectedDetail)
+          <a href="/groups/{{ $group['id'] }}/edit/"
+            class="inline-flex items-center rounded-lg bg-pine-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-pine-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2">
+            Add
+          </a>
+        @endif
+        @if ($detailTypes->count() > 1 && $selectedDetail)
+          <form method="POST" action="{{ route('detail.destroy', $selectedDetail->id) }}"
+            onsubmit="return confirm('Are you sure you want to delete this? This cannot be undone.')">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="groupId" value="{{ $group->id }}">
+            <x-danger-button type="submit">Delete</x-danger-button>
+          </form>
+        @endif
+      </div>
 
-                <label
-                    for="info"
-                    class="block text-sm font-medium leading-5 text-gray-700"
-                >
-                    Information
-                </label>
-                <div class="my-5 relative rounded-md shadow-sm">
-                    <textarea
-                        name="info"
-                        class="form-input block w-full sm:text-sm sm:leading-5"
-                    >{{ $selectedDetail?->info ?? old('info') }}</textarea>
-                </div>
-
-                <x-input type="hidden" name="groupId" value="{{ $group->id }}" />
-
-                <span class="inline-flex rounded-md shadow-sm">
-                    <x-button
-                        type="submit"
-                        name="submit"
-                        class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150"
-                    >
-                        Submit
-                    </x-button>
-                </span>
-            </form>
+      <form method="POST" action="{{ $selectedDetail ? route('detail.update', $selectedDetail->id) : route('detail.store') }}" class="mt-4 max-w-xl space-y-5">
+        @csrf
+        @method($selectedDetail ? 'PUT' : 'POST')
+        <div>
+          <x-label for="detail_name" value="Name" />
+          <x-input id="detail_name" type="text" name="name" class="mt-1 block w-full" value="{{ $selectedDetail?->name ?? old('name') }}" />
+          <x-input-error for="name" class="mt-2" />
         </div>
+        <div>
+          <x-label for="detail_video" value="Video Link" />
+          <x-input id="detail_video" name="video" class="mt-1 block w-full" value="{{ $selectedDetail?->video ?? old('video') }}" />
+          <x-input-error for="video" class="mt-2" />
+        </div>
+        <div>
+          <x-label for="detail_info" value="Information" />
+          <x-textarea id="detail_info" name="info" rows="8" class="mt-1 block w-full">{{ $selectedDetail?->info ?? old('info') }}</x-textarea>
+          <x-input-error for="info" class="mt-2" />
+        </div>
+        <input type="hidden" name="groupId" value="{{ $group->id }}">
+        <x-button name="submit">Submit</x-button>
+      </form>
     </div>
   </div>
 </x-master>

@@ -30,7 +30,6 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string|null $remember_token
- * @property string|null $current_team_id
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -101,26 +100,12 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
     // This is overridden so the response isn't slowed down.
     public function sendPasswordResetNotification($token): void
     {
         dispatch(fn () => $this->notify(new ResetPasswordNotification($token)))->afterResponse();
     }
 
-    /**
-     * @param $group
-     * @param $date
-     * @return int|mixed
-     */
     public function setCheckCountForGroupAndDate($group, $date, $count)
     {
         $newCount = max(0, min((int) $count, $group->per_day));
@@ -145,24 +130,13 @@ class User extends Authenticatable
         return $pivot?->pivot?->checked ?? 0;
     }
 
-    /**
-     * The My Daily Dozen food groups.
-     * @return BelongsToMany
-     */
+    // The ticks: one row per food per day, with how many servings were ticked. The foods on the dashboard are currentGroups().
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class)->withPivot(
             'checked',
             'recorded_at',
         );
-    }
-
-    /**
-     * @return int|mixed
-     */
-    public function totalCheckForToday()
-    {
-        return $this->totalCheckForDate($this->today());
     }
 
     /**
@@ -173,20 +147,6 @@ class User extends Authenticatable
         return Carbon::today($this->timezone ?? config('app.timezone'));
     }
 
-    /**
-     * @param $date
-     * @return int|mixed
-     */
-    public function totalCheckForDate($date)
-    {
-        return $this->groups()
-            ->wherePivot('recorded_at', $date)
-            ->sum('checked');
-    }
-
-    /**
-     * @param Group $group
-     */
     public function toggleGroup(Group $group)
     {
         if ($this->hasGroup($group)) {
@@ -201,38 +161,23 @@ class User extends Authenticatable
         return $this->currentGroups->contains($group);
     }
 
-    /**
-     * The food groups that show up on the home page.
-     * Has its own pivot table because we couldn't pollute the MySQL data storing checkmarks.
-     * @return BelongsToMany
-     */
+    // The foods the user tracks, shown on the dashboard. They get their own table because a flag
+    // on group_user would be repeated on every day's row, and that table holds thousands of rows.
     public function currentGroups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'use_tracker');
     }
 
-    /**
-     * On toggle / user settings page, unselect every group.
-     * @return void
-     */
     public function unselectAllGroups(): void
     {
         $this->currentGroups()->detach($this->currentGroups()->pluck('id'));
     }
 
-    /**
-     * On toggle / user settings page, select every group.
-     * @return void
-     */
     public function selectAllGroups(): void
     {
         $this->currentGroups()->attach($this->notSelectedGroups()->pluck('id'));
     }
 
-    /**
-     * Food groups that don't show up on home page.
-     * @return Group[]|Collection
-     */
     public function notSelectedGroups()
     {
         return Group::all()

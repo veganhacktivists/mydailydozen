@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class AddSubtitleColumnToGroupsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('groups', function (Blueprint $table) {
@@ -18,11 +13,6 @@ class AddSubtitleColumnToGroupsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('groups', function (Blueprint $table) {

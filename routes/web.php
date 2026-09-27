@@ -5,17 +5,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SendContactEmailController;
 use App\Http\Controllers\ServingSizeController;
-use App\Http\Controllers\TermsOfServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\ConfirmablePasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
-use Laravel\Jetstream\Jetstream;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +24,6 @@ use Laravel\Jetstream\Jetstream;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
-    Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
-    Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
-}
 
 
 Route::get('/up', HealthController::class)->withoutMiddleware('web');
@@ -60,7 +52,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('settings', [UserController::class, 'show'])->name('settings');
     Route::put('settings/all', [UserController::class, 'selectAll']);
     Route::put('settings/none', [UserController::class, 'unselectAll']);
-    Route::put('settings/{group}', [UserController::class, 'update']);
 });
 
 

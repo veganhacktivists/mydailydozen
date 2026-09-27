@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class MigrateGroupUserTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('group_user', function (Blueprint $table) {
@@ -18,8 +13,6 @@ class MigrateGroupUserTable extends Migration
             $table->integer('checked')->default(0)->change();
         });
 
-        // We need a separate pivot table to track what the user is currently monitoring.
-        // Otherwise that'll be a column in a table with hundreds to thousands of rows.
         Schema::create('use_tracker', function (Blueprint $table) {
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
@@ -28,11 +21,6 @@ class MigrateGroupUserTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('group_user', function (Blueprint $table) {

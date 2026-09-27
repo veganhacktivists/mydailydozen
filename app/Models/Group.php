@@ -24,7 +24,6 @@ use Illuminate\Support\Carbon;
  * @property int $per_day
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection|Category[] $categories
  * @property-read int|null $categories_count
  * @property-read Collection|DetailType[] $detailTypes
  * @property-read int|null $detail_types_count
@@ -70,44 +69,16 @@ class Group extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at', 'in_use');
+        return $this->belongsToMany(User::class)->withPivot('checked', 'recorded_at');
     }
 
-    /**
-     * This lets us know if it's a key food group, a tweak, etc.
-     * @return HasMany
-     */
-    public function categories(): HasMany
-    {
-        return $this->hasMany(Category::class);
-    }
-
-    /**
-     * ServingSizes
-     * @return HasMany
-     */
     public function servingSizes()
     {
         return $this->hasMany(ServingSize::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function detailTypes(): HasMany
     {
         return $this->hasMany(DetailType::class);
-    }
-
-    /**
-     * @param $index
-     * @return string
-     */
-    public function checkedToInput($index)
-    {
-        if ($index < $this->checked) {
-            return ' checked';
-        }
-        return '';
     }
 }

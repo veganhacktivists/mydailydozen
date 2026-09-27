@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class AddInfoColumnToDetailTypesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('detail_types', function (Blueprint $table) {
@@ -18,11 +13,6 @@ class AddInfoColumnToDetailTypesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('detail_types', function (Blueprint $table) {
