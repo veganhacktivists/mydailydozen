@@ -22,6 +22,7 @@
         </div>
     </div>
     <button type="button" role="switch" aria-checked="{{ $checked ? 'true' : 'false' }}" aria-label="{{ $group['name'] }}"
+        wire:click.stop="toggleGroup"
         wire:loading.class="opacity-60"
         @class([
             'relative inline-flex h-7 w-12 flex-shrink-0 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2',
