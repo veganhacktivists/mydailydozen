@@ -35,7 +35,7 @@
                     </button>
                 </div>
                 <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
-                    <div x-show="!closed" @click.away="closed = true" class="py-1 rounded-md bg-white shadow-xs"
+                    <div x-show="!closed" @click.away="closed = true" class="py-1 rounded-md bg-white ring-1 ring-black/5"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                         <a href="/user/profile"
                             class="block px-4 py-2 text-sm text-cool-gray-700 hover:bg-cool-gray-100 transition ease-in-out duration-150"
