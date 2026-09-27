@@ -1,6 +1,5 @@
 @section('header', 'Enable or disable groups!')
 <x-master>
-    <!-- Page header -->
     <div class="mt-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap gap-3" x-data="{ busy: false }">

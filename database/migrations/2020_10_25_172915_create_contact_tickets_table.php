@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContactTicketsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('contact_tickets', function (Blueprint $table) {
@@ -25,11 +20,6 @@ class CreateContactTicketsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('contact_tickets');

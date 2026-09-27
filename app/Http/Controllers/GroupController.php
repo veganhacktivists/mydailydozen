@@ -36,7 +36,6 @@ class GroupController extends Controller
 
         return view('dashboard')->with([
             'user' => $user,
-            'greeting' => $this->generateGreeting($user->name, $user->timezone),
             'groups' => $groups,
             'checkCounts' => $checkCounts,
         ]);
@@ -101,25 +100,5 @@ class GroupController extends Controller
         $group->per_day = $request->per_day;
         $group->save();
         return redirect('');
-    }
-
-    /**
-     * Greeting for the user. :)
-     * @param $name
-     * @return string
-     */
-    private function generateGreeting($name, $timezone)
-    {
-        $hour = now($timezone ?? config('app.timezone'))->hour;
-        $greeting = '';
-        if ($hour >= 18) {
-            $greeting .= "Good evening, ";
-        } elseif ($hour >= 12) {
-            $greeting .= "Good afternoon, ";
-        } elseif ($hour < 12) {
-            $greeting .= "Good morning, ";
-        }
-        $greeting .= $name . '!';
-        return $greeting;
     }
 }

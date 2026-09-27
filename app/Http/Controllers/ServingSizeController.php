@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class ServingSizeController extends Controller
 {
-
-  /**
-     * Lets an admin create a serving size.
-     * @return Application|Factory|View
-     */
     public function create(Group $group)
     {
         return view('servingSizes.create')->with([
@@ -20,11 +15,6 @@ class ServingSizeController extends Controller
         ]);
     }
 
-    /**
-     * Lets an admin edit a serving size.
-     * @param ServingSize $servingSize
-     * @return Application|Factory|View
-     */
     public function edit(Group $group, ServingSize $servingSize)
     {
         return view('servingSizes.edit')->with([
@@ -32,12 +22,6 @@ class ServingSizeController extends Controller
         ]);
     }
 
-    /**
-     * @param Group $group
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
     public function store(Group $group, Request $request)
     {
         $servingSize = new ServingSize($this->validate($request, [
@@ -50,12 +34,6 @@ class ServingSizeController extends Controller
         return redirect("groups/".$servingSize->group->id."/edit");
     }
 
-    /**
-     * @param ServingSize $group
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
     public function update(Group $group, ServingSize $servingSize, Request $request)
     {
         $this->validate($request, [
@@ -70,12 +48,6 @@ class ServingSizeController extends Controller
         return redirect("groups/".$servingSize->group->id."/edit");
     }
 
-        /**
-     * @param ServingSize $group
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
     public function destroy(Group $group, ServingSize $servingSize, Request $request)
     {
         $servingSize->delete();
