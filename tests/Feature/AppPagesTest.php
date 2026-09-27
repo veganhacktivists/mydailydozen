@@ -59,7 +59,7 @@ class AppPagesTest extends TestCase
 
         Livewire::test(Card::class, ['group' => $this->makeGroup(perDay: 1), 'checkCount' => 3])
             ->assertSet('checkCount', 1)
-            ->assertSee('1 / 1');
+            ->assertSeeText('1 / 1');
     }
 
     public function test_the_customise_switch_does_what_this_tab_shows(): void
