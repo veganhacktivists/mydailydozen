@@ -12,6 +12,7 @@ use App\Http\Controllers\ServingSizeController;
 use App\Http\Controllers\TermsOfServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\ConfirmablePasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Jetstream\Jetstream;
@@ -38,13 +39,16 @@ Route::get('/', HomeController::class);
 Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class)->middleware('throttle:contact');
 
-// Fortify's own sign-up and reset-link routes, with rate limits it has no setting for
+// Fortify's own sign-up, reset-link and confirm-password routes, with rate limits it has no setting for
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware(['throttle:register', 'guest:'.config('fortify.guard')])
     ->name('register.store');
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware(['throttle:password-reset', 'guest:'.config('fortify.guard')])
     ->name('password.email');
+Route::post('/user/confirm-password', [ConfirmablePasswordController::class, 'store'])
+    ->middleware(['auth:'.config('fortify.guard'), 'throttle:password-check'])
+    ->name('password.confirm.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('groups', GroupController::class)->only([

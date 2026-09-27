@@ -61,6 +61,7 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('contact', fn (Request $request) => Limit::perMinutes(10, 3)->by($request->ip()));
         RateLimiter::for('register', fn (Request $request) => Limit::perMinute(6)->by($request->ip()));
+        RateLimiter::for('password-check', fn (Request $request) => Limit::perMinute(5)->by($request->user()?->id ?: $request->ip()));
         RateLimiter::for('password-reset', fn (Request $request) => [
             Limit::perMinute(3)->by(Str::lower((string) $request->input('email')).'|'.$request->ip()),
             Limit::perHour(10)->by($request->ip()),
