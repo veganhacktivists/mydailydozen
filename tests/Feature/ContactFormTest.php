@@ -45,6 +45,19 @@ class ContactFormTest extends TestCase
         $this->assertDatabaseCount('contact_tickets', 1);
     }
 
+    public function test_distinct_messages_from_one_address_in_the_same_second_are_sent(): void
+    {
+        Mail::fake();
+        config(['mail.recipient' => 'hello@example.com']);
+        $this->freezeSecond();
+
+        $this->post('/contact/send', $this->message())->assertRedirect()->assertSessionHas('success');
+        $this->post('/contact/send', $this->message(['message' => 'Correction']))->assertRedirect()->assertSessionHas('success');
+
+        $this->assertDatabaseCount('contact_tickets', 2);
+        Mail::assertSent(ContactFormEmail::class, fn ($mail) => $mail->ticket->message === 'Correction');
+    }
+
     public function test_a_message_too_long_to_store_is_sent_back(): void
     {
         Mail::fake();
