@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Livewire\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use App\Livewire\CardToggle;
 use Tests\TestCase;
 
 class AppPagesTest extends TestCase
@@ -50,5 +51,30 @@ class AppPagesTest extends TestCase
         Livewire::test(Card::class, ['group' => $group])
             ->call('check', 2)
             ->assertDispatched('serving-checked', group: $group->id, count: 2);
+    }
+
+    public function test_a_card_never_shows_more_ticks_than_servings(): void
+    {
+        $this->actingAs($this->makeUser());
+
+        Livewire::test(Card::class, ['group' => $this->makeGroup(perDay: 1), 'checkCount' => 3])
+            ->assertSet('checkCount', 1)
+            ->assertSee('1 / 1');
+    }
+
+    public function test_the_customise_switch_does_what_this_tab_shows(): void
+    {
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $user->currentGroups()->sync([$group->id]);
+        $this->actingAs($user);
+        $tab = Livewire::test(CardToggle::class, ['group' => $group])->assertSet('checked', true);
+
+        $user->currentGroups()->detach($group->id);
+        $this->actingAs($user->fresh());
+        $tab->call('toggleGroup');
+
+        $tab->assertSet('checked', false);
+        $this->assertFalse($user->currentGroups()->whereKey($group->id)->exists());
     }
 }

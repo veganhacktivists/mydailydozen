@@ -23,7 +23,9 @@ class CardToggle extends Component
 
     public function toggleGroup()
     {
-        auth()->user()->toggleGroup($this->group);
-        $this->checked = !$this->checked;
+        // Acts on what this tab shows, then shows what's saved, in case another tab changed it
+        $groups = auth()->user()->currentGroups();
+        $this->checked ? $groups->detach($this->group->id) : $groups->syncWithoutDetaching([$this->group->id]);
+        $this->checked = $groups->whereKey($this->group->id)->exists();
     }
 }
