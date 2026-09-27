@@ -22,11 +22,11 @@ class HistoryService {
             ->orderBy('group_user.recorded_at')
             ->get([
                 'group_user.recorded_at',
-                DB::raw('sum(case when group_user.checked > groups.per_day then groups.per_day else group_user.checked end) as count'),
+                DB::raw('sum(case when group_user.checked < 0 then 0 when group_user.checked > groups.per_day then groups.per_day else group_user.checked end) as count'),
             ])
             ->mapWithKeys(fn ($day) => [substr($day->recorded_at, 0, 10) => (int) $day->count]);
 
-        $endDate = $recorded->keys()->last() ?? $user->today()->format(self::DATE_FORMAT);
+        $endDate = max($user->today()->format(self::DATE_FORMAT), $recorded->keys()->last() ?? '');
         $entries = collect($this->fillMissingDates($user->created_at, $endDate))->merge($recorded);
 
         return $entries->map(fn ($count, $key) => [
