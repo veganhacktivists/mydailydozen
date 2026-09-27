@@ -14,6 +14,11 @@ class ProductionSeeder extends Seeder
      */
     public function run()
     {
+        // The foods have no unique key, so seeding a second time would add another copy of each
+        if (DB::table('groups')->exists()) {
+            return;
+        }
+
         $dailyDozenId = DB::table("categories")->insertGetId(["name" => "daily_dozen", "created_at" => "2020-10-14 15:06:59", "updated_at" => "2020-10-14 15:06:59"]);
         $supplementsId = DB::table("categories")->insertGetId(["name" => "supplements", "created_at" => "2020-10-14 15:06:59", "updated_at" => "2020-10-14 15:06:59"]);
         $tweaksId = DB::table("categories")->insertGetId(["name" => "tweaks", "created_at" => "2020-10-14 15:06:59", "updated_at" => "2020-10-14 15:06:59"]);
