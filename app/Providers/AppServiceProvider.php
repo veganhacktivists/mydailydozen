@@ -28,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
 
-        // HTTPS ends at Cloudflare, so links would otherwise be http://
+        // HTTPS ends at Cloudflare, so links would otherwise be http://. The host is
+        // pinned too, so a forged Host header can't end up in a password reset email.
         if ($this->app->environment('production')) {
+            URL::forceRootUrl(config('app.url'));
             URL::forceScheme('https');
         }
     }
