@@ -2,9 +2,10 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Locked;
+use Livewire\Component;
 
 class Card extends Component
 {
@@ -12,6 +13,11 @@ class Card extends Component
 
     public $checkCount;
     public array $checkboxes = [];
+    #[Locked]
+    public string $date;
+
+    #[Locked]
+    public ?string $timezone = null;
 
     private function updateCheckboxes()
     {
@@ -25,6 +31,8 @@ class Card extends Component
     public function mount(Group $group, ?int $checkCount = null)
     {
         $this->group = $group;
+        $this->date = Auth::user()->today()->toDateString();
+        $this->timezone = Auth::user()->timezone;
         // The dashboard batches today's pivot counts and passes them in to avoid an
         // N+1 query per card; fall back to a lookup when the count isn't provided.
         $this->checkCount = $checkCount ?? Auth::user()->getCheckCountForGroupAndDate($this->group, Auth::user()->today());
@@ -38,6 +46,12 @@ class Card extends Component
 
     public function check($count)
     {
+        if ($this->timezone !== Auth::user()->timezone || $this->date !== Auth::user()->today()->toDateString()) {
+            $this->redirectRoute('groups.index');
+
+            return;
+        }
+
         $update = Auth::user()->setCheckCountForGroupAndDate($this->group, Auth::user()->today(), $count);
         $this->checkCount = $update;
         $this->updateCheckboxes();

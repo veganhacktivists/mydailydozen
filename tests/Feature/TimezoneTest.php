@@ -62,4 +62,51 @@ class TimezoneTest extends TestCase
 
         $this->assertNull($user->fresh()->timezone);
     }
+
+    public function test_a_tick_is_rejected_when_the_browser_timezone_changes_the_day(): void
+    {
+        Carbon::setTestNow('2026-09-27 03:00:00');
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $user->setCheckCountForGroupAndDate($group, Carbon::parse('2026-09-26'), 1);
+
+        $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
+        $user->forceFill(['timezone' => 'America/Los_Angeles'])->save();
+
+        $card->call('check', 2)->assertRedirect(route('groups.index'));
+
+        $this->assertSame('America/Los_Angeles', $user->fresh()->timezone);
+        $this->assertSame(1, (int) DB::table('group_user')->whereDate('recorded_at', '2026-09-26')->value('checked'));
+        $this->assertDatabaseCount('group_user', 1);
+    }
+
+    public function test_a_tick_is_rejected_when_an_open_card_crosses_midnight(): void
+    {
+        Carbon::setTestNow('2026-09-26 23:59:00');
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+        $user->setCheckCountForGroupAndDate($group, $user->today(), 1);
+
+        $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
+        Carbon::setTestNow('2026-09-27 00:01:00');
+
+        $card->call('check', 2)->assertRedirect(route('groups.index'));
+
+        $this->assertSame(1, (int) DB::table('group_user')->whereDate('recorded_at', '2026-09-26')->value('checked'));
+        $this->assertDatabaseCount('group_user', 1);
+    }
+
+    public function test_a_tick_is_rejected_when_the_timezone_changes_but_the_date_does_not(): void
+    {
+        Carbon::setTestNow('2026-09-27 12:00:00');
+        $user = $this->makeUser();
+        $group = $this->makeGroup();
+
+        $card = Livewire::actingAs($user)->test(Card::class, ['group' => $group]);
+        $user->forceFill(['timezone' => 'Europe/London'])->save();
+
+        $card->call('check', 1)->assertRedirect(route('groups.index'));
+
+        $this->assertDatabaseCount('group_user', 0);
+    }
 }
