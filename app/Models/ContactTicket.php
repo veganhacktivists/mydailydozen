@@ -21,5 +21,6 @@ class ContactTicket extends Model
         'last_name',
         'email',
         'message',
+        'content_hash',
     ];
 }

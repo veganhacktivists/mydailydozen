@@ -35,6 +35,7 @@ class SendContactEmailController extends Controller
                 'last_name' => $lastName,
                 'email' => $email,
                 'message' => $body,
+                'content_hash' => hash('sha256', serialize([$firstName, $lastName, $body])),
             ]);
         } catch (UniqueConstraintViolationException) {
             // A repeat of a message saved this second, such as a double click
