@@ -27,7 +27,8 @@ class HistoryService {
             ->mapWithKeys(fn ($day) => [substr($day->recorded_at, 0, 10) => (int) $day->count]);
 
         $endDate = max($user->today()->format(self::DATE_FORMAT), $recorded->keys()->last() ?? '');
-        $entries = collect($this->fillMissingDates($user->created_at, $endDate))->merge($recorded);
+        $signedUp = $user->created_at->copy()->setTimezone($user->timezone ?? config('app.timezone'));
+        $entries = collect($this->fillMissingDates($signedUp, $endDate))->merge($recorded);
 
         return $entries->map(fn ($count, $key) => [
                 'year' => substr($key, 0, 4),
