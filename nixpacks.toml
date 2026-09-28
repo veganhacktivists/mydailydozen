@@ -7,13 +7,21 @@ nixPkgs = [
     '(lib.hiPrio php83Packages.composer)',
 ]
 
+# Nixpacks only offers pnpm 9, so run the pnpm version in package.json through corepack
+[phases.install]
+cmds = [
+    "mkdir -p /var/log/nginx && mkdir -p /var/cache/nginx",
+    "composer install --ignore-platform-reqs",
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm install --frozen-lockfile",
+]
+
 [phases.build]
 cmds = [
     "cp /app/nixpacks/start.sh /assets/start.sh",
     "chmod +x /assets/start.sh",
     "chown -R www-data /app/storage",
     "chown -R www-data /app/bootstrap/cache",
-    "...",
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm run build",
 ]
 
 [start]

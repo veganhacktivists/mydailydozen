@@ -14,7 +14,7 @@ servings of each we should try to check off every day.
 
 Laravel 13 on PHP 8.3, run through [Laravel Sail](https://laravel.com/docs/13.x/sail),
 which brings up the app, PostgreSQL and Mailpit in Docker. The front end needs
-Node 22 and pnpm.
+Node 24 and pnpm 12.
 
 ```
 cp .env.example .env
