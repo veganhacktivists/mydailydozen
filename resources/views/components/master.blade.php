@@ -11,7 +11,7 @@
     <x-mobile-nav></x-mobile-nav>
     <x-desktop-nav></x-desktop-nav>
 
-    <div class="flex-1 overflow-auto focus:outline-none" tabindex="0">
+    <div class="flex-1 overflow-auto focus:outline-hidden" tabindex="0">
       <x-appbar></x-appbar>
       <main class="flex-1 relative pb-8 overflow-y-auto">
         {{$slot}}

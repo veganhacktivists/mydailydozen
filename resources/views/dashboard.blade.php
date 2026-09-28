@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       @if($groups->count() > 0)
       @php($counts = $groups->mapWithKeys(fn ($group) => [$group->id => max(0, min($checkCounts[$group->id] ?? 0, $group->per_day))]))
-      <div class="mb-5 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200"
+      <div class="mb-5 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-xs ring-1 ring-gray-200"
         x-data="{ counts: @js($counts), total: {{ $groups->sum('per_day') }}, done() { return Object.values(this.counts).reduce((a, b) => a + b, 0) } }"
         @serving-checked.window="counts[$event.detail.group] = $event.detail.count">
         <span class="font-semibold text-gray-900">Today</span>
@@ -23,10 +23,10 @@
             href="{{route('settings')}}" class="font-medium underline underline-offset-2 hover:text-pine-700">customize page</a> to toggle more groups!
       </p>
       @else
-      <div class="rounded-2xl bg-white px-6 py-12 text-center shadow-sm ring-1 ring-gray-200">
+      <div class="rounded-2xl bg-white px-6 py-12 text-center shadow-xs ring-1 ring-gray-200">
         <p class="text-lg text-gray-900">No food groups selected to track.</p>
         <a href="{{route('settings')}}"
-          class="mt-4 inline-flex items-center rounded-lg bg-pine-600 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-pine-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2">Customize</a>
+          class="mt-4 inline-flex items-center rounded-lg bg-pine-600 px-5 py-2.5 font-semibold text-white shadow-xs transition hover:bg-pine-700 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2">Customize</a>
       </div>
       @endif
     </div>

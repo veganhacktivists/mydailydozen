@@ -1,4 +1,4 @@
-<div x-data="historyCalendar()" x-cloak class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200 sm:p-6">
+<div x-data="historyCalendar()" x-cloak class="rounded-2xl bg-white p-4 shadow-xs ring-1 ring-gray-200 sm:p-6">
   <div class="flex items-center justify-between">
     <h2 class="text-lg">
       <span class="font-bold text-gray-900" x-text="MONTH_NAMES[month]"></span>
@@ -6,13 +6,13 @@
     </h2>
     <div class="flex gap-1">
       <button type="button" x-bind:title="previousMonthTitle()" x-bind:aria-label="previousMonthTitle()" x-on:click="previousMonth()"
-        class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+        class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500">
         <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button type="button" x-bind:title="nextMonthTitle()" x-bind:aria-label="nextMonthTitle()" x-on:click="nextMonth()" x-bind:disabled="isCurrentMonth()"
-        class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 disabled:pointer-events-none disabled:opacity-30">
+        class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500 disabled:pointer-events-none disabled:opacity-30">
         <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>

@@ -61,13 +61,13 @@
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
-            dots[i].classList.remove("!bg-[#6b7280]")
+            dots[i].classList.remove("bg-cool-gray-500!")
         }
         slides[slideIndex-1].style.display = "block";
         slides[slideIndex % slides.length].loading = "eager";
 
         //highlights dot of current image in slideshow
-        dots[slideIndex-1].classList.add("!bg-[#6b7280]");
+        dots[slideIndex-1].classList.add("bg-cool-gray-500!");
 
         //determines length each image is displayed for
         timer = setTimeout(showSlides, 6000);
