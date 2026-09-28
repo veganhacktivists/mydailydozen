@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.3",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.9.3",
+        "guzzlehttp/guzzle": "^8.2.0",
         "laravel/framework": "^13.0",
         "laravel/jetstream": "^5.5",
         "laravel/sanctum": "^4.3",
