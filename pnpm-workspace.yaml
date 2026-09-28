@@ -1,0 +1,2 @@
+# Only install package versions that have been public for 14 days (in minutes).
+minimumReleaseAge: 20160
