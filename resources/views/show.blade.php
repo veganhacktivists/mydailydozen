@@ -1,7 +1,7 @@
 <x-master>
   <div class="mt-8">
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
+      <article class="overflow-hidden rounded-2xl bg-white shadow-xs ring-1 ring-gray-200">
         @if($group->banner_location !== "/img/dummy_banner.png")
           @php($banner = public_path(ltrim($group->banner_location, '/')))
           @php($small = preg_replace('/\.webp$/', '-800.webp', $banner))
@@ -21,8 +21,8 @@
               <div class="inline-flex rounded-lg bg-gray-100 p-1">
                 @foreach (['Metric' => 'true', 'Imperial' => 'false'] as $system => $value)
                   <button type="button" x-on:click="metric = {{ $value }}" :aria-pressed="(metric === {{ $value }}).toString()"
-                    class="rounded-md px-3 py-1.5 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500"
-                    :class="metric === {{ $value }} ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'">
+                    class="rounded-md px-3 py-1.5 text-sm font-medium transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500"
+                    :class="metric === {{ $value }} ? 'bg-white text-gray-900 shadow-xs' : 'text-gray-500 hover:text-gray-900'">
                     {{ $system }}
                   </button>
                 @endforeach
@@ -45,7 +45,7 @@
                 {{-- A thumbnail until clicked, so the page doesn't load the whole YouTube player up front --}}
                 @if ($youtube)
                   <button type="button" x-show="!playing" x-on:click="playing = true" aria-label="{{ __('Play') }}: {{ $detailType->name }}"
-                    class="group relative size-full focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-pine-500">
+                    class="group relative size-full focus:outline-hidden focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-pine-500">
                     <img class="size-full object-cover" src="https://i.ytimg.com/vi/{{ $youtube }}/hqdefault.jpg" alt="" loading="lazy">
                     <span class="absolute inset-0 flex items-center justify-center">
                       <span class="flex size-16 items-center justify-center rounded-full bg-black/70 text-white transition group-hover:bg-red-600">

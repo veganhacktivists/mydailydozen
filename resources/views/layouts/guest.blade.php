@@ -47,10 +47,10 @@
         <nav class="relative pt-6 px-4 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between sm:h-10 lg:justify-start">
                 <div class="gap-x-4 gap-y-2 flex items-center justify-between flex-wrap w-full md:w-auto">
-                    <a class="flex-shrink-0" href="{{ url('/') }}" aria-label="Home">
+                    <a class="shrink-0" href="{{ url('/') }}" aria-label="Home">
                         <img class="h-8 w-auto sm:h-10" src="{{ asset('img/mddlogo.webp') }}" width="694" height="160" alt="Dr. Greger’s Daily Dozen">
                     </a>
-                    <div class="-mr-2 flex flex-shrink-0 items-center gap-8 md:ml-6 md:mr-0 md:pr-4">
+                    <div class="-mr-2 flex shrink-0 items-center gap-8 md:ml-6 md:mr-0 md:pr-4">
                         <a href="/contact" class="font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900">Contact</a>
                         @guest
                             <a href="{{ route('login') }}" class="font-medium text-pine-600 transition duration-150 ease-in-out hover:text-pine-900">Log in</a>

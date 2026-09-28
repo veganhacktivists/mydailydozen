@@ -34,7 +34,7 @@
               <td class="px-6 py-3">{{ $servingSize->size_imperial }}</td>
               <td class="text-center">
                 <a href="/groups/{{ $group->id }}/serving-sizes/{{ $servingSize->id }}/edit" aria-label="Edit"
-                  class="inline-flex rounded-full p-1.5 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">
+                  class="inline-flex rounded-full p-1.5 hover:bg-gray-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500">
                   <x-icons.pencil class="size-6" />
                 </a>
               </td>
@@ -44,7 +44,7 @@
                   @method('DELETE')
                   @csrf
                   <button type="submit" aria-label="Delete"
-                    class="inline-flex rounded-full p-1.5 hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500">
+                    class="inline-flex rounded-full p-1.5 hover:bg-red-50 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500">
                     <x-icons.trash />
                   </button>
                 </form>
@@ -62,7 +62,7 @@
         @include('components.more-info-dropdown')
         @if ($selectedDetail)
           <a href="/groups/{{ $group['id'] }}/edit/"
-            class="inline-flex items-center rounded-lg bg-pine-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-pine-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2">
+            class="inline-flex items-center rounded-lg bg-pine-600 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-pine-700 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2">
             Add
           </a>
         @endif

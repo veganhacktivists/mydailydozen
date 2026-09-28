@@ -1,6 +1,83 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source(none);
+
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1536px;
+
+  --font-sans:
+    Nunito, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-pine-50: #f8fbf5;
+  --color-pine-100: #f0f7ea;
+  --color-pine-200: #daebcb;
+  --color-pine-300: #c4deac;
+  --color-pine-400: #97c66d;
+  --color-pine-500: #6bad2f;
+  --color-pine-600: #518323;
+  --color-pine-700: #40681c;
+  --color-pine-800: #304e15;
+  --color-pine-900: #20340e;
+
+  --color-cool-gray-50: #f9fafb;
+  --color-cool-gray-100: #f3f4f6;
+  --color-cool-gray-200: #e5e7eb;
+  --color-cool-gray-300: #d1d5db;
+  --color-cool-gray-400: #9ca3af;
+  --color-cool-gray-500: #6b7280;
+  --color-cool-gray-600: #4b5563;
+  --color-cool-gray-700: #374151;
+  --color-cool-gray-800: #1f2937;
+  --color-cool-gray-900: #111827;
+  --color-cool-gray-950: #030712;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  /* Tailwind 4 gives buttons the default cursor; keep v3's pointer */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility serving {
+  @apply size-9 cursor-pointer appearance-none rounded-lg border-2 border-gray-300 bg-white bg-center bg-no-repeat transition hover:border-pine-500 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2;
+  background-size: 100%;
+
+  &:checked {
+    @apply border-pine-600 bg-pine-600;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  }
+}
+
+@utility totally-visible {
+  visibility: hidden !important;
+  display: none !important;
+}
 
 @layer base {
     @font-face {
@@ -21,24 +98,5 @@
 
     [x-cloak] {
         display: none;
-    }
-}
-
-@layer components {
-    .serving {
-        @apply size-9 cursor-pointer appearance-none rounded-lg border-2 border-gray-300 bg-white bg-center bg-no-repeat transition hover:border-pine-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2;
-        background-size: 100%;
-    }
-
-    .serving:checked {
-        @apply border-pine-600 bg-pine-600;
-        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-    }
-}
-
-@layer utilities {
-    .totally-visible {
-        visibility: hidden !important;
-        display: none !important;
     }
 }

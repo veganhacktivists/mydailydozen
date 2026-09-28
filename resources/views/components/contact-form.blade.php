@@ -23,14 +23,14 @@
             </svg>
         @endforeach
 
-        <div class="relative rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 sm:p-10">
+        <div class="relative rounded-2xl bg-white p-6 shadow-xs ring-1 ring-gray-200 sm:p-10">
             @if (session('success'))
                 <div x-data="{ open: true }" x-show="open" x-transition.opacity.duration.300ms role="status"
                     class="mb-8 flex items-center gap-3 rounded-xl bg-pine-50 p-3 text-pine-800 ring-1 ring-pine-200">
                     <span class="rounded-full bg-pine-600 px-2 py-1 text-xs font-bold uppercase leading-none text-white">Sent</span>
                     <span class="flex-auto font-semibold">Thank you for contacting us! We'll respond as soon as we can.</span>
                     <button type="button" @click="open = false" aria-label="Dismiss"
-                        class="rounded-md px-2 text-xl leading-none text-pine-700 hover:bg-pine-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500">×</button>
+                        class="rounded-md px-2 text-xl leading-none text-pine-700 hover:bg-pine-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500">×</button>
                 </div>
             @endif
 
@@ -68,7 +68,7 @@
 
                 <div class="sm:col-span-2">
                     <button type="submit" x-bind:disabled="sending"
-                        class="inline-flex w-full items-center justify-center rounded-lg bg-pine-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-pine-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 active:bg-pine-800 disabled:cursor-wait disabled:opacity-70">
+                        class="inline-flex w-full items-center justify-center rounded-lg bg-pine-600 px-6 py-3 text-base font-semibold text-white shadow-xs transition hover:bg-pine-700 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 active:bg-pine-800 disabled:cursor-wait disabled:opacity-70">
                         Send email
                     </button>
                 </div>
