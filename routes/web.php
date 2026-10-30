@@ -30,6 +30,7 @@ Route::get('/up', HealthController::class)->withoutMiddleware('web');
 Route::get('/', HomeController::class);
 Route::get('/contact', fn() => Auth::check() ? view('contact-auth') : view('contact-public'));
 Route::post('/contact/send', SendContactEmailController::class)->middleware('throttle:contact');
+Route::get('/privacy-policy', fn() => view('privacy-policy'));
 
 // Fortify's own sign-up, reset-link and confirm-password routes, with rate limits it has no setting for
 Route::post('/register', [RegisteredUserController::class, 'store'])

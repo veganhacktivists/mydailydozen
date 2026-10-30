@@ -18,7 +18,7 @@ class SeoTest extends TestCase
 
     public function test_each_public_page_is_its_own_canonical_url(): void
     {
-        foreach (['/', '/login', '/register', '/contact'] as $path) {
+        foreach (['/', '/login', '/register', '/contact', '/privacy-policy'] as $path) {
             $this->get($path.'?utm_source=test')
                 ->assertOk()
                 ->assertSee('<link rel="canonical" href="'.url($path).'" />', false)
@@ -52,7 +52,7 @@ class SeoTest extends TestCase
     {
         $sitemap = file_get_contents(public_path('sitemap.xml'));
 
-        foreach (['/', '/register', '/login', '/contact'] as $path) {
+        foreach (['/', '/register', '/login', '/contact', '/privacy-policy'] as $path) {
             $this->assertStringContainsString('<loc>https://mydailydozen.org'.($path === '/' ? '/' : $path).'</loc>', $sitemap);
         }
         $this->assertStringContainsString('Sitemap: https://mydailydozen.org/sitemap.xml', file_get_contents(public_path('robots.txt')));
