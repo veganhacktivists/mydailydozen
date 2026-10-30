@@ -56,7 +56,7 @@
         <h2>Contact us</h2>
         <p>
             Vegan Hacktivists, Inc.<br>
-            8 The Green STE A, Dover, DE 19901-3600, USA<br>
+            8 The Green STE B, Dover, DE 19901-3600, USA<br>
             <x-link href="mailto:hello@veganhacktivists.org">hello@veganhacktivists.org</x-link>
         </p>
     </div>
