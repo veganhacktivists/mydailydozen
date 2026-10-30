@@ -8,6 +8,9 @@
         <div>
             Visit <x-link href="https://nutritionfacts.org/">NutritionFacts.org</x-link>
         </div>
+        <div>
+            <x-link href="/privacy-policy" target="_self">Privacy Policy</x-link>
+        </div>
         @if(config('mail.recipient'))
         <div>
             <x-link href="mailto:{{ config('mail.recipient') }}">Get in touch!</x-link>
