@@ -1,5 +1,6 @@
 [phases.setup]
 nixpkgsArchive = 'fb122f52ed3bc13fb7dcfb217a437e19219a125e'
+nixOverlays = ['...', 'https://github.com/veganhacktivists/nixpkgs-php-overlay/archive/2d9868fbe0b05663b811b3e769e1f21264cd371c.tar.gz']
 nixPkgs = [
     "...",
 
@@ -10,6 +11,8 @@ nixPkgs = [
 # Nixpacks only offers pnpm 9, so run the pnpm version in package.json through corepack
 [phases.install]
 cmds = [
+    'php -v',
+    '''php -r 'if (version_compare(PHP_VERSION, "8.3.37", "<")) { fwrite(STDERR, "PHP " . PHP_VERSION . " is older than required version\n"); exit(1); }' ''',
     "mkdir -p /var/log/nginx && mkdir -p /var/cache/nginx",
     "composer install --ignore-platform-reqs",
     "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm install --frozen-lockfile",
